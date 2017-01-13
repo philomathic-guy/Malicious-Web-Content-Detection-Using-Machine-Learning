@@ -68,6 +68,7 @@ def subdomains(url):
     else:
         return -1
 
+
 def main():
     status=[]
     url=raw_input("Enter the url :")
