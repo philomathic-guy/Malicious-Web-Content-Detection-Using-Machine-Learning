@@ -68,10 +68,19 @@ def subdomains(url):
     else:
         return -1
 
+def https_http_token(url):
+    match=re.search('https://|http://',url)
+    if match.start(0)==0:
+        url=url[match.end(0):]
+    match=re.search('http|https',url)
+    if match:
+        return -1
+    else:
+        return 1
 
 def main():
     status=[]
-    url=raw_input("Enter the url :")
+    url="https://www.http-spit.ac.in"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(having_at_symbol(url))
@@ -79,7 +88,8 @@ def main():
     status.append(having_dash_symbol(url))
     status.append(subdomains(url))
     status.append(shortened_url(url))
-    print '\n1. Having IP address\n2. URL Length\n3. Having @ symbol\n4. Having double slash\n5. Having dash symbol\n6. Having multiple subdomains\n7. URL Shortened\n'
+    status.append(https_http_token(url))
+    print '\n1. Having IP address\n2. URL Length\n3. Having @ symbol\n4. Having double slash\n5. Having dash symbol\n6. Having multiple subdomains\n7. URL Shortened\n8. HTTP or HTTPS token in domain name\n'
     print status
 
 if __name__ == "__main__":
