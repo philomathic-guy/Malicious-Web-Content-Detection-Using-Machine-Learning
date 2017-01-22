@@ -101,17 +101,28 @@ def sfh(wiki, soup):
             return 1
         return 1
 
+#IFrame Redirection
+#Checking remaining
+def iframe_redirection(wiki, soup):
+    for iframe in soup.find_all('iframe', width=True, height=True, frameBorder=True):
+        if iframe['width']=="0" and iframe['height']=="0" and iframe['frameBorder']=="0":
+            return -1
+        else:
+            return 0
+    return 0
+
 def main():
-	status=[]
-	wiki = "http://www.scluster.com/"
-	page = urllib2.urlopen(wiki)
-	soup = BeautifulSoup(page)
-	print "1. Request Url\n2. Anchor tag Url\n3. Script and link tag links\n4. Server form handler\n"
-	status.append(request_url(wiki, soup))
-	status.append(url_anchor(wiki, soup))
-	status.append(script_link_links(wiki, soup))
-	status.append(sfh(wiki, soup))
-	print status
+    status=[]
+    wiki = "http://www.scluster.com/"
+    page = urllib2.urlopen(wiki)
+    soup = BeautifulSoup(page)
+    print "1. Request Url\n2. Anchor tag Url\n3. Script and link tag links\n4. Server form handler\n5.iFrame Redirection\n"
+    status.append(request_url(wiki, soup))
+    status.append(url_anchor(wiki, soup))
+    status.append(script_link_links(wiki, soup))
+    status.append(sfh(wiki, soup))
+    status.append(iframe_redirection(wiki,soup))
+    print status
 
 if __name__ == "__main__":
     main()
