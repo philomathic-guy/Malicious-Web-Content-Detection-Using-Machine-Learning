@@ -23,6 +23,7 @@ def url_length(url):
     else:
         return -1
 
+
 def shortened_url(url):
 #These form the maximum used URL shortening serivices. If possible, find more
     match=re.search('bit\.ly|goo\.gl|ow\.ly|t\.co|tinyurl|tr\.im',url)
