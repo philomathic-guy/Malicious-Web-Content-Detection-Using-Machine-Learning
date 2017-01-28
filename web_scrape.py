@@ -102,7 +102,6 @@ def sfh(wiki, soup):
    return 1
 
 #Favicon
-#This function clashes with the Link Tag feature..What to do?
 def favicon(wiki, soup):
    for head in soup.find_all('head'):
       for head.link in soup.find_all('link', href=True):
@@ -124,7 +123,7 @@ def mail(wiki, soup):
    return 1
 
 #IFrame Redirection
- #Checking remaining
+#Checking remaining
 def iframe_redirection(wiki, soup):
     for iframe in soup.find_all('iframe', width=True, height=True, frameBorder=True):
         if iframe['width']=="0" and iframe['height']=="0" and iframe['frameBorder']=="0":
