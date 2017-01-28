@@ -26,9 +26,9 @@
 # soup = BeautifulSoup(response,"lxml")
 # print soup.find(id="async_spinner")
 
-import urllib2, httplib
-httplib.HTTPConnection.debuglevel = 1
-request = urllib2.Request('http://ow.ly/gxoS308a1EM')
-opener = urllib2.build_opener()
-f=opener.open(request)
-print f.url
+# import urllib2, httplib
+# httplib.HTTPConnection.debuglevel = 1
+# request = urllib2.Request('http://ow.ly/gxoS308a1EM')
+# opener = urllib2.build_opener()
+# f=opener.open(request)
+# print f.url
