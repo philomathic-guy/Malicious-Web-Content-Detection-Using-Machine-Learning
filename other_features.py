@@ -87,7 +87,7 @@ def main():
     status.append(ssl_feature(url))
     status.append(webtraffic_feature(url))
     status.append(googleindex_feature(url))
-    print '\n1. HTTPS (Hyper Text Transfer Protocol with Secure Sockets Layer)  \n2. WebTraffic\n3. Google Index '
+    print '\n1. HTTPS (Hyper Text Transfer Protocol with Secure Sockets Layer)  \n2. WebTraffic\n3. Google Index  '
     print status
 
 if __name__ == "__main__":
