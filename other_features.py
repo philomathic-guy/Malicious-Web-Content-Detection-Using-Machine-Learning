@@ -80,7 +80,6 @@ def googleindex_feature(url):
     else:
         return -1
 
-
 def main():
     status=[]
     url="https://www.google.com"
