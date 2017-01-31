@@ -32,3 +32,14 @@
 # opener = urllib2.build_opener()
 # f=opener.open(request)
 # print f.url
+
+# from selenium import webdriver
+#
+# browser = webdriver.Firefox()
+# browser.get('http://seleniumhq.org/')
+
+from selenium import webdriver
+url = 'http://www.stackoverflow.com'
+driver = webdriver.PhantomJS()
+driver.get(url)
+print driver.page_source
