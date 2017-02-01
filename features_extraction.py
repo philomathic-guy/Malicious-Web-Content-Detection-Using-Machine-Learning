@@ -124,9 +124,9 @@ def main():
     status.append(favicon(url,soup))
 
     status.append(https_token(url))
-################
+#################
     status.append(request_url(url, soup))
-################
+#################
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains'
     print '\n8. HTTP or HTTPS token in domain name\n'
     print status
