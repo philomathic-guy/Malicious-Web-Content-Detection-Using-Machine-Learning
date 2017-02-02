@@ -2,15 +2,17 @@
 #0 stands for suspicious
 #-1 stands for phishing
 
-import re
-import urllib2
-import re
 from bs4 import BeautifulSoup
+from selenium import webdriver
+import re, urllib2, httplib
+import OpenSSL, ssl
+import urllib, sys, bs4
+from google import search
 
 def having_ip_address(url):
     match=re.search('(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]))|(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}',url)
-    #IP address outside the permissible range condition not added yet. Eg. 999.400.500.260 will also be an IP address
-    #If more than 3 digits in IP address, then it takes only 3 digits and proceeds. BUT IT SHOULD SHOW NOT A MATCH. CHECK!
+######IP address outside the permissible range condition not added yet. Eg. 999.400.500.260 will also be an IP address######
+######If more than 3 digits in IP address, then it takes only 3 digits and proceeds. BUT IT SHOULD SHOW NOT A MATCH. CHECK!######
     if match:
         #print match.group()
         return -1
@@ -28,7 +30,7 @@ def url_length(url):
 
 
 def shortening_service(url):
-#These form the maximum used URL shortening serivices. If possible, find more
+######These form the maximum used URL shortening serivices. If possible, find more######
     match=re.search('bit\.ly|goo\.gl|ow\.ly|t\.co|tinyurl|tr\.im',url)
     if match:
         return -1
@@ -72,9 +74,66 @@ def having_sub_domain(url):
     else:
         return -1
 
-#SSL FINAL STATE
+def sslfinal_state(url):
 
-#DOMAIN REGISTRATION LENGTH
+    hostname = url
+    h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://', hostname)]
+    z = int(len(h))
+    if z != 0:
+        y = h[0][1]
+        if y == 7:
+            https = 0
+        else:
+            https = 1
+        host = "www."
+        hostname = hostname[y:]
+        hostname = host + hostname
+        #print hostname
+        h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
+        z = int(len(h))
+        if z != 0:
+            hostname = hostname[:h[0][0]]
+    else:
+        https = 0
+    try:
+        cert = ssl.get_server_certificate((hostname, 443))
+    except:
+        return
+    x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
+    i = x509.get_issuer()
+    before = x509.get_notBefore()
+    after = x509.get_notAfter()
+
+    issuer = str(i)
+    notBefore = str(before)
+    notAfter = str(after)
+    print notBefore
+    print notAfter
+
+    r = issuer.split("'")
+    r = r[1]
+    ca = r.split("CN=")
+    certificate_authority = ca[1]
+    print certificate_authority
+
+    h = [x.start(0) for x in re.finditer(
+        'Comodo|Symantec|GoDaddy|GlobalSign|IdenTrust|DigiCert|StartCom|Entrust|Trustwave|Verizon|Secom|Unizeto|QuoVadis|Deutsche Telekom|Network Solutions|TWCA|VeriSign|GeoTrust|Thawte|Doster|Google',
+        certificate_authority)]
+    z = int((len(h)))
+    if z != 0:
+        check = 1
+    else:
+        check = 0
+    notBefore = notBefore[:4]
+    notAfter = notAfter[:4]
+    if (int(notAfter) - int(notBefore) >= 1 and check == 1 and https == 1):
+        return 1
+    elif https == 1:
+        return 0
+    else:
+        return -1
+
+######DOMAIN REGISTRATION LENGTH######
 
 def favicon(wiki, soup):
    for head in soup.find_all('head'):
@@ -85,7 +144,7 @@ def favicon(wiki, soup):
          else:
             return -1
 
-#PORT
+######PORT######
 
 def https_token(url):
     match=re.search('https://|http://',url)
@@ -97,7 +156,6 @@ def https_token(url):
     else:
         return 1
 
-##################
 def request_url(wiki, soup):
    i = 0
    success = 0
@@ -105,7 +163,145 @@ def request_url(wiki, soup):
       if wiki in img['src']:
          success = success + 1
       i=i+1
-##################
+      #print a['href']
+
+   for audio in soup.find_all('audio', src= True):
+      if wiki in audio['src']:
+         success = success + 1
+      i=i+1
+
+   for embed in soup.find_all('embed', src= True):
+      dots=[x.start(0) for x in re.finditer('\.',embed['src'])]
+      if wiki in embed['src'] or len(dots)==1:
+         success = success + 1
+      i=i+1
+
+   for iframe in soup.find_all('iframe', src= True):
+      dots=[x.start(0) for x in re.finditer('\.',iframe['src'])]
+      if wiki in iframe['src'] or len(dots)==1:
+         success = success + 1
+      i=i+1
+
+   for video in soup.find_all('video', loop=True):
+      percentage = percentage +1
+      print percentage
+   percentage = success/float(i) * 100
+
+   if percentage < 22.0 :
+      return -1
+   elif((percentage >= 22.0) and (percentage < 61.0)) :
+      return 0
+   else :
+      return 1
+
+def url_of_anchor(wiki, soup):
+    i = 0
+    success = 0
+    for a in soup.find_all('a', href=True):
+        if wiki in a['href']:
+            success = success + 1
+        i = i + 1
+        # print a['href']
+    percentage = success / float(i) * 100
+    if percentage < 31.0:
+
+        return -1
+    elif ((percentage >= 31.0) and (percentage < 67.0)):
+        return 0
+    else:
+        return 1
+
+# Links in <Script> and <Link> tags
+###### <Meta> has no links in most of the websites..so can't compare with domain names ######
+def links_in_tags(wiki, soup):
+   i=0
+   success =0
+   for link in soup.find_all('link', href= True):
+      if wiki in link['href']:
+         success = success + 1
+      i=i+1
+
+   for script in soup.find_all('script', src= True):
+      if wiki in script['src']:
+         success = success + 1
+      i=i+1
+   percentage = success/float(i) * 100
+
+   if percentage < 17.0 :
+      return -1
+   elif((percentage >= 17.0) and (percentage < 81.0)) :
+      return 0
+   else :
+      return 1
+
+# Server Form Handler (SFH)
+###### Have written consitions directly from word file..as there are no sites to test ######
+def sfh(wiki, soup):
+   for form in soup.find_all('form', action= True):
+      if form['action'] =="" or form['action'] == "about:blank" :
+         return -1
+      elif wiki not in form['action']:
+          return 0
+      else:
+            return 1
+   return 1
+
+#Mail Function
+###### PHP mail() function is difficult to retreive, hence the following function is based on mailto ######
+def submitting_to_email(soup):
+   for form in soup.find_all('form', action= True):
+      if "mailto:" in form['action'] :
+         return -1
+      else:
+          return 1
+   return 1
+
+###### ABNORMAL URL ######
+
+###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
+def redirect(url):
+    httplib.HTTPConnection.debuglevel = 1
+    request = urllib2.Request(url)
+    opener = urllib2.build_opener()
+    f=opener.open(request)
+    print f.url
+    return 1
+
+#IFrame Redirection
+###### Checking remaining on some site######
+def iframe(soup):
+    for iframe in soup.find_all('iframe', width=True, height=True, frameBorder=True):
+        if iframe['width']=="0" and iframe['height']=="0" and iframe['frameBorder']=="0":
+            return -1
+        else:
+            return 0
+    return 0
+
+###### AGE OF DOMAIN ######
+
+###### DNS RECORD ######
+
+def web_traffic(url):
+    try:
+        rank = bs4.BeautifulSoup(urllib.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find("REACH")['RANK']
+    except TypeError:
+        return -1
+    rank= int(rank)
+    if (rank<100000):
+        return 1
+    else:
+        return 0
+
+def google_index(url):
+    site=search(url, stop=5)
+    if site:
+        return 1
+    else:
+        return -1
+
+##### LINKS PONITING TO PAGE #####
+
+##### STATISTICAL REPORT ######
 
 def main():
     status=[]
@@ -117,18 +313,29 @@ def main():
     status.append(double_slash_redirecting(url))
     status.append(prefix_suffix(url))
     status.append(having_sub_domain(url))
+    status.append(sslfinal_state(url))
 
     #wiki = "http://www.scluster.com/"
     page = urllib2.urlopen(url)
     soup = BeautifulSoup(page)
-    status.append(favicon(url,soup))
 
+    status.append(favicon(url,soup))
     status.append(https_token(url))
-#################
     status.append(request_url(url, soup))
-#################
-    print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains'
-    print '\n8. HTTP or HTTPS token in domain name\n'
+    status.append(url_of_anchor(url, soup))
+    status.append(links_in_tags(url,soup))
+    status.append(sfh(url,soup))
+    status.append(submitting_to_email(soup))
+    status.append(redirect(url))
+    status.append(iframe(soup))
+    status.append(web_traffic(soup))
+    status.append(google_index(url))
+
+
+    print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
+          '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
+          '9. Favicon\n10. HTTP or HTTPS token in domain name\n 11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
+          '14. SFH\n15. Submitting to email\n16. Redirect\n17. IFrame\n18. Web Traffic\n19. Google Index'
     print status
 
 if __name__ == "__main__":
