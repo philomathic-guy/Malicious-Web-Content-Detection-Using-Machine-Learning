@@ -105,7 +105,7 @@ def sslfinal_state(url):
     try:
         cert = ssl.get_server_certificate((hostname, 443))
     except:
-        return
+        return -1
     x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
     i = x509.get_issuer()
     before = x509.get_notBefore()
@@ -336,7 +336,7 @@ def google_index(url):
 
 def main():
     status=[]
-    url="http://www.spit.ac.in"
+    url="http://www.google.com"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
@@ -345,9 +345,21 @@ def main():
     status.append(prefix_suffix(url))
     status.append(having_sub_domain(url))
     status.append(sslfinal_state(url))
+
+    hostname = url
+    h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
+    z = int(len(h))
+    if z != 0:
+        y = h[0][1]
+        hostname = hostname[y:]
+        h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
+        z = int(len(h))
+        if z != 0:
+            hostname = hostname[:h[0][0]]
+
     dns=1
     try:
-        domain = whois.query("dbfjefklj.com")
+        domain = whois.query(hostname)
     except:
         dns=-1
 
@@ -383,8 +395,8 @@ def main():
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
-          '9. Favicon\n10. HTTP or HTTPS token in domain name\n11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
-          '14. SFH\n15. Submitting to email\n16. Redirect\n17. IFrame\n18. Web Traffic\n19. Google Index'
+          '9.Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
+          '15. SFH\n16. Submitting to email\n17. Redirect\n18. IFrame\n19.Age of Domain\n20.DNS Record\n21. Web Traffic\n22. Google Index'
     print status
 
 if __name__ == "__main__":
