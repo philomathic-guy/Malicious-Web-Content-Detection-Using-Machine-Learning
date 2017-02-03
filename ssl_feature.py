@@ -11,10 +11,10 @@ if z!=0:
         https=0
     else:
         https=1
-	host= "www."
-	hostname=hostname[y:]
-	hostname=host+hostname
-	print hostname
+    host= "www."
+    hostname=hostname[y:]
+    hostname=host+hostname
+    print hostname
     h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
     z=int(len(h))
     if z!=0:

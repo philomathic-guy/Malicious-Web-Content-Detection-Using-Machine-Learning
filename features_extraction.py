@@ -7,7 +7,8 @@ from selenium import webdriver
 import re, urllib2, httplib
 import OpenSSL, ssl
 import urllib, sys, bs4
-from google import search
+
+#from google import search
 
 def having_ip_address(url):
     match=re.search('(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5]))|(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}',url)
@@ -30,8 +31,13 @@ def url_length(url):
 
 
 def shortening_service(url):
-######These form the maximum used URL shortening serivices. If possible, find more######
-    match=re.search('bit\.ly|goo\.gl|ow\.ly|t\.co|tinyurl|tr\.im',url)
+    match=re.search('bit\.ly|goo\.gl|shorte\.st|go2l\.ink|x\.co|ow\.ly|t\.co|tinyurl|tr\.im|is\.gd|cli\.gs|'
+                    'yfrog\.com|migre\.me|ff\.im|tiny\.cc|url4\.eu||twit\.ac|su\.pr|twurl\.nl|snipurl\.com|'
+                    'short\.to|BudURL\.com|ping\.fm|post\.ly|Just\.as|bkite\.com|snipr\.com|fic\.kr|loopt\.us|'
+                    'doiop\.com|short\.ie|kl\.am|wp\.me|rubyurl\.com|om\.ly|to\.ly|bit\.do|t\.co|lnkd\.in|'
+                    'db\.tt|qr\.ae|adf\.ly|goo\.gl|bitly\.com|cur\.lv|tinyurl\.com|ow\.ly|bit\.ly|ity\.im|'
+                    'q\.gs|is\.gd|po\.st|bc\.vc|twitthis\.com|u\.to|j\.mp|buzurl\.com|cutt\.us|u\.bb|yourls\.org|'
+                    'x\.co|prettylinkpro\.com|scrnch\.me|filoops\.info|vzturl\.com|qr\.net|1url\.com|tweez\.me|v\.gd|tr\.im|link\.zip\.net',url)
     if match:
         return -1
     else:
@@ -75,7 +81,6 @@ def having_sub_domain(url):
         return -1
 
 def sslfinal_state(url):
-
     hostname = url
     h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://', hostname)]
     z = int(len(h))
@@ -98,7 +103,7 @@ def sslfinal_state(url):
     try:
         cert = ssl.get_server_certificate((hostname, 443))
     except:
-        return
+        return -1
     x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
     i = x509.get_issuer()
     before = x509.get_notBefore()
@@ -144,8 +149,6 @@ def favicon(wiki, soup):
          else:
             return -1
 
-######PORT######
-
 def https_token(url):
     match=re.search('https://|http://',url)
     if match.start(0)==0:
@@ -185,7 +188,10 @@ def request_url(wiki, soup):
    for video in soup.find_all('video', loop=True):
       percentage = percentage +1
       print percentage
-   percentage = success/float(i) * 100
+   try:
+      percentage = success/float(i) * 100
+   except:
+       return 1
 
    if percentage < 22.0 :
       return -1
@@ -202,9 +208,11 @@ def url_of_anchor(wiki, soup):
             success = success + 1
         i = i + 1
         # print a['href']
-    percentage = success / float(i) * 100
+    try:
+        percentage = success / float(i) * 100
+    except:
+        return 1
     if percentage < 31.0:
-
         return -1
     elif ((percentage >= 31.0) and (percentage < 67.0)):
         return 0
@@ -225,7 +233,10 @@ def links_in_tags(wiki, soup):
       if wiki in script['src']:
          success = success + 1
       i=i+1
-   percentage = success/float(i) * 100
+   try:
+       percentage = success / float(i) * 100
+   except:
+       return 1
 
    if percentage < 17.0 :
       return -1
@@ -293,11 +304,12 @@ def web_traffic(url):
         return 0
 
 def google_index(url):
-    site=search(url, stop=5)
-    if site:
-        return 1
-    else:
-        return -1
+    return 1
+    # site=search(url, stop=5)
+    # if site:
+    #     return 1
+    # else:
+    #     return -1
 
 ##### LINKS PONITING TO PAGE #####
 
@@ -305,7 +317,7 @@ def google_index(url):
 
 def main():
     status=[]
-    url="https://www.http-spit.ac.in"
+    url="http://www.spit.ac.in"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
@@ -334,7 +346,7 @@ def main():
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
-          '9. Favicon\n10. HTTP or HTTPS token in domain name\n 11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
+          '9. Favicon\n10. HTTP or HTTPS token in domain name\n11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
           '14. SFH\n15. Submitting to email\n16. Redirect\n17. IFrame\n18. Web Traffic\n19. Google Index'
     print status
 
