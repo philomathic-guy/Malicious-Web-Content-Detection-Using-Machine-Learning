@@ -37,8 +37,39 @@
 # browser = webdriver.Firefox()
 # browser.get('http://seleniumhq.org/')
 
-from selenium import webdriver
-url = 'http://www.stackoverflow.com'
-driver = webdriver.PhantomJS()
-driver.get(url)
-print driver.page_source
+#from selenium import webdriver
+#url = 'http://www.stackoverflow.com'
+#driver = webdriver.PhantomJS()
+#driver.get(url)
+#print driver.page_source
+
+import whois
+from datetime import datetime
+import time
+try:
+    domain=whois.query("dbfjefklj.com")
+except:
+    print -1
+creation_date=domain.creation_date
+expiration_date=domain.expiration_date
+#creation_date=datetime.strptime(creation_date,"%Y-%m-%d")
+#expiration_date=datetime.strptime(expiration_date,"%Y-%m-%d")
+#today=datetime.datetime.today().strftime('%Y-%m-%d')
+today=time.strftime('%Y-%m-%d')
+today=datetime.strptime(today,'%Y-%m-%d')
+ageofdomain=abs((expiration_date - creation_date).days)
+if ageofdomain/30<6:
+    print -1
+else:
+    print 1
+
+registration_length=abs((expiration_date-today).days)
+
+if registration_length/365<=1:
+    print -1
+else:
+    print 1
+print registration_length
+print ageofdomain
+print creation_date
+print expiration_date

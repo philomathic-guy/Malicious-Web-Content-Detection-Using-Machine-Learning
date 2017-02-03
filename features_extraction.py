@@ -9,6 +9,9 @@ import OpenSSL, ssl
 import urllib, sys, bs4
 
 from google import google
+import whois
+from datetime import datetime
+import time
 
 def having_ip_address(url):
     match=re.search('(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  #IPv4
@@ -38,7 +41,6 @@ def shortening_service(url):
                     'q\.gs|is\.gd|po\.st|bc\.vc|twitthis\.com|u\.to|j\.mp|buzurl\.com|cutt\.us|u\.bb|yourls\.org|'
                     'x\.co|prettylinkpro\.com|scrnch\.me|filoops\.info|vzturl\.com|qr\.net|1url\.com|tweez\.me|v\.gd|tr\.im|link\.zip\.net',url)
     if match:
-        print match.group()
         return -1
     else:
         return 1
@@ -103,7 +105,7 @@ def sslfinal_state(url):
     try:
         cert = ssl.get_server_certificate((hostname, 443))
     except:
-        return -1
+        return
     x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
     i = x509.get_issuer()
     before = x509.get_notBefore()
@@ -138,7 +140,17 @@ def sslfinal_state(url):
     else:
         return -1
 
-######DOMAIN REGISTRATION LENGTH######
+def domain_registration_length(domain):
+    expiration_date = domain.expiration_date
+    today = time.strftime('%Y-%m-%d')
+    today = datetime.strptime(today, '%Y-%m-%d')
+    registration_length = abs((expiration_date - today).days)
+
+    if registration_length / 365 <= 1:
+        return -1
+    else:
+        return 1
+
 
 def favicon(wiki, soup):
    for head in soup.find_all('head'):
@@ -213,6 +225,7 @@ def url_of_anchor(wiki, soup):
     except:
         return 1
     if percentage < 31.0:
+
         return -1
     elif ((percentage >= 31.0) and (percentage < 67.0)):
         return 0
@@ -220,6 +233,7 @@ def url_of_anchor(wiki, soup):
         return 1
 
 # Links in <Script> and <Link> tags
+###### <Meta> has no links in most of the websites..so can't compare with domain names ######
 def links_in_tags(wiki, soup):
    i=0
    success =0
@@ -287,9 +301,16 @@ def iframe(soup):
             return 1
     return 1
 
-###### AGE OF DOMAIN ######
 
-###### DNS RECORD ######
+def age_of_domain(domain):
+    creation_date = domain.creation_date
+    expiration_date = domain.expiration_date
+    ageofdomain = abs((expiration_date - creation_date).days)
+    if ageofdomain / 30 < 6:
+        return -1
+    else:
+        return 1
+
 
 def web_traffic(url):
     try:
@@ -324,6 +345,16 @@ def main():
     status.append(prefix_suffix(url))
     status.append(having_sub_domain(url))
     status.append(sslfinal_state(url))
+    dns=1
+    try:
+        domain = whois.query("dbfjefklj.com")
+    except:
+        dns=-1
+
+    if dns==-1:
+        status.append(-1)
+    else:
+        status.append(domain_registration_length(domain))
 
     #wiki = "http://www.scluster.com/"
     page = urllib2.urlopen(url)
@@ -338,6 +369,14 @@ def main():
     status.append(submitting_to_email(soup))
     status.append(redirect(url))
     status.append(iframe(soup))
+
+    if dns == -1:
+        status.append(-1)
+    else:
+        status.append(age_of_domain(domain))
+
+    status.append(dns)
+
     status.append(web_traffic(soup))
     status.append(google_index(url))
 
