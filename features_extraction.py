@@ -197,9 +197,6 @@ def request_url(wiki, soup):
          success = success + 1
       i=i+1
 
-   for video in soup.find_all('video', loop=True):
-      percentage = percentage +1
-      print percentage
    try:
       percentage = success/float(i) * 100
    except:
@@ -225,7 +222,6 @@ def url_of_anchor(wiki, soup):
     except:
         return 1
     if percentage < 31.0:
-
         return -1
     elif ((percentage >= 31.0) and (percentage < 67.0)):
         return 0
@@ -233,7 +229,6 @@ def url_of_anchor(wiki, soup):
         return 1
 
 # Links in <Script> and <Link> tags
-###### <Meta> has no links in most of the websites..so can't compare with domain names ######
 def links_in_tags(wiki, soup):
    i=0
    success =0
