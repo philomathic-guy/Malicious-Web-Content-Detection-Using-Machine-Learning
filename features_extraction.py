@@ -153,13 +153,14 @@ def domain_registration_length(domain):
 
 
 def favicon(wiki, soup):
-   for head in soup.find_all('head'):
-      for head.link in soup.find_all('link', href=True):
-         dots = [x.start(0) for x in re.finditer('\.', head.link['href'])]
-         if wiki in head.link['href'] or len(dots) == 1:
-            return 1
-         else:
-            return -1
+    for head in soup.find_all('head'):
+        for head.link in soup.find_all('link', href=True):
+            dots = [x.start(0) for x in re.finditer('\.', head.link['href'])]
+            if wiki in head.link['href'] or len(dots) == 1:
+                return 1
+            else:
+                return -1
+    return 1
 
 def https_token(url):
     match=re.search('https://|http://',url)
@@ -306,7 +307,6 @@ def age_of_domain(domain):
     else:
         return 1
 
-
 def web_traffic(url):
     try:
         rank = bs4.BeautifulSoup(urllib.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find("REACH")['RANK']
@@ -331,7 +331,7 @@ def google_index(url):
 
 def main():
     status=[]
-    url="http://www.google.com"
+    url="http://got.to/account1234"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
@@ -390,8 +390,8 @@ def main():
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
-          '9.Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
-          '15. SFH\n16. Submitting to email\n17. Redirect\n18. IFrame\n19.Age of Domain\n20.DNS Record\n21. Web Traffic\n22. Google Index'
+          '9. Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
+          '15. SFH\n16. Submitting to email\n17. Redirect\n18. IFrame\n19. Age of Domain\n20. DNS Record\n21. Web Traffic\n22. Google Index'
     print status
 
 if __name__ == "__main__":
