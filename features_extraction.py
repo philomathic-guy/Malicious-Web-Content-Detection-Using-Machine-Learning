@@ -277,6 +277,14 @@ def submitting_to_email(soup):
    return 1
 
 ###### ABNORMAL URL ######
+def abnormal_url(domain,url):
+    hostname=domain.name
+    match=re.search(hostname,url)
+    if match:
+        return 1
+    else:
+        return -1
+
 
 ###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
 def redirect(url):
@@ -374,6 +382,12 @@ def main():
     status.append(links_in_tags(url,soup))
     status.append(sfh(url,soup))
     status.append(submitting_to_email(soup))
+
+    if dns == -1:
+        status.append(-1)
+    else:
+        status.append(abnormal_url(domain,url))
+
     status.append(redirect(url))
     status.append(iframe(soup))
 
@@ -391,7 +405,7 @@ def main():
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
           '9. Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
-          '15. SFH\n16. Submitting to email\n17. Redirect\n18. IFrame\n19. Age of Domain\n20. DNS Record\n21. Web Traffic\n22. Google Index'
+          '15. SFH\n16. Submitting to email\n17.Abnormal URL\n18. Redirect\n19. IFrame\n20. Age of Domain\n21. DNS Record\n22. Web Traffic\n23. Google Index'
     print status
 
 if __name__ == "__main__":
