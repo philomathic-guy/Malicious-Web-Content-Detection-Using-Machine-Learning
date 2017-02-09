@@ -13,6 +13,8 @@ import whois
 from datetime import datetime
 import time
 
+import phishtank
+
 def having_ip_address(url):
     match=re.search('(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  #IPv4
                     '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)'  #IPv4 in hexadecimal
@@ -151,7 +153,6 @@ def domain_registration_length(domain):
     else:
         return 1
 
-
 def favicon(wiki, soup):
     for head in soup.find_all('head'):
         for head.link in soup.find_all('link', href=True):
@@ -276,7 +277,6 @@ def submitting_to_email(soup):
           return 1
    return 1
 
-###### ABNORMAL URL ######
 def abnormal_url(domain,url):
     hostname=domain.name
     match=re.search(hostname,url)
@@ -284,7 +284,6 @@ def abnormal_url(domain,url):
         return 1
     else:
         return -1
-
 
 ###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
 def redirect(url):
@@ -335,7 +334,15 @@ def google_index(url):
 
 ##### LINKS PONITING TO PAGE #####
 
-##### STATISTICAL REPORT ######
+# def statistical_report(url):
+#     api=phishtank.PhishTank()
+#     if api.check(url).unsafe==True:
+#         print 'Hi'
+
+def statistical_report(url):
+    match=re.search('at\.ua|usa\.cc|baltazarpresentes\.com\.br|pe\.hu|esy\.es|hol\.es|sweddy\.com|myjino\.ru|96\.lt|ow\.ly'
+                    '146\.112\.61\.108|213\.174\.157\.151|121\.50\.168\.88|192\.185\.217\.116|78\.46\.211\.158|181\.174\.165\.13|46\.242\.145\.103|121\.50\.168\.40|83\.125\.22\.219|46\.242\.145\.98'
+                    '',url)
 
 def main():
     status=[]
@@ -391,6 +398,7 @@ def main():
     status.append(redirect(url))
     status.append(iframe(soup))
 
+
     if dns == -1:
         status.append(-1)
     else:
@@ -405,7 +413,8 @@ def main():
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
           '9. Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
-          '15. SFH\n16. Submitting to email\n17.Abnormal URL\n18. Redirect\n19. IFrame\n20. Age of Domain\n21. DNS Record\n22. Web Traffic\n23. Google Index'
+          '15. SFH\n16. Submitting to email\n17.Abnormal URL\n18. Redirect\n19. IFrame\n20. Age of Domain\n21. DNS Record\n22. Web Traffic\n' \
+          '23. Google Index\n24. Statistical Reports\n'
     print status
 
 if __name__ == "__main__":
