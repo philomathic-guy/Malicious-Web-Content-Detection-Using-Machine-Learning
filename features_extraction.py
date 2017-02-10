@@ -15,6 +15,8 @@ import time
 
 import phishtank
 
+import socket
+
 def having_ip_address(url):
     match=re.search('(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  #IPv4
                     '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)'  #IPv4 in hexadecimal
@@ -339,10 +341,16 @@ def google_index(url):
 #     if api.check(url).unsafe==True:
 #         print 'Hi'
 
-def statistical_report(url):
+def statistical_report(url,hostname):
     match=re.search('at\.ua|usa\.cc|baltazarpresentes\.com\.br|pe\.hu|esy\.es|hol\.es|sweddy\.com|myjino\.ru|96\.lt|ow\.ly'
                     '146\.112\.61\.108|213\.174\.157\.151|121\.50\.168\.88|192\.185\.217\.116|78\.46\.211\.158|181\.174\.165\.13|46\.242\.145\.103|121\.50\.168\.40|83\.125\.22\.219|46\.242\.145\.98'
                     '',url)
+    try:
+        ip_address=socket.gethostbyname(hostname)
+    except:
+        return -1
+
+
 
 def main():
     status=[]
@@ -408,7 +416,7 @@ def main():
 
     status.append(web_traffic(soup))
     status.append(google_index(url))
-
+    status.append(statistical_report(url,hostname))
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
           '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \

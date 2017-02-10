@@ -42,7 +42,7 @@ print("\n\n ""Naive Bayes Algorithm Results"" ")
 clf2 = GaussianNB()
 clf2.fit(features_train, labels_train)
 pred2=clf2.predict(features_test)
-#print(classification_report(labels_test, pred2))
+#print (classification_report(labels_test, pred2))
 print 'The accuracy is:', accuracy_score(labels_test, pred2)
 
 print("\n\n ""K-Nearest Neighbours Algorithm Results"" ")
