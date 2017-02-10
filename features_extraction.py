@@ -354,14 +354,16 @@ def statistical_report(url,hostname):
                        '216\.218\.185\.162|54\.225\.104\.146|103\.243\.24\.98|199\.59\.243\.120|31\.170\.160\.61|213\.19\.128\.77|62\.113\.226\.131|208\.100\.26\.234|195\.16\.127\.102|195\.16\.127\.157|'
                        '34\.196\.13\.28|103\.224\.212\.222|172\.217\.4\.225|54\.72\.9\.51|192\.64\.147\.141|198\.200\.56\.183|23\.253\.164\.103|52\.48\.191\.26|52\.214\.197\.72|87\.98\.255\.18|209\.99\.17\.27|'
                        '216\.38\.62\.18|104\.130\.124\.96|47\.89\.58\.141|78\.46\.211\.158|54\.86\.225\.156|54\.82\.156\.19|37\.157\.192\.102|204\.11\.56\.48|110\.34\.231\.42',ip_address)
-    if url_match|ip_match:
+    if url_match:
+        return -1
+    elif ip_match:
         return -1
     else:
         return 1
 
 def main():
     status=[]
-    url="http://got.to/account1234"
+    url="http://ososososaa.pe.hu/OWA.html"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
@@ -394,7 +396,11 @@ def main():
         status.append(domain_registration_length(domain))
 
     #wiki = "http://www.scluster.com/"
-    page = urllib2.urlopen(url)
+    try:
+        page = urllib2.urlopen(url)
+    except:
+        print "The URL entered is forbidden"
+        sys.exit()
     soup = BeautifulSoup(page)
 
     status.append(favicon(url,soup))
@@ -413,7 +419,6 @@ def main():
     status.append(redirect(url))
     status.append(iframe(soup))
 
-
     if dns == -1:
         status.append(-1)
     else:
@@ -422,7 +427,9 @@ def main():
     status.append(dns)
 
     status.append(web_traffic(soup))
+    print "Before GOOOOOOOOOOOOOOOGLE"
     status.append(google_index(url))
+    print "After     GOOOOOOOOOOOOOOOGLE"
     status.append(statistical_report(url,hostname))
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
@@ -431,6 +438,7 @@ def main():
           '15. SFH\n16. Submitting to email\n17.Abnormal URL\n18. Redirect\n19. IFrame\n20. Age of Domain\n21. DNS Record\n22. Web Traffic\n' \
           '23. Google Index\n24. Statistical Reports\n'
     print status
+    return status
 
 if __name__ == "__main__":
     main()
