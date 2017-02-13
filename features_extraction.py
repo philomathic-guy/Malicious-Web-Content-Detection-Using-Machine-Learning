@@ -289,12 +289,23 @@ def abnormal_url(domain,url):
 
 ###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
 def redirect(url):
+    count=0
     httplib.HTTPConnection.debuglevel = 1
-    request = urllib2.Request(url)
-    opener = urllib2.build_opener()
-    f=opener.open(request)
-    print f.url
-    return 1
+    while True:
+        request = urllib2.Request(url)
+        opener = urllib2.build_opener()
+        f=opener.open(request)
+        if url!=f.url:
+            url=f.url
+            count+=1
+        else:
+            break
+    if count<=1:
+        return 1
+    elif count>=2 and count<4:
+        return 0
+    else:
+        return -1
 
 #IFrame Redirection
 ###### Checking remaining on some site######
