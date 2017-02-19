@@ -13,9 +13,13 @@ from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_sc
 from sklearn import preprocessing
 from sklearn import metrics
 
+
+import sys
+import joblib
+
 labels=[]
 features=[]
-file=open('/home/anand/PycharmProjects/BE/Training Dataset.arff').read()
+file=open('/home/janvi-jatakia/PycharmProjects/BE/Training Dataset.arff').read()
 list=file.split('\r\n')
 #f=open('/home/janvi-jatakia/Downloads/data.txt','w')
 data=np.array(list)
@@ -71,3 +75,7 @@ pred4=clf4.predict(features_test)
 print(classification_report(labels_test, pred4))
 print 'The accuracy is:', accuracy_score(labels_test, pred4)
 print metrics.confusion_matrix(labels_test, pred4)
+
+sys.setrecursionlimit(9999999)
+joblib.dump(clf4, 'classifier/random_forest.pkl',compress=9)
+
