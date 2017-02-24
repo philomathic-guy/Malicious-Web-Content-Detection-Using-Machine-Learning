@@ -295,11 +295,22 @@ def redirect(url):
         request = urllib2.Request(url)
         opener = urllib2.build_opener()
         f=opener.open(request)
-        if url!=f.url:
-            url=f.url
-            count+=1
+
+        #### OTHERS LIKE .com should be added
+
+        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly',url)]
+        www=[x.end(0) for x in re.finditer('www.', url)]
+        if www:
+            domain=url[www[0]:dotcom[0]]
         else:
+            http=[x.end(0) for x in re.finditer('http\:\/\/|https\:\/\/',url)]
+            domain=url[http[0]:dotcom[0]]
+        match=re.search(domain,f.url)
+        if match:
             break
+        else:
+            url = f.url
+            count += 1
     if count<=1:
         return 1
     elif count>=2 and count<4:
@@ -440,7 +451,7 @@ def main():
     status.append(web_traffic(soup))
     print "Before GOOOOOOOOOOOOOOOGLE"
     status.append(google_index(url))
-    print "After     GOOOOOOOOOOOOOOOGLE"
+    print "After GOOOOOOOOOOOOOOOGLE"
     status.append(statistical_report(url,hostname))
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
