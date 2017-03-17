@@ -298,7 +298,7 @@ def redirect(url):
 
         #### OTHERS LIKE .com should be added
 
-        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly',url)]
+        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly|\.pe',url)]
         www=[x.end(0) for x in re.finditer('www.', url)]
         if www:
             domain=url[www[0]:dotcom[0]]
@@ -385,7 +385,7 @@ def statistical_report(url,hostname):
 
 def main():
     status=[]
-    url="http://ososososaa.pe.hu/OWA.html"
+    url="https://account.dr-sihat.com/webapps/209b0/"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
@@ -417,21 +417,29 @@ def main():
     else:
         status.append(domain_registration_length(domain))
 
+    fileOpen=True
     #wiki = "http://www.scluster.com/"
     try:
         page = urllib2.urlopen(url)
     except:
         print "The URL entered is forbidden"
-        sys.exit()
-    soup = BeautifulSoup(page)
+        fileOpen=False
 
-    status.append(favicon(url,soup))
-    status.append(https_token(url))
-    status.append(request_url(url, soup))
-    status.append(url_of_anchor(url, soup))
-    status.append(links_in_tags(url,soup))
-    status.append(sfh(url,soup))
-    status.append(submitting_to_email(soup))
+    if fileOpen:
+        soup = BeautifulSoup(page)
+
+        status.append(favicon(url,soup))
+        status.append(https_token(url))
+        status.append(request_url(url, soup))
+        status.append(url_of_anchor(url, soup))
+        status.append(links_in_tags(url,soup))
+        status.append(sfh(url,soup))
+        status.append(submitting_to_email(soup))
+    else:
+        for i in range(15):
+            status.append(-1)
+        print status
+        return status
 
     if dns == -1:
         status.append(-1)
@@ -439,7 +447,10 @@ def main():
         status.append(abnormal_url(domain,url))
 
     status.append(redirect(url))
-    status.append(iframe(soup))
+    if fileOpen:
+        status.append(iframe(soup))
+    else:
+        status.append(-1)
 
     if dns == -1:
         status.append(-1)
@@ -448,7 +459,10 @@ def main():
 
     status.append(dns)
 
-    status.append(web_traffic(soup))
+    if fileOpen:
+        status.append(web_traffic(soup))
+    else:
+        status.append(-1)
     print "Before GOOOOOOOOOOOOOOOGLE"
     status.append(google_index(url))
     print "After GOOOOOOOOOOOOOOOGLE"
