@@ -385,7 +385,7 @@ def statistical_report(url,hostname):
 
 def main():
     status=[]
-    url="https://account.dr-sihat.com/webapps/209b0/"
+    url="https://www.google.com"
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
