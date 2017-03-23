@@ -207,11 +207,11 @@ def request_url(wiki, soup):
        return 1
 
    if percentage < 22.0 :
-      return -1
+      return 1
    elif((percentage >= 22.0) and (percentage < 61.0)) :
       return 0
    else :
-      return 1
+      return -1
 
 def url_of_anchor(wiki, soup):
     i = 0
@@ -226,11 +226,11 @@ def url_of_anchor(wiki, soup):
     except:
         return 1
     if percentage < 31.0:
-        return -1
+        return 1
     elif ((percentage >= 31.0) and (percentage < 67.0)):
         return 0
     else:
-        return 1
+        return -1
 
 # Links in <Script> and <Link> tags
 def links_in_tags(wiki, soup):
@@ -251,11 +251,11 @@ def links_in_tags(wiki, soup):
        return 1
 
    if percentage < 17.0 :
-      return -1
+      return 1
    elif((percentage >= 17.0) and (percentage < 81.0)) :
       return 0
    else :
-      return 1
+      return -1
 
 # Server Form Handler (SFH)
 ###### Have written consitions directly from word file..as there are no sites to test ######
@@ -298,7 +298,7 @@ def redirect(url):
 
         #### OTHERS LIKE .com should be added
 
-        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly|\.pe',url)]
+        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly|\.pe|\.in',url)]
         www=[x.end(0) for x in re.finditer('www.', url)]
         if www:
             domain=url[www[0]:dotcom[0]]
@@ -383,9 +383,9 @@ def statistical_report(url,hostname):
     else:
         return 1
 
-def main():
+def main(url):
     status=[]
-    url="https://www.google.com"
+
     status.append(having_ip_address(url))
     status.append(url_length(url))
     status.append(shortening_service(url))
