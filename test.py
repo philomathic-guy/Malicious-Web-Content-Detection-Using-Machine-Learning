@@ -1,5 +1,6 @@
 import joblib, features_extraction, sys
 url=sys.argv[0]
+#url="www.google.com"
 features_test=features_extraction.main(url)
 
 clf = joblib.load('classifier/random_forest.pkl')
