@@ -5,7 +5,7 @@
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import re, urllib2, httplib
-import OpenSSL, ssl
+#import OpenSSL, ssl
 import urllib, sys, bs4
 
 from google import google
@@ -86,63 +86,63 @@ def having_sub_domain(url):
     else:
         return -1
 
-def sslfinal_state(url):
-    hostname = url
-    h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://', hostname)]
-    z = int(len(h))
-    if z != 0:
-        y = h[0][1]
-        if y == 7:
-            https = 0
-        else:
-            https = 1
-        host = "www."
-        hostname = hostname[y:]
-        hostname = host + hostname
-        #print hostname
-        h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
-        z = int(len(h))
-        if z != 0:
-            hostname = hostname[:h[0][0]]
-    else:
-        https = 0
-    try:
-        cert = ssl.get_server_certificate((hostname, 443))
-    except:
-        return -1
-    x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
-    i = x509.get_issuer()
-    before = x509.get_notBefore()
-    after = x509.get_notAfter()
-
-    issuer = str(i)
-    notBefore = str(before)
-    notAfter = str(after)
-    print notBefore
-    print notAfter
-
-    r = issuer.split("'")
-    r = r[1]
-    ca = r.split("CN=")
-    certificate_authority = ca[1]
-    print certificate_authority
-
-    h = [x.start(0) for x in re.finditer(
-        'Comodo|Symantec|GoDaddy|GlobalSign|IdenTrust|DigiCert|StartCom|Entrust|Trustwave|Verizon|Secom|Unizeto|QuoVadis|Deutsche Telekom|Network Solutions|TWCA|VeriSign|GeoTrust|Thawte|Doster|Google',
-        certificate_authority)]
-    z = int((len(h)))
-    if z != 0:
-        check = 1
-    else:
-        check = 0
-    notBefore = notBefore[:4]
-    notAfter = notAfter[:4]
-    if (int(notAfter) - int(notBefore) >= 1 and check == 1 and https == 1):
-        return 1
-    elif https == 1:
-        return 0
-    else:
-        return -1
+# def sslfinal_state(url):
+#     hostname = url
+#     h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://', hostname)]
+#     z = int(len(h))
+#     if z != 0:
+#         y = h[0][1]
+#         if y == 7:
+#             https = 0
+#         else:
+#             https = 1
+#         host = "www."
+#         hostname = hostname[y:]
+#         hostname = host + hostname
+#         #print hostname
+#         h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
+#         z = int(len(h))
+#         if z != 0:
+#             hostname = hostname[:h[0][0]]
+#     else:
+#         https = 0
+#     try:
+#         cert = ssl.get_server_certificate((hostname, 443))
+#     except:
+#         return -1
+#     x509 = OpenSSL.crypto.load_certificate(OpenSSL.crypto.FILETYPE_PEM, cert)
+#     i = x509.get_issuer()
+#     before = x509.get_notBefore()
+#     after = x509.get_notAfter()
+#
+#     issuer = str(i)
+#     notBefore = str(before)
+#     notAfter = str(after)
+#     print notBefore
+#     print notAfter
+#
+#     r = issuer.split("'")
+#     r = r[1]
+#     ca = r.split("CN=")
+#     certificate_authority = ca[1]
+#     print certificate_authority
+#
+#     h = [x.start(0) for x in re.finditer(
+#         'Comodo|Symantec|GoDaddy|GlobalSign|IdenTrust|DigiCert|StartCom|Entrust|Trustwave|Verizon|Secom|Unizeto|QuoVadis|Deutsche Telekom|Network Solutions|TWCA|VeriSign|GeoTrust|Thawte|Doster|Google',
+#         certificate_authority)]
+#     z = int((len(h)))
+#     if z != 0:
+#         check = 1
+#     else:
+#         check = 0
+#     notBefore = notBefore[:4]
+#     notAfter = notAfter[:4]
+#     if (int(notAfter) - int(notBefore) >= 1 and check == 1 and https == 1):
+#         return 1
+#     elif https == 1:
+#         return 0
+#     else:
+#         return -1
 
 def domain_registration_length(domain):
     expiration_date = domain.expiration_date
@@ -393,7 +393,7 @@ def main(url):
     status.append(double_slash_redirecting(url))
     status.append(prefix_suffix(url))
     status.append(having_sub_domain(url))
-    status.append(sslfinal_state(url))
+    # status.append(sslfinal_state(url))
 
     hostname = url
     h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
