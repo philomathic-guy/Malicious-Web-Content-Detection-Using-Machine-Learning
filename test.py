@@ -1,10 +1,26 @@
 import joblib, features_extraction, sys
-url=sys.argv[1]
-# url="www.google.com"
-features_test=features_extraction.main(url)
 
-clf = joblib.load('classifier/random_forest.pkl')
+def main():
+    url=sys.argv[1]
 
-pred=clf.predict(features_test)
-prob=clf.predict_proba(features_test)
-print 'The predicted probability is - ', prob, 'The predicted label is - ', pred
+    features_test=features_extraction.main(url)
+
+    clf = joblib.load('classifier/random_forest.pkl')
+
+    pred=clf.predict(features_test)
+    prob=clf.predict_proba(features_test)
+    # print 'Features=', features_test, 'The predicted probability is - ', prob, 'The predicted label is - ', pred
+    # print "The probability of this site being a phishing website is ", features_test[0]*100, "%"
+
+
+    if int(pred[0])==1:
+        # print "The website is safe to browse"
+        print "SAFE"
+    elif int(pred[0])==-1:
+        # print "The website has phishing features. DO NOT VISIT!"
+        print "PHISHING"
+
+    # print 'Error -', features_test
+
+if __name__=="__main__":
+    main()

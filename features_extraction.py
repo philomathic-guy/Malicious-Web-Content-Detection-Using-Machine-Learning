@@ -3,10 +3,11 @@
 #-1 stands for phishing
 
 from bs4 import BeautifulSoup
-from selenium import webdriver
-import re, urllib2, httplib
-#import OpenSSL, ssl
-import urllib, sys, bs4
+import urllib, bs4, re
+# from selenium import webdriver
+# import urllib2, httplib
+# import OpenSSL, ssl
+# import requests
 
 from google import google
 import whois
@@ -155,11 +156,11 @@ def domain_registration_length(domain):
     else:
         return 1
 
-def favicon(wiki, soup):
+def favicon(wiki, soup, domain):
     for head in soup.find_all('head'):
         for head.link in soup.find_all('link', href=True):
             dots = [x.start(0) for x in re.finditer('\.', head.link['href'])]
-            if wiki in head.link['href'] or len(dots) == 1:
+            if wiki in head.link['href'] or len(dots) == 1 or domain in head.link['href']:
                 return 1
             else:
                 return -1
@@ -175,29 +176,30 @@ def https_token(url):
     else:
         return 1
 
-def request_url(wiki, soup):
+def request_url(wiki, soup, domain):
    i = 0
    success = 0
    for img in soup.find_all('img', src= True):
-      if wiki in img['src']:
+      dots= [x.start(0) for x in re.finditer('\.', img['src'])]
+      if wiki in img['src'] or domain in img['src'] or len(dots)==1:
          success = success + 1
       i=i+1
-      #print a['href']
 
    for audio in soup.find_all('audio', src= True):
-      if wiki in audio['src']:
+      dots = [x.start(0) for x in re.finditer('\.', audio['src'])]
+      if wiki in audio['src'] or domain in audio['src'] or len(dots)==1:
          success = success + 1
       i=i+1
 
    for embed in soup.find_all('embed', src= True):
       dots=[x.start(0) for x in re.finditer('\.',embed['src'])]
-      if wiki in embed['src'] or len(dots)==1:
+      if wiki in embed['src'] or domain in embed['src'] or len(dots)==1:
          success = success + 1
       i=i+1
 
    for iframe in soup.find_all('iframe', src= True):
       dots=[x.start(0) for x in re.finditer('\.',iframe['src'])]
-      if wiki in iframe['src'] or len(dots)==1:
+      if wiki in iframe['src'] or domain in iframe['src'] or len(dots)==1:
          success = success + 1
       i=i+1
 
@@ -213,36 +215,41 @@ def request_url(wiki, soup):
    else :
       return -1
 
-def url_of_anchor(wiki, soup):
+def url_of_anchor(wiki, soup, domain):
     i = 0
-    success = 0
+    unsafe=0
     for a in soup.find_all('a', href=True):
-        if wiki in a['href']:
-            success = success + 1
+    # 2nd condition was 'JavaScript ::void(0)' but we put JavaScript because the space between javascript and :: might not be
+            # there in the actual a['href']
+        if "#" in a['href'] or "javascript" in a['href'].lower() or "mailto" in a['href'].lower() or not (wiki in a['href'] or domain in a['href']):
+            unsafe = unsafe + 1
         i = i + 1
         # print a['href']
     try:
-        percentage = success / float(i) * 100
+        percentage = unsafe / float(i) * 100
     except:
         return 1
     if percentage < 31.0:
         return 1
+        # return percentage
     elif ((percentage >= 31.0) and (percentage < 67.0)):
         return 0
     else:
         return -1
 
 # Links in <Script> and <Link> tags
-def links_in_tags(wiki, soup):
+def links_in_tags(wiki, soup, domain):
    i=0
    success =0
    for link in soup.find_all('link', href= True):
-      if wiki in link['href']:
+      dots=[x.start(0) for x in re.finditer('\.',link['href'])]
+      if wiki in link['href'] or domain in link['href'] or len(dots)==1:
          success = success + 1
       i=i+1
 
    for script in soup.find_all('script', src= True):
-      if wiki in script['src']:
+      dots=[x.start(0) for x in re.finditer('\.',script['src'])]
+      if wiki in script['src'] or domain in script['src'] or len(dots)==1 :
          success = success + 1
       i=i+1
    try:
@@ -259,11 +266,11 @@ def links_in_tags(wiki, soup):
 
 # Server Form Handler (SFH)
 ###### Have written consitions directly from word file..as there are no sites to test ######
-def sfh(wiki, soup):
+def sfh(wiki, soup, domain):
    for form in soup.find_all('form', action= True):
       if form['action'] =="" or form['action'] == "about:blank" :
          return -1
-      elif wiki not in form['action']:
+      elif wiki not in form['action'] and domain not in form['action']:
           return 0
       else:
             return 1
@@ -288,35 +295,35 @@ def abnormal_url(domain,url):
         return -1
 
 ###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
-def redirect(url):
-    count=0
-    httplib.HTTPConnection.debuglevel = 1
-    while True:
-        request = urllib2.Request(url)
-        opener = urllib2.build_opener()
-        f=opener.open(request)
-
-        #### OTHERS LIKE .com should be added
-
-        dotcom=[x.start(0) for x in re.finditer('\.com|\.ly|\.pe|\.in',url)]
-        www=[x.end(0) for x in re.finditer('www.', url)]
-        if www:
-            domain=url[www[0]:dotcom[0]]
-        else:
-            http=[x.end(0) for x in re.finditer('http\:\/\/|https\:\/\/',url)]
-            domain=url[http[0]:dotcom[0]]
-        match=re.search(domain,f.url)
-        if match:
-            break
-        else:
-            url = f.url
-            count += 1
-    if count<=1:
-        return 1
-    elif count>=2 and count<4:
-        return 0
-    else:
-        return -1
+# def redirect(url):
+#     count=0
+#     httplib.HTTPConnection.debuglevel = 1
+#     while True:
+#         request = urllib2.Request(url)
+#         opener = urllib2.build_opener()
+#         f=opener.open(request)
+#
+#         #### OTHERS LIKE .com should be added
+#
+#         dotcom=[x.start(0) for x in re.finditer('\.com|\.ly|\.pe|\.in',url)]
+#         www=[x.end(0) for x in re.finditer('www.', url)]
+#         if www:
+#             domain=url[www[0]:dotcom[0]]
+#         else:
+#             http=[x.end(0) for x in re.finditer('http\:\/\/|https\:\/\/',url)]
+#             domain=url[http[0]:dotcom[0]]
+#         match=re.search(domain,f.url)
+#         if match:
+#             break
+#         else:
+#             url = f.url
+#             count += 1
+#     if count<=1:
+#         return 1
+#     elif count>=2 and count<4:
+#         return 0
+#     else:
+#         return -1
 
 #IFrame Redirection
 ###### Checking remaining on some site######
@@ -358,11 +365,6 @@ def google_index(url):
 
 ##### LINKS PONITING TO PAGE #####
 
-# def statistical_report(url):
-#     api=phishtank.PhishTank()
-#     if api.check(url).unsafe==True:
-#         print 'Hi'
-
 def statistical_report(url,hostname):
     url_match=re.search('at\.ua|usa\.cc|baltazarpresentes\.com\.br|pe\.hu|esy\.es|hol\.es|sweddy\.com|myjino\.ru|96\.lt|ow\.ly',url)
     try:
@@ -384,6 +386,12 @@ def statistical_report(url,hostname):
         return 1
 
 def main(url):
+    # url = sys.argv[1]
+    with open('/opt/lampp/htdocs/BE/markup.txt', 'r') as file:
+        soup_string=file.read()
+
+    soup = BeautifulSoup(soup_string, 'html.parser')
+
     status=[]
 
     status.append(having_ip_address(url))
@@ -417,40 +425,21 @@ def main(url):
     else:
         status.append(domain_registration_length(domain))
 
-    fileOpen=True
-    #wiki = "http://www.scluster.com/"
-    try:
-        page = urllib2.urlopen(url)
-    except:
-        print "The URL entered is forbidden"
-        fileOpen=False
-
-    if fileOpen:
-        soup = BeautifulSoup(page)
-
-        status.append(favicon(url,soup))
-        status.append(https_token(url))
-        status.append(request_url(url, soup))
-        status.append(url_of_anchor(url, soup))
-        status.append(links_in_tags(url,soup))
-        status.append(sfh(url,soup))
-        status.append(submitting_to_email(soup))
-    else:
-        for i in range(15):
-            status.append(-1)
-        print status
-        return status
+    status.append(favicon(url,soup, hostname))
+    status.append(https_token(url))
+    status.append(request_url(url, soup, hostname))
+    status.append(url_of_anchor(url, soup, hostname))
+    status.append(links_in_tags(url,soup, hostname))
+    status.append(sfh(url,soup, hostname))
+    status.append(submitting_to_email(soup))
 
     if dns == -1:
         status.append(-1)
     else:
         status.append(abnormal_url(domain,url))
 
-    status.append(redirect(url))
-    if fileOpen:
-        status.append(iframe(soup))
-    else:
-        status.append(-1)
+    # status.append(redirect(url))
+    status.append(iframe(soup))
 
     if dns == -1:
         status.append(-1)
@@ -459,20 +448,15 @@ def main(url):
 
     status.append(dns)
 
-    if fileOpen:
-        status.append(web_traffic(soup))
-    else:
-        status.append(-1)
-    print "Before GOOOOOOOOOOOOOOOGLE"
+    status.append(web_traffic(soup))
     status.append(google_index(url))
-    print "After GOOOOOOOOOOOOOOOGLE"
     status.append(statistical_report(url,hostname))
 
     print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
-          '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8. SSL Final State\n' \
-          '9. Domain Registration Length\n10. Favicon\n11. HTTP or HTTPS token in domain name\n12. Request URL\n13. URL of Anchor\n14. Links in tags\n' \
-          '15. SFH\n16. Submitting to email\n17.Abnormal URL\n18. Redirect\n19. IFrame\n20. Age of Domain\n21. DNS Record\n22. Web Traffic\n' \
-          '23. Google Index\n24. Statistical Reports\n'
+          '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8888. SSL Final State\n8. Domain Registration Length\n9. Favicon\n' \
+          '10. HTTP or HTTPS token in domain name\n11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
+          '14. SFH\n15. Submitting to email\n16. Abnormal URL\n(removed temporarily)11117. Redirect\n17. IFrame\n18. Age of Domain\n19. DNS Record\n20. Web Traffic\n' \
+          '21. Google Index\n22. Statistical Reports\n'
     print status
     return status
 
