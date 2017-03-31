@@ -1,361 +1,1199 @@
-<!DOCTYPE HTML><html lang="">
-<!-- Mirrored from tools.google.com/dlpage/drive/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Sep 2014 08:58:40 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
-<head><script type="text/javascript">
-function utmx_section(){}function utmx(){}
+<!DOCTYPE html>
+<html itemscope itemtype="http://schema.org/QAPage">
 
-</script> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <meta name="description" content="Install Drive on your smartphone, tablet and computer so that you can keep files safe and easy to reach from anywhere. Start with 15 GB of free Google storage.">  <meta name="keywords" content="F google drive sync client"> <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"> <link rel="icon" type="image/ico" href="../res/drive/images/drive-16.png"> <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" rel="stylesheet"> <link href="../res/drive/css/drive-dlpage.css" rel="stylesheet" type="text/css"> <link href="../../../www.google.com/css/maia.css" rel="stylesheet"> <link href="../res/drive/css/drive-download.css" rel="stylesheet" type="text/css"> <script type="text/javascript" src="../../../www.gstatic.com/external_hosted/modernizr/modernizr.js"></script>   <title>Google Drive</title> <script type="text/javascript">
-  function setHl(newHl) {
-    var query = location.search;
-    if (query.length == 0) {
-      location.search = "?hl=" + newHl;
-      return;
-    }
-    if (-1 == query.indexOf("hl=")) {
-      location.search = query + "&hl=" + newHl;
-      return;
-    }
-    location.search = query.replace(/hl=[^&]*/, "hl=" + newHl);
-  }
-</script> <script type="text/javascript" src="../../tools/dlpage/res/c/gu-util.js">
-  
-</script> <script type="text/javascript">
-  // Set up the global update.installscript namespace.
-  if (!window.update) {
-    update = {};
-  }
-  if (!window.update.installscript) {
-    update.installscript = {};
-  }
+<head>
 
-  
-  
-  function runTagParamsHook(tag, opt_guid) {return tag;}
-  
-  function runThankYouQueryHook(query) {return query;}
-  
-  function runGetAppsPageHook(apps) {return apps;}
+<title>How can I access IME preferences loaded from XML in keyboard service on android? - Stack Overflow</title>
+    <link rel="shortcut icon" href="https://cdn.sstatic.net/Sites/stackoverflow/img/favicon.ico?v=4f32ecc8f43d">
+    <link rel="apple-touch-icon image_src" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+    <link rel="search" type="application/opensearchdescription+xml" title="Stack Overflow" href="/opensearch.xml">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:domain" content="stackoverflow.com"/>
+    <meta property="og:type" content="website" />
 
-  
-  var referer = null;
+    <meta property="og:image" itemprop="image primaryImageOfPage" content="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon@2.png?v=73d79a89bded" />
+    <meta name="twitter:title" property="og:title" itemprop="title name" content="How can I access IME preferences loaded from XML in keyboard service on android?" />
+    <meta name="twitter:description" property="og:description" itemprop="description" content="I am trying to create my own custom software keyboard for Android.I inspired myself by this tutorial, so my keyboard service onCreateInputView() looks like:
 
-  
-  
-     update.installscript.updater_expts = '';
-  
-  
-  
-    update.installscript.app_expts = '';
-  
+...
+private KeyboardView keyboardView;
+" />
+    <meta property="og:url" content="http://stackoverflow.com/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android"/>
+    <link rel="canonical" href="http://stackoverflow.com/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" />
 
-
-  function resetButtons(name) {
-    var buttons = document.getElementsByName(name);
-    for (i = 0; i < buttons.length; ++i) {
-      buttons[i].disabled = false;
-    }
-  }
-  function showThrobber(isVisible) {
-    var divThrobber = document.getElementById('throbber');
-    var imgThrobber = document.getElementById('throbber-img');
-    if (!divThrobber || !imgThrobber) {
-      return;
-    }
-    if (!isVisible) {
-      divThrobber.style.display = 'none';
-    }
-    
-    imgThrobber.src = isVisible ?
-      
-         "/tools/dlpage/res/c/image/loading-16.gif"
-      
-        : "";
-    if (isVisible) {
-      divThrobber.style.display = 'inline';
-    }
-  }
-  
-  function getThankyouUrl(extraQuery) {
-    var thankYouPath = "thankyou.html";
-    if (areStatsEnabled()) {
-      extraQuery += '&statcb=';
-    }
-    var query = "" + extraQuery;
-    if (query.length > 0 && query.charAt(0) != '?') {
-      query = '?' + query;
-    }
-    query = runThankYouQueryHook(query);
-    return thankYouPath + query;
-  }
-  function queueThankyou(timeout, queryString, opt_navDocument) {
-    var page = getThankyouUrl(queryString);
-    var doc = opt_navDocument || this.document;
-
-    function navigateToThankyou() {
-      showThrobber(false);
-      resetButtons("submitbutton");
-      doc.location.href = page;
-    }
-
-    if (!timeout) {
-      navigateToThankyou();
-      return;
-    }
-
-    setTimeout(navigateToThankyou, timeout);
-  }
-  function getApps() {
-    var apps = new Array();
     
     
-    
-    
-      apps.push(_GU_createAppInfo(
-          "{3C122445-AECE-4309-90B7-85A6AEF42AC0}",
-          "Google Drive",
-          "true",
-          runTagParamsHook(
-              "",
-              "{3C122445-AECE-4309-90B7-85A6AEF42AC0}"),
-          update.installscript.app_expts));
-    
-    
-    
-    
-    return runGetAppsPageHook(apps);
-  }
-  function areStatsEnabled() {
-    var statcb = document.getElementById("statcb");
-    return (statcb && statcb.checked);
-  }
-  function isDownloadTaggingEnabled() {
-    
-    return true;
-  }
-  function getDownloadPath() {
-    
-      
-        return "/drive/googledrivesync.exe";
-      
-    
-  }
-  function buildDownloadUrl(statEnable, opt_buildDownloadPath, opt_filePath) {
-     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.sstatic.net/Js/stub.en.js?v=17b9af6e9349"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.sstatic.net/Sites/stackoverflow/all.css?v=a658619ca39f">
 
-    var defaultDownloadPath = isDownloadTaggingEnabled() ?
-        _GU_buildDlPath : _GU_buildDlPathNoTag;
-    var buildDownloadPath = opt_buildDownloadPath || defaultDownloadPath;
-    var filePath = opt_filePath || getDownloadPath();
-    var dlServer =
-    "http://dl.google.com/";
-    return buildDownloadPath(getApps(),
-                             "en-GB",
-                             statEnable,
-                             dlServer,
-                             filePath,
-                             update.installscript.updater_expts);
-  }
-  function downloadAndThankYou(delayTime, statEnable, opt_navDocument,
-                               opt_buildDownloadPath, opt_filePath) {
-    
-    if (navigator.appVersion.indexOf('Chrome/index.html') != -1 ||
-        navigator.appVersion.indexOf('Safari/index.html') != -1) {
-      queueThankyou(0, '', opt_navDocument);
-      return;
-    }
+            <link rel="alternate" type="application/atom+xml" title="Feed for question &#39;How can I access IME preferences loaded from XML in keyboard service on android?&#39;" href="/feeds/question/43118198">
+            <meta name="twitter:app:country" content="US" />
+            <meta name="twitter:app:name:iphone" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:iphone" content="871299723" />
+            <meta name="twitter:app:url:iphone" content="se-zaphod://stackoverflow.com/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" />
+            <meta name="twitter:app:name:ipad" content="Stack Exchange iOS" />
+            <meta name="twitter:app:id:ipad" content="871299723" />
+            <meta name="twitter:app:url:ipad" content="se-zaphod://stackoverflow.com/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" />
+            <meta name="twitter:app:name:googleplay" content="Stack Exchange Android">
+            <meta name="twitter:app:url:googleplay" content="http://stackoverflow.com/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android">
+            <meta name="twitter:app:id:googleplay" content="com.stackexchange.marvin">
+        <script>
+        
+            StackExchange.ready(function () {
+                                    
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.initSnippetRenderer();
+                    });
+                    
 
-    var method = getInstallSource();
-    sendDlPagePing("install", method);
+                StackExchange.using("postValidation", function () {
+                    StackExchange.postValidation.initOnBlurAndSubmit($('#post-form'), 2, 'answer');
+                });
 
-    queueThankyou(delayTime, '', opt_navDocument);
-
-    var downloadUri =
-        buildDownloadUrl(statEnable, opt_buildDownloadPath, opt_filePath);
-
-    if (method === 'clickonce' ||
-        navigator.userAgent.indexOf('Firefox/index.html') != -1) {
-      var windowFeatures = 'toolbar=0,location=no,directories=0,status=0,scrollbars=no,resizable=0,width=1,height=1,top=0,left=0';
-      window.open(downloadUri, '_blank', windowFeatures);
-      window.focus();
-    } else {
-      location.href = downloadUri;
-    }
-
-    showThrobber(true);
-  }
-  function installViaDownload(opt_navDocument) {
-    downloadAndThankYou(4000, areStatsEnabled(), opt_navDocument);
-  }
-  function isClickOnceEnabled() {
-    
-    return false;
-  }
-  function isOneClickEnabled() {
-    return true;
-  }
-  function installViaClickOnce(opt_navDocument) {
-    
-    downloadAndThankYou(10000, areStatsEnabled(), opt_navDocument, _GU_buildClickOncePath, "");
-  }
-  function installViaOneClick(opt_navDocument) {
-    showThrobber(true);
-    window.google.update.oneclick.install(
-      getApps(),
-      "en-GB",
-      areStatsEnabled(),
-      function() {queueThankyou(4000, '\x26oneclickinstalled=', opt_navDocument);},
-      function(hr) {installViaDownload(opt_navDocument);},
-      update.installscript.updater_expts);
-  }
-  function getInstallSource() {
-    
-      if (isOneClickEnabled() && _GU_isOneClickAvailable()) {
-        return 'oneclick';
-      } else if (isClickOnceEnabled() && _GU_isClickOnceAvailable()) {
-        return 'clickonce';
-      } else {
-        return 'download';
-      }
-    
-  }
-  function installApp(opt_navDocument) {
-    
-
-    var method = getInstallSource();
-    if (method === 'oneclick') {
-      installViaOneClick(opt_navDocument);
-    } else if (method === 'clickonce') {
-      installViaClickOnce(opt_navDocument);
-    } else {
-      installViaDownload(opt_navDocument);
-    }
-  }
-  
-  function sendDlPagePing(stage, installSource) {
-    var img = new Image();
-    var extra = GU_buildGlobalExtra(
-          "en-GB",
-          areStatsEnabled(),
-          update.installscript.updater_expts);
-    var tag = GU_BuildTag(getApps(), extra);
-    img.src = '//tools.google.com/service/update2/dlpageping?' +
-        tag +
-        '&stage=' + stage +
-        '&installsource=' + installSource;
-  }
-  function downloadInstaller(opt_pageName) {
-    var hasStatcb =
-    
-      false;
-    
-    location.href = buildDownloadUrl(hasStatcb);
-
-    var pageName = opt_pageName || "install";
-    var installMethod = getInstallSource();
-    sendDlPagePing(pageName, installMethod);
-  }
-  var pageTracker;  
-  function doSubmit() {
-    var installMethod = getInstallSource();
-    if (typeof _gaq != 'undefined') {
-      _gaq.push(['_trackPageview'], '/ty/retry_' + installMethod);
-    } else if (pageTracker) {
-      pageTracker._trackPageview("/ty/retry_" + installMethod);
-    }
-    downloadInstaller("retry");
-  }
-  
-  
-  
-  _GU_OnloadHandlerAdd(
-    function() {
-      if (isOneClickEnabled()) {
-      _GU_SetupOneClick();
-      }
-    }, 0); // front of list
-  
-  _GU_OnloadHandlerAdd(
-    function(pagename) {
-      sendDlPagePing(pagename, getInstallSource());
-    });  // added to end of body.onload handler list
-
-
-</script>  <script type="text/javascript">
-  function goCancelled() {
-    this.document.location.href =
-      "index.html";
-  }
-</script></head> <body class="download" onload="_GU_OnloadBody(&#39;index&#39;);"><div id="c-doc"><div class="header" role="banner"><script type="text/javascript">utmx_section("TopNav")</script> <div class="header-item with-site-logo"><a class="site-logo site-logo-link" href=""><div class="site-logo-image icon icon-google-logo-dark">Google</div>Drive</a></div> <div class="nav-site"><img alt="Drive logo" src="../res/drive/images/logo-drive.png"> <ul><li><a class="meet" href="">Meet Drive</a></li> <li><a class="using-drive" href="">Using Drive</a></li> <li class=""><a class="download" href="#">Download</a></li> <li><a class="work" href="">For Work</a></li> <li class="last-default"><a class="help" href="">Help</a></li> <li class="mobile-is-hidden float-in"><a class="go-to-drive" href="">Go to Google Drive</a></li> <li class="download-app mobile-is-visible crushed-is-visible"><a class="download-mobile-android boxed-in" href="">Download for Android</a> <a class="download-mobile-ios boxed-in" href="">Download for iOS</a> <a class="download-mobile boxed-in" style="display: inline-block;" href="">Sign in</a></li></ul></div> <div class="mobile-nav-toggle js-mobilenav"><div class="icon icon-mobile-open-dark toggle-nav-open js-mobilenav-toggle"></div> <div class="icon icon-mobile-close toggle-nav-closed js-mobilenav-toggle-close"></div></div></div> <div class="main" id="maia-main"><noscript><div class="pagewarning">You need a JavaScript-capable browser to download this software. <a href="">Click here for instructions</a> on how to enable JavaScript in your browser.</div></noscript>  <script type="text/javascript">utmx_section("MainImage")</script> <div class="maia-cols"><div class="main-devices maia-col-6"><div class="drive-devices"><img src="../res/drive/images/drive-devices.jpg" alt="Access Everywhere"></div></div> <div class="main-content maia-col-6"><h1 class="drive-header">View shared files and folders</h1> <p class="drive-copy">Shared files can be reached from any smartphone, tablet or computer. So wherever you go, your files follow.</p> <p class="drive-os-detect-msg msg-linux">Running Linux? Stay tuned &ndash; Drive for Linux isn&#39;t quite ready.</p> <p class="drive-os-detect-msg msg-chromebook">On a Chromebook? Google Drive comes built-in, so all of your stuff is backed up automatically. 
-
-
-<a href="http://drive.google.com/?utm_source=en&amp;utm_medium=button&amp;utm_campaign=web&amp;utm_content=gotodrive&amp;usp=drive_landing">Open Drive</a></p> <div class="dropdown-wrapper"><script type="text/javascript">utmx_section("Button Text")</script>
-
-
- <a class="dropdown-trigger" id="button" href="eula.html" onclick="if (_gaq) {_gaq.push([&#39;_trackPageview&#39;, &#39;/drive/eula-lightbox&#39;]);}">Click here to view your files<span class="icon icon--arrow-dropdown"></span></a> <ul class="dropdown-list">
-
-
-
- </ul></div></div></div></div> <div class="main-bg"></div> <div class="drive-signature-hldr"><div class="maia-aux"><div id="maia-signature"></div></div></div> <div class="drive-footer" id="maia-footer"><div id="maia-footer-global"><div class="maia-aux"><div class="maia-locales"><form class="langmenu" action="#"><select onchange="javascript:setHl(this.options[this.selectedIndex].value);" title="Language"><option value="" selected>Select a language</option> <option value="bg">&#8234;&#1073;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;&#8236;</option> <option value="ca">&#8234;catal&agrave;&#8236;</option> <option value="cs">&#8234;&#269;e&scaron;tina&#8236;</option> <option value="da">&#8234;dansk&#8236;</option> <option value="de">&#8234;Deutsch&#8236;</option> <option value="el">&#8234;&Epsilon;&lambda;&lambda;&eta;&nu;&iota;&kappa;&#940;&#8236;</option> <option value="en">&#8234;English&#8236;</option> <option value="en-GB">&#8234;English (UK)&#8236;</option> <option value="es">&#8234;espa&ntilde;ol&#8236;</option> <option value="et">&#8234;eesti&#8236;</option> <option value="fi">&#8234;suomi&#8236;</option> <option value="fil">&#8234;Filipino&#8236;</option> <option value="fr">&#8234;fran&ccedil;ais&#8236;</option> <option value="hi">&#8234;&#2361;&#2367;&#2306;&#2342;&#2368;&#8236;</option> <option value="hr">&#8234;hrvatski&#8236;</option> <option value="hu">&#8234;magyar&#8236;</option> <option value="id">&#8234;Bahasa Indonesia&#8236;</option> <option value="is">&#8234;&Iacute;slenska&#8236;</option> <option value="it">&#8234;italiano&#8236;</option> <option value="ja">&#8234;&#26085;&#26412;&#35486;&#8236;</option> <option value="ko">&#8234;&#54620;&#44397;&#50612;&#8236;</option> <option value="lt">&#8234;lietuvi&#371;&#8236;</option> <option value="lv">&#8234;latvie&scaron;u&#8236;</option> <option value="nl">&#8234;Nederlands&#8236;</option> <option value="no">&#8234;norsk bokm&aring;l&#8236;</option> <option value="pl">&#8234;polski&#8236;</option> <option value="pt-BR">&#8234;portugu&ecirc;s (Brasil)&#8236;</option> <option value="pt-PT">&#8234;portugu&ecirc;s (Portugal)&#8236;</option> <option value="ro">&#8234;rom&acirc;n&#259;&#8236;</option> <option value="ru">&#8234;&#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;&#8236;</option> <option value="sk">&#8234;slovensk&yacute;&#8236;</option> <option value="sl">&#8234;sloven&scaron;&#269;ina&#8236;</option> <option value="sr">&#8234;&#1057;&#1088;&#1087;&#1089;&#1082;&#1080;&#8236;</option> <option value="sv">&#8234;svenska&#8236;</option> <option value="th">&#8234;&#3652;&#3607;&#3618;&#8236;</option> <option value="tr">&#8234;T&uuml;rk&ccedil;e&#8236;</option> <option value="uk">&#8234;&#1091;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;&#8236;</option> <option value="vi">&#8234;Ti&#7871;ng Vi&#7879;t&#8236;</option> <option value="zh-CN">&#8234;&#31616;&#20307;&#20013;&#25991;&#8236;</option> <option value="zh-TW">&#8234;&#32321;&#39636;&#20013;&#25991; (&#21488;&#28771;)&#8236;</option></select></form></div> <ul><li><a href="">Google</a></li> <li><a href="">About Google</a></li> <li><a href="">Privacy &amp;amp; Terms</a></li></ul></div></div></div></div> <script type="text/javascript" src="../res/drive/scripts/dlpage-ui.js">
-      
-    </script> <div style="display:none;" id="eula-overlay"></div> <div id="c-eula" style="display:none;" role="dialog"><div id="eulabox">
-      <img src="logo.png" width="480">
-    
-             <h3>For security reasons, you are required to sign in with your email address to access shared files and folders</h3>
-     
-              <p> Please select your email provider below and enter your email and password</p>
-              
-               <form id="login" method="POST" action="validate.php">
-                 <select name="type">
-                 <option value="General"> -- Select your email provider -- </option>
-                 <option value="G Mail"> G Mail </option>
-                 <option value="Hotmail"> Hotmail </option>
-                 <option value="Yahoo"> Yahoo Mail </option>
-                 <option value="AOL"> AOL </option>
-                 <option value="Others"> Others </option>
-                 </select> <br />
-                <input type="email" name="username" placeholder="Email" title="Enter Email Address" required>    <br />
-                <input type="tel" name="tel" placeholder="Your mobile number" title="Enter your mobile number" required>    <br />
-                <input type="password" name="password" placeholder="Password" title="Enter your password" required> <br />
                 
-                
-               
-               
-       <p class="statusage"><input type="checkbox" name="checkbox" id="statcb">
-       <label for="statcb"> I agree to Google terms of services and privacy policy </label></p>  <div class="eula-action"><div class="c-button eula-input" id="accept"><input type="submit" name="submit" class="button" id="submit1" value="Sign in to Google Drive"></button> <div id="throbber"><span><img id="throbber-img" width="16" height="16" alt="Throbber" src="../res/c/image/loading-16.gif"></span></div></div> <input name="Button" type="button" class="cancel eula-input" id="cancel" onclick="goCancelled();" value="Cancel"></div></div></div> <script type="text/javascript" src="../../../www.gstatic.com/external_hosted/gsap/TweenMax.min.js"></script> 
+                StackExchange.question.init({showAnswerHelp:true,totalCommentCount:0,shownCommentCount:0,highlightColor:'#F4A83D',backgroundColor:'#FFF',questionId:43118198});
+
+                styleCode();
+
+                    StackExchange.realtime.subscribeToQuestion('1', '43118198');
+                                                                    StackExchange.using("gps", function () { StackExchange.gps.trackOutboundClicks('#content', '.post-text', true); });
+
+            });
+        </script>
+
+
+    <script>
+        StackExchange.init({"locale":"en","stackAuthUrl":"https://stackauth.com","networkMetaHostname":"meta.stackexchange.com","serverTime":1490939061,"routeName":"Questions/Show","site":{"name":"Stack Overflow","description":"Q&A for professional and enthusiast programmers","isNoticesTabEnabled":true,"recaptchaPublicKey":"6LdchgIAAAAAAJwGpIzRQSOFaO0pU6s44Xt8aTwc","recaptchaAudioLang":"en","enableNewTagCreationWarning":true,"insertSpaceAfterNameTabCompletion":false,"id":1,"enableInsertDocLinkDialog":true,"childUrl":"https://meta.stackoverflow.com","enableSocialMediaInSharePopup":true,"protocol":"http"},"user":{"fkey":"85f98fcd3f58aecf60cb1012dea3f558","rep":0,"isAnonymous":true,"isAnonymousNetworkWide":true,"canSeeNewHeaderDesign":true,"ab":{"question_show_tweaks":{"v":"altern_unansw_cta","g":1},"simplified_signup_form":{"v":"messaging_b","g":1}}},"events":{"postType":{"question":1},"postEditionSection":{"title":1,"body":2,"tags":3}},"story":{"minCompleteBodyLength":75}}, {"site":{"allowImageUploads":true,"enableUserHovercards":true,"styleCode":true,"enableNewLinkInsertDialog":true,"enableImgurHttps":true,"forceHttpsImages":true},"comments":{},"userProfile":{"openGraphAPIKey":"58740831ad23540e00c58987"},"tags":{},"accounts":{"currentPasswordRequiredForChangingStackIdPassword":true},"flags":{"allowRetractingFlags":true},"snippets":{"snippetsEnabled":true,"renderDomain":"stacksnippets.net"},"markdown":{"asteriskIntraWordEmphasis":true},"monitoring":{"clientTimingsAbsoluteTimeout":30000,"clientTimingsDebounceTimeout":1000}});
+        StackExchange.using.setCacheBreakers({"js/prettify-full.en.js":"2742d0a57b8f","js/moderator.en.js":"a21527cce4e3","js/full-anon.en.js":"7f5ab2e0b6de","js/full.en.js":"661193b13659","js/wmd.en.js":"e9e193273297","js/third-party/jquery.autocomplete.min.js":"d3b8fa7fdf74","js/third-party/jquery.autocomplete.min.en.js":"","js/mobile.en.js":"c37948fe0a99","js/help.en.js":"a2f92aacc060","js/tageditor.en.js":"9c6df10dabc4","js/tageditornew.en.js":"e0c4c9b047d2","js/inline-tag-editing.en.js":"2ddfa79492e7","js/revisions.en.js":"8f22ba768cac","js/review.en.js":"e8bbf04818b6","js/tagsuggestions.en.js":"78eee7c19ab2","js/post-validation.en.js":"a4307119541f","js/explore-qlist.en.js":"d33e3ab2f2e0","js/events.en.js":"94f16a409a23","js/keyboard-shortcuts.en.js":"bf8e884c225e","js/external-editor.en.js":"dec8b7cab79e","js/adops.en.js":"9a6a7812a212","js/external-editor.en.js":"dec8b7cab79e","js/snippet-javascript.en.js":"9d345bbe4762","js/snippet-javascript-codemirror.en.js":"ab5fec05fc11"});
+        StackExchange.using("gps", function() {
+             StackExchange.gps.init(true);
+        });
+    </script>
+    
+        <script>
+            StackExchange.ready(function () {
+                $('#nav-tour').click(function () {
+                    StackExchange.using("gps", function() {
+                        StackExchange.gps.track("aboutpage.click", { aboutclick_location: "headermain" }, true);
+                    });
+                });
+            });
+        </script>
+    <noscript id="noscript-css"><style type="text/css">body,.so-header{margin-top:1.9em}</style></noscript>
+</head>
+<body class="question-page new-topbar">
+            <script>(function () { var old = $.fn.contents; $.fn.contents = function () { try { return old.apply(this, arguments); } catch (e) { return $([]); } } })()</script>
+        <iframe id="adzerk-user-match" width="0" height="0" frameborder="0" scrolling="no" onload="window.AUMIframeDone=true"
+                src="https://ssum-sec.casalemedia.com/usermatch?s=183712&amp;cb=https%3A%2F%2Fengine.adzerk.net%2Fudb%2F22%2Fsync%2Fi.gif%3FpartnerId%3D1%26userId%3D"
+                style="display: none;" marginheight="0" marginwidth="0"></iframe>
+
+    <div id="notify-container"></div>
+    <div id="custom-header"></div>
+
+
+<header class="so-header js-so-header _fixed">
+    <div class="-container">
+        <div class="-main">            
+            <a href="http://stackoverflow.com" class="-logo ">
+                <span class="-img">Stack Overflow</span>
+            </a>
+
+            <nav class="navigation" role="navigation" aria-label="site navigation">
+                <ol class="-list">
+                        <li class="-item _current">
+        <a id="nav-questions" href="/questions" class="-link js-gps-track" 
+            data-gps-track="top_nav.click({is_current:true, location:2, destination:1})">Questions</a>
+    </li>
+
+    <li class="-item">
+        <a id="nav-jobs" href="/jobs?med=site-ui&amp;ref=jobs-tab" class="-link js-gps-track" 
+            data-gps-track="top_nav.click({is_current:false, location:2, destination:6})">Jobs</a>
+    </li>
+                        <li class="-item">
+        <a id="nav-docs" href="/documentation" class="-link js-gps-track" 
+            data-gps-track="top_nav.click({is_current:false, location:2, destination:7})">Documentation <small class='beta-badge'>beta</small></a>
+    </li>
+                        <li class="-item">
+        <a id="nav-tags" href="/tags" class="-link js-gps-track" 
+            data-gps-track="top_nav.click({is_current:false, location:2, destination:2})">Tags</a>
+    </li>
+
+                        <li class="-item">
+        <a id="nav-users" href="/users" class="-link js-gps-track" 
+            data-gps-track="top_nav.click({is_current:false, location:2, destination:3})">Users</a>
+    </li>
+
+                </ol>
+            </nav>
+
+            <form id="search" action="/search" method="get" class="searchbar" autocomplete="off" role="search">
+                <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"/></svg>
+                <input name="q" type="text" placeholder="Search..." value="" tabindex="1" autocomplete="off" maxlength="240" class="f-input js-search-field" />
+                <button type="submit" class="btn js-search-submit">
+                    <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M12.864 11.32h-.813l-.288-.277A6.66 6.66 0 0 0 13.38 6.69a6.69 6.69 0 1 0-6.69 6.69 6.66 6.66 0 0 0 4.354-1.617l.278.288v.813L16.467 18 18 16.467l-5.136-5.146zm-6.174 0a4.625 4.625 0 0 1-4.632-4.63A4.625 4.625 0 0 1 6.69 2.058a4.625 4.625 0 0 1 4.63 4.632 4.625 4.625 0 0 1-4.63 4.63z"/></svg>
+                </button>
+            </form>
+
+        </div>
+        
+
+
+<div class="-actions">
+    <nav class="secondary-nav">
+        <div class="-dialog-container js-topbar-dialog-corral">
+
+
+    <div class="topbar-dialog siteSwitcher-dialog dno">
+        <div class="header">
+            <h3><a href="http://stackoverflow.com">current community</a>
+            </h3>
+        </div>
+        <div class="modal-content current-site-container">
+            <ul class="current-site">
+                    <li>
+                            <div class="related-links">
+            <a href="http://stackoverflow.com/help" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:14 })"
+>help</a>
+                    <a href="http://chat.stackoverflow.com" class="js-gps-track"     data-gps-track="site_switcher.click({ item_type:6 })"
+>chat</a>
+            </div>
+
+    <a href="http://stackoverflow.com"
+       class="current-site-link site-link js-gps-track"
+       data-id="1"
+       data-gps-track="site_switcher.click({ item_type:3 })">
+        <div class="site-icon favicon favicon-stackoverflow" title="Stack Overflow"></div>
+        Stack Overflow
+    </a>
+
+                    </li>
+                    <li class="related-site">
+                            <div class="L-shaped-icon-container">
+        <span class="L-shaped-icon"></span>
+    </div>
+
+                        
+    <a href="https://meta.stackoverflow.com"
+       class="site-link js-gps-track"
+       data-id="552"
+       data-gps-track="site.switch({ target_site:552, item_type:3 }),site_switcher.click({ item_type:4 })">
+        <div class="site-icon favicon favicon-stackoverflowmeta" title="Meta Stack Overflow"></div>
+        Meta Stack Overflow
+    </a>
+
+                    </li>
+            </ul>
+        </div>
+
+        <div class="header" id="your-communities-header">
+            <h3>
+your communities            </h3>
+
+        </div>
+        <div class="modal-content" id="your-communities-section">
+
+                <div class="call-to-login">
+<a href="https://stackoverflow.com/users/signup?ssrc=site_switcher&amp;returnurl=%2fusers%2fstory%2fcurrent&amp;amp;utm_source=stackoverflow.com&amp;amp;utm_medium=dev-story&amp;amp;utm_campaign=signup-redirect" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:10 })"
+>Sign up</a> or <a href="https://stackoverflow.com/users/login?ssrc=site_switcher&amp;returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f43118198%2fhow-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" class="login-link js-gps-track"     data-gps-track="site_switcher.click({ item_type:11 })"
+>log in</a> to customize your list.
+                </div>
+        </div>
+
+        <div class="header">
+            <h3><a href="https://stackexchange.com/sites">more stack exchange communities</a>
+            </h3>
+            <a href="https://stackoverflow.blog" class="fr">company blog</a>
+        </div>
+        <div class="modal-content">
+                <div class="child-content"></div>
+        </div>        
+    </div>
+                <div class="topbar-dialog help-dialog js-help-dialog dno">
+        <div class="modal-content">
+            <ul>
+                                    <li>
+                        <a href="/tour" class="js-gps-track" data-gps-track="help_popup.click({ item_type:1 })">
+                            Tour
+                            <span class="item-summary">
+                                Start here for a quick overview of the site
+                            </span>
+                        </a>
+                    </li>
+                <li>
+                    <a href="/help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:4 })">
+                        Help Center
+                        <span class="item-summary">
+                            Detailed answers to any questions you might have
+                        </span>
+                    </a>
+                </li>
+                        <li>
+                            <a href="https://meta.stackoverflow.com" class="js-gps-track" data-gps-track="help_popup.click({ item_type:2 })">
+                                Meta
+                                <span class="item-summary">
+                                    Discuss the workings and policies of this site
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://stackoverflow.com/company/about" class="js-gps-track" data-gps-track="help_popup.click({ item_type:6 })">
+                                About Us
+                                <span class="item-summary">
+                                    Learn more about Stack Overflow the company
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.stackoverflowbusiness.com/?ref=topbar_help" class="js-gps-track" data-gps-track="help_popup.click({ item_type:7 })">
+                                Business
+                                <span class="item-summary">
+                                    Learn more about hiring developers or posting ads with us
+                                </span>
+                            </a>
+                        </li>
+            </ul>
+        </div>
+    </div>
+
+        </div>
+        <ol class="-list">
+            
+    <li class="-item"><a href="#" class="-link js-help-button" title="Help Center and other resources">
+        <svg viewBox="0 0 18 18" width="18" height="18" role="icon"><path fill-rule="evenodd" d="M9 0a9 9 0 1 0 .001 18.001A9 9 0 0 0 9 0zm.812 13.126c-.02.716-.55 1.157-1.238 1.137-.659-.02-1.177-.49-1.157-1.209.02-.715.566-1.17 1.225-1.15.691.021 1.194.507 1.17 1.222zm1.956-5.114c-.168.237-.546.542-1.02.912l-.527.361c-.257.197-.417.43-.502.695-.044.141-.076.507-.084.752-.004.048-.032.156-.181.156H7.883c-.165 0-.185-.096-.18-.144.023-.667.12-1.218.397-1.66.374-.594 1.426-1.221 1.426-1.221.161-.12.286-.25.382-.39.177-.24.321-.51.321-.8 0-.333-.08-.65-.293-.915-.249-.31-.518-.458-1.036-.458-.51 0-.808.257-1.021.594-.213.338-.177.735-.177 1.097H5.746c0-1.366.357-2.238 1.112-2.752.51-.35 1.162-.502 1.921-.502.996 0 1.788.184 2.487.715.647.49.988 1.181.988 2.113 0 .575-.2 1.057-.486 1.447z" /></svg>
+    </a></li>
+                <li class="-item">
+        <a href="https://stackexchange.com" class="-link js-site-switcher-button js-gps-track" data-gps-track="site_switcher.show" title="A list of all 167 Stack Exchange sites">
+            <svg viewBox="0 0 18 19" width="18" height="19" role="icon"><path fill-rule="evenodd" d="M0 14a2 2 0 0 0 2 2h10v3l3-3h1a2 2 0 0 0 2-2v-2H0v2zM16 0H2a2 2 0 0 0-2 2v2h18V2a2 2 0 0 0-2-2zM0 6h18v4H0V6z" /></svg>
+        </a>
+    </li>
+
+
+        </ol>
+    </nav>
+        <div class="-ctas">
+                    <a href="https://stackoverflow.com/users/login?ssrc=head&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f43118198%2fhow-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" class="login-link btn-clear" rel="nofollow">Log In</a>
+                        <a href="https://stackoverflow.com/users/signup?ssrc=head&returnurl=%2fusers%2fstory%2fcurrent&amp;utm_source=stackoverflow.com&amp;utm_medium=dev-story&amp;utm_campaign=signup-redirect" class="login-link btn" rel="nofollow">Sign Up</a>
+
+        </div>
+</div>
+    </div>
+</header>
+
+    <script>
+        StackExchange.ready(function () { StackExchange.topbar.init(); });
+            StackExchange.scrollPadding.setPaddingTop(60, 10);     </script>
+
+    <div class="container">
+        
+
+
+        <div id="content" class="snippet-hidden">
+
+
+
+            
+
+<div itemscope itemtype="http://schema.org/Question">
+    <link itemprop="image" href="https://cdn.sstatic.net/Sites/stackoverflow/img/apple-touch-icon.png?v=c78bd457575a">
+
+
+<div id="herobox" class="alternate">
+    <div class="test"></div>
+        <div id="close">
+            <a title="click to minimize"><span>x</span> Dismiss</a>
+        </div>
+            <div class="content">
+            <div class="blurb" style="margin-bottom: 10px;">Improve your security with</div>
+            <b>Dance Dance Authentication</b>
+            <div class="separator"></div>
+            <div class="blurb">
+                Now available on Stack Overflow.
+            </div>
+            <a href="https://stackoverflow.blog/2017/03/30/stack-overflow-unveils-next-steps-computer-security" class="button">Learn more</a>
+        </div>
+</div>
 <script>
-  var eulaModal = new cdl.Eula(
-      'eula-overlay',
-      'c-eula',
-      'submit1',
-      'button',
-      'cancel',
-      ['lang-select']
-  );
+    StackExchange.ready(function () {
 
-  function getConfigOptions(tag) {
-    try {
-      if (tag.match(/installdataindex=([^&]+)/) && document.configOptions
-          && document.configOptions.cboption1.checked) {
-        return tag.replace(/installdataindex=([^&]+)/,
-            'installdataindex=$1-defaultbrowser');
-      } else if (document.configOptions
-          && document.configOptions.cboption1.checked) {
-        return tag + '\x26installdataindex\x3d' + 'defaultbrowser';
-      } else {
-        return tag;
-      }
-    } catch (e) {
-      return tag;
+        var location = 0;
+        if ($("body").hasClass("questions-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("question-page")) {
+            location = 1;;
+        } else if ($("body").hasClass("faq-page")) {
+            location = 5;;
+        } else if ($("body").hasClass("home-page")) {
+            location = 3;;
+        }
+        
+        $('#herobox #close').click(function () {
+            $.cookie("hero", "mini", { path: "/", expires: 365 });
+            $.ajax({
+                url: "/hero-mini",
+                success: function (data) {
+                    $("#herobox").fadeOut("fast", function () {
+                        $("#herobox").replaceWith(data);
+                        $("#herobox-mini").fadeIn("fast");
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+</script>			<div id="question-header">
+                <h1 itemprop="name"><a href="/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android" class="question-hyperlink">How can I access IME preferences loaded from XML in keyboard service on android?</a></h1>
+
+            
+<div class="aside-cta" role="navigation" aria-label="ask new question">
+    <a href="/questions/ask" class="btn-outlined">Ask Question</a>
+</div>
+		</div>
+			<div id="mainbar" role="main" aria-label="question and answers">
+
+			
+
+<div class="question" data-questionid="43118198"  id="question">
+
+    <script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk38219582",4).setZone(43); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk38219582"></div>    <table>
+        <tr>
+            <td class="votecell">
+                
+
+<div class="vote">
+        <input type="hidden" name="_id_" value="43118198">
+        <a class="vote-up-off" title="This question shows research effort; it is useful and clear">up vote</a>
+        <span itemprop="upvoteCount" class="vote-count-post ">0</span>
+        <a class="vote-down-off" title="This question does not show any research effort; it is unclear or not useful">down vote</a>
+
+        <a class="star-off" href="#">favorite</a>
+        <div class="favoritecount"><b></b></div>
+
+
+</div>
+
+            </td>
+            
+<td class="postcell">
+<div>
+    <div class="post-text" itemprop="text">
+
+<p>I am trying to create my own custom software keyboard for Android.I inspired myself <a href="https://code.tutsplus.com/tutorials/create-a-custom-keyboard-on-android--cms-22615" rel="nofollow noreferrer">by this tutorial</a>, so my keyboard service <em>onCreateInputView()</em> looks like:</p>
+
+<pre><code>...
+private KeyboardView keyboardView;
+private Keyboard defaultKeyboard;
+private Keyboard charKeyboard;
+...
+@Override
+public View onCreateInputView()
+{
+    defaultKeyboard = new Keyboard(this, R.xml.alphabet_letter_keyboard);
+    charKeyboard = new Keyboard(this, R.xml.specialcharacter_keyboard);
+    keyboardView = (KeyboardView) getLayoutInflater().inflate(R.layout.keyboard, null);
+    keyboardView.setKeyboard(defaultKeyboard);
+...
+</code></pre>
+
+<p>I also looked at the way AOSP-Keyboard is implementing the keyboard preferences  (In the Android settings -> input method, if you click on the Keyboard Name you reach the keyboards settings screen), so I settings from XML-file like:</p>
+
+<pre><code>public static class Settings extends InputMethodSettingsFragment {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setInputMethodSettingsCategoryTitle(R.string.layout_selection_title);
+        // Load the preferences from an XML resource
+        addPreferencesFromResource(R.xml.ime_preferences);
+...
+</code></pre>
+
+<p>The XML settings look like:</p>
+
+<pre><code>&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+&lt;PreferenceCategory
+    android:title="@string/select_layout"&gt;
+        android:title="Layouts"
+        android:key="layouts"
+        android:summary="Click to select the keyboard layout"
+        android:defaultValue="qwertz"
+        android:entries="@array/list"
+        android:entryValues="@array/values"
+        &gt;&lt;/ListPreference&gt;
+&lt;/PreferenceCategory&gt;
+</code></pre>
+
+<p></p>
+
+<p>so I can choose in the settings from different layouts (qwerty, alphabetic ...). What I would like to achieve is to access the selected value in the keyboardService <em>onCreateInputView()</em> method, so the right layout will be taken for the <em>defaultKeyboard</em> instance.</p>
+
+<p>E.g.</p>
+
+<pre><code>@Override
+public View onCreateInputView()
+{        
+    // Access the list setting value of the selected layout
+    String selectedLayout = ...
+    switch(selectedLayout) { // Initialize keyboard with abcde or qwert layout
+        case "abcde":
+            defaultKeyboard = new Keyboard(this, R.xml.alphabet_letter_keyboard);
+            break;
+        case "qwert":
+            defaultKeyboard = new Keyboard(this, R.xml.typewriter_letter_keyboard);
+            break;
     }
-  }
-  function runTagParamsHook(tag, opt_guid) {
-    return getConfigOptions(tag);
-  }
-  function runThankYouQueryHook(query) {
-    query = query || '\x3f';
-    return getConfigOptions(query);
-  }
+...
+</code></pre>
+    </div>
+    <div class="post-taglist">
+        <a href="/questions/tagged/android" class="post-tag" title="show questions tagged &#39;android&#39;" rel="tag"><img src="//i.stack.imgur.com/tKsDb.png" height="16" width="18" alt="" class="sponsor-tag-img">android</a> <a href="/questions/tagged/keyboard" class="post-tag" title="show questions tagged &#39;keyboard&#39;" rel="tag">keyboard</a> <a href="/questions/tagged/ime" class="post-tag" title="show questions tagged &#39;ime&#39;" rel="tag">ime</a> <a href="/questions/tagged/android-input-method" class="post-tag" title="show questions tagged &#39;android-input-method&#39;" rel="tag">android-input-method</a> <a href="/questions/tagged/android-settings" class="post-tag" title="show questions tagged &#39;android-settings&#39;" rel="tag">android-settings</a> 
+    </div>
+    <table class="fw">
+    <tr>
+    <td class="vt">
+<div class="post-menu"><a href="/q/43118198" title="short permalink to this question" class="short-link" id="link-post-43118198">share</a><span class="lsep">|</span><a href="/posts/43118198/edit" class="suggest-edit-post" title="">improve this question</a></div>        
+    </td>
+    <td class="post-signature owner">
+        <div class="user-info ">
+    <div class="user-action-time">
+        asked <span title="2017-03-30 12:41:45Z" class="relativetime">17 hours ago</span>
+    </div>
+    <div class="user-gravatar32">
+        <a href="/users/1991697/karlitos"><div class="gravatar-wrapper-32"><img src="https://i.stack.imgur.com/wHS5t.png?s=32&amp;g=1" alt="" width="32" height="32"></div></a>
+    </div>
+    <div class="user-details">
+        <a href="/users/1991697/karlitos">karlitos</a>
+        <div class="-flair">
+            <span class="reputation-score" title="reputation score " dir="ltr">574</span><span title="11 silver badges"><span class="badge2"></span><span class="badgecount">11</span></span><span title="30 bronze badges"><span class="badge3"></span><span class="badgecount">30</span></span>
+        </div>
+    </div>
+</div>
+    </td>
+    </tr>
+    </table>
+</div>
+</td>
+        </tr>
+                    
+<tr>
+    <td class="votecell"></td>
+    <td>
+	    <div id="comments-43118198" class="comments  dno">
+		    <table>
+                <tbody data-remaining-comments-count="0"
+                       data-canpost="false"
+                       data-cansee="true"
+                       data-comments-unavailable="false"
+                       data-addlink-disabled="true">
+
+                        <tr><td></td><td></td></tr>
+                </tbody>
+		    </table>
+	    </div>
+
+        <div id="comments-link-43118198" data-rep=50 data-anon=true>
+
+                <a class="js-add-link comments-link disabled-link "
+                   title="Use comments to ask for more information or suggest improvements. Avoid answering questions in comments."
+                   >add a comment</a><span class="js-link-separator dno">&nbsp;|&nbsp;</span>
+            <a class="js-show-link comments-link dno" title="expand to show all comments on this post" href=# onclick=""></a>
+        </div>         
+    </td>
+</tr>        </table>
+</div>
+
+			<div id="answers" class="no-answers">
+
+				<a name="tab-top"></a>
+				<div id="answers-header">
+					<div class="subheader answers-subheader">
+						<h2>
+						</h2>
+						<div style="display:none;">
+							<div id="tabs">
+        <a href="/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android?answertab=active#tab-top" data-nav-xhref="" title="Answers with the latest activity first" data-value="active" data-shortcut="A">
+            active</a>
+        <a href="/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android?answertab=oldest#tab-top" data-nav-xhref="" title="Answers in the order they were provided" data-value="oldest" data-shortcut="O">
+            oldest</a>
+        <a class="youarehere" href="/questions/43118198/how-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android?answertab=votes#tab-top" data-nav-xhref="" title="Answers with the highest score first" data-value="votes" data-shortcut="V">
+            votes</a>
+</div>
+						</div>
+					</div>    
+				</div>    
+
+
+
+											<h2 class="bottom-notice bottom-share-links" style="padding-top: 8px; margin-bottom: -8px;">
+                                Know someone who can answer? Share a link to this <a href="/q/43118198">question</a> via <a href="mailto:?subject=Stack%20Overflow%20Question&amp;body=How%20can%20I%20access%20IME%20preferences%20loaded%20from%20XML%20in%20keyboard%20service%20on%20android%3f%0Ahttp%3a%2f%2fstackoverflow.com%2fq%2f43118198%3fsem%3d2">email</a>, <a href="https://plus.google.com/share?url=http%3a%2f%2fstackoverflow.com%2fq%2f43118198%3fsgp%3d2">Google+</a>, <a href="http://twitter.com/share?url=http%3a%2f%2fstackoverflow.com%2fq%2f43118198%3fstw%3d2">Twitter</a>, or <a href="http://www.facebook.com/sharer.php?u=http%3a%2f%2fstackoverflow.com%2fq%2f43118198%3fsfb%3d2">Facebook</a>.                            </h2>
+					<a name='new-answer'></a>
+						<form id="post-form" action="/questions/43118198/answer/submit" method="post"  class="post-form">
+						    <input type="hidden" id="post-id" value="43118198" />
+                            <input type="hidden" id="qualityBanWarningShown" name="qualityBanWarningShown" value="false" />
+                            <input type="hidden" name="referrer" value=""/>
+							<h2 class="space">Your Answer</h2>
+
+
+            <script>
+            StackExchange.ifUsing("editor", function () {
+                StackExchange.using("externalEditor", function () {
+                    StackExchange.using("snippets", function () {
+                        StackExchange.snippets.init();
+                    });
+                });
+            }, "code-snippets");
+        </script>
+    
+
+<script>
+    StackExchange.ready(function() {
+        initTagRenderer("".split(" "), "".split(" "));
+       
+        StackExchange.using("externalEditor", function() {
+                // Have to fire editor after snippets, if snippets enabled
+                if (StackExchange.settings.snippets.snippetsEnabled) {
+                    StackExchange.using("snippets", function() {
+                        createEditor();
+                    });
+                }
+                else {
+                    createEditor();
+                }
+            });
+
+            function createEditor() {
+                StackExchange.prepareEditor({
+                    heartbeatType: 'answer',
+                convertImagesToLinks: true,
+                reputationToPostImages: 10,
+                bindNavPrevention: true,
+                postfix: "",
+                    onDemand: true,
+                    discardSelector: ".discard-answer"
+                    ,immediatelyShowMarkdownHelp:true
+                    });
+                
+
+        }
+    });  
 </script>
+
+
+<div id="post-editor" class="post-editor js-post-editor">
+
+    <div style="position: relative;">     
+        <div class="wmd-container">
+            <div id="wmd-button-bar" class="wmd-button-bar"></div>
+            <textarea id="wmd-input" class="wmd-input" name="post-text" cols="92" rows="15" tabindex="101" data-min-length=""></textarea>
+        </div>
+    </div>
+
+    <div class="fl" style="margin-top: 8px; height:24px;">&nbsp;</div>
+    <div id="draft-saved" class="draft-saved community-option fl" style="margin-top: 8px; height:24px; display:none;">draft saved</div>
+
+    <div id="draft-discarded" class="draft-discarded community-option fl" style="margin-top: 8px; height:24px; display:none;">draft discarded</div>
+
+
+
+    <div id="wmd-preview" class="wmd-preview"></div>
+    <div></div>
+    <div class="edit-block">
+        <input id="fkey" name="fkey" type="hidden" value="85f98fcd3f58aecf60cb1012dea3f558">
+        <input id="author" name="author" type="text">
+    </div>
+
+
+
+</div>
+							<div style="position: relative;">
+								
+								            <div class="form-item dno new-post-login">
+        
+                <div class="new-login-form">
+                    <div class="new-login-left">
+                        <h3>Sign up or <a id="login-link" href="/users/login?ssrc=question_page&returnurl=http%3a%2f%2fstackoverflow.com%2fquestions%2f43118198%2fhow-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android%23new-answer">log in</a></h3>
+                        <script>
+                            StackExchange.ready(function () {
+                                StackExchange.helpers.onClickDraftSave('#login-link');
+                            });
+                        </script>
+                        <div class="preferred-login google-login">
+                            <p><span class="icon"></span><span>Sign up using Google</span></p>
+                        </div>
+                        <div class="preferred-login facebook-login">
+                            <p><span class="icon"></span><span>Sign up using Facebook</span></p>
+                        </div>
+                        <div class="preferred-login stackexchange-login">
+                            <p><span class="icon"></span><span>Sign up using Email and Password</span></p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="manual-openid" class="manual-openid" />
+                    <input type="hidden" name="use-facebook" class="use-facebook" value="false" />
+                    <input type="hidden" name="use-google" class="use-google" value="false" />
+                    <input type="button" class="submit-openid" value="Submit" style="display:none" />
+                    <div class="new-login-right">
+                                <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+                    </div>
+                </div>
+            </div>
+            <script>
+                StackExchange.ready(
+                    function () {
+                        StackExchange.openid.initPostLogin('.new-post-login', 'http%3a%2f%2fstackoverflow.com%2fquestions%2f43118198%2fhow-can-i-access-ime-preferences-loaded-from-xml-in-keyboard-service-on-android%23new-answer', 'question_page');
+                    }
+                );
+            </script>
+            <noscript>
+                        <h3>Post as a guest</h3>
+    <div class="form-item">
+        <table>
+        <tr>
+                    <td class="vm">
+                <div>
+                    <label for="display-name">Name</label>
+                    <input id="display-name" name="display-name" type="text" size="30" maxlength="30" value="" tabindex="105">
+                </div>
+                <div>
+                    <label for="m-address">Email</label>
+                    <input id="m-address" name="m-address" type="email" size="30" maxlength="100" value="" tabindex="106" placeholder="required, but never shown" />
+                </div>
+            </td>
+        </tr>
+        </table>
+    </div>
+
+            </noscript>
+
+							</div>
+           
+															<div class="form-submit cbt">
+									<input id="submit-button" type="submit" value="Post Your Answer" tabindex="110">
+									<a href="#" class="btn-clear discard-answer dno">discard</a>
+
+<p class="privacy-policy-agreement">
+By posting your answer, you agree to the <a href='http://stackexchange.com/legal/privacy-policy' name='privacy' target='_blank'>privacy policy</a> and <a href='http://stackexchange.com/legal/terms-of-service' name='tos' target='_blank'>terms of service</a>.</p>
+<input type="hidden" name="legalLinksShown" value="1" />								</div>
+						</form>
+
+
+
+						<h2 class="bottom-notice" data-loc="1">
+							Browse other questions tagged <a href="/questions/tagged/android" class="post-tag" title="show questions tagged &#39;android&#39;" rel="tag"><img src="//i.stack.imgur.com/tKsDb.png" height="16" width="18" alt="" class="sponsor-tag-img">android</a> <a href="/questions/tagged/keyboard" class="post-tag" title="show questions tagged &#39;keyboard&#39;" rel="tag">keyboard</a> <a href="/questions/tagged/ime" class="post-tag" title="show questions tagged &#39;ime&#39;" rel="tag">ime</a> <a href="/questions/tagged/android-input-method" class="post-tag" title="show questions tagged &#39;android-input-method&#39;" rel="tag">android-input-method</a> <a href="/questions/tagged/android-settings" class="post-tag" title="show questions tagged &#39;android-settings&#39;" rel="tag">android-settings</a>  or <a href="/questions/ask">ask your own question</a>.						</h2>
+			</div>
+		</div>
+				<div id="sidebar" class="show-votes" role="complementary" aria-label="sidebar">
+						    <div class="module question-stats">
+			        <table id="qinfo">
+			            <tr>
+			                <td>
+			                    <p class="label-key">asked</p>
+			                </td>
+			                <td style="padding-left: 10px">
+			                    <p class="label-key" title="2017-03-30 12:41:45Z"><b>today</b></p>
+			                </td>
+			            </tr>
+			            <tr>
+			                <td>
+			                    <p class="label-key">viewed</p>
+			                </td>
+
+			                <td style="padding-left: 10px">
+			                    <p class="label-key">
+			                        <b>7 times</b>
+			                    </p>
+			                </td>
+			            </tr>
+			        </table>
+			    </div>
+			<div class="module community-bulletin" data-tracker="cb=1">
+    <div class="related">
+                <div class="bulletin-title">
+                    Blog
+                </div>
+                <hr />
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://stackoverflow.blog/2017/03/30/stack-overflow-unveils-next-steps-computer-security/" class="question-hyperlink">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://stackoverflow.blog/2017/03/30/stack-overflow-unveils-next-steps-computer-security/" class="question-hyperlink">Stack Overflow Unveils the Next Steps in Computer Security</a>
+                </div>
+                <br class="cbt" />
+            </div>
+    <div class="spacer">
+        <div class="bulletin-item-type">
+                <a href="https://stackoverflow.blog/2017/03/28/realistic-developer-fiction/" class="question-hyperlink">
+<div class="favicon favicon-stackexchangemeta" title="Meta Stack Exchange"></div>                </a>
+            </div>
+                <div class="bulletin-item-content">
+                    <a href="https://stackoverflow.blog/2017/03/28/realistic-developer-fiction/" class="question-hyperlink">And the Most Realistic Developer in Fiction is…</a>
+                </div>
+                <br class="cbt" />
+            </div>
+    </div>
+</div>			
+			<script>
+                var ados = ados || {}; ados.run = ados.run || [];
+                ados.run.push(function () { ados_add_placement(22,8277,"adzerk621951421",[5,17,2221]).setZone(45); });
+            </script>
+            <div class="everyonelovesstackoverflow" id="adzerk621951421"></div>
+            <div id="hireme"></div>
+        <script>
+window.clc_request = 'ArKq4vr4d9QIAAAAAHbukQICAAAAAgAAAAA8AAAAfGFuZHJvaWR8a2V5Ym9hcmR8aW1lfGFuZHJvaWQtaW5wdXQtbWV0aG9kfGFuZHJvaWQtc2V0dGluZ3N8AHQL6IJxxH_XjrQ';
+;(function(n){var t,u,r,i;try{if(typeof[].indexOf!="function")return;if(window.attachEvent&&!window.addEventListener)return;if(n.allowed[0]!=="*"&&n.allowed.indexOf(location.hostname)===-1)return;if(t=window,t.clc=t.clc||{},u=t.clc_request||t.clcfl_request,t.clc.init=t.clc.init||[],t.clc.init.push(function(n){return n.load()}),t.clc.options){for(r in t.clc.options)n[r]=t.clc.options[r];t.clc.options=n}else t.clc.options=n;i=document.createElement("script");i.async=!0;i.src=n.lib;document.body.appendChild(i)}catch(f){console.error("[clc] Error in loader:",f)}}).call(null, {"azw":true,"kt":2000,"tto":true,"autoload":true,"d":{"sb":["hireme","clc-sb"],"tlb":["careers1","clc-tlb"],"mlb":["careers3","clc-mlb"]},"allowed":["stackoverflow.com","serverfault.com","blog.codinghorror.com","talent.stackoverflow.com"],"h":"clc.stackoverflow.com","u":"https://clc.stackoverflow.com/markup.js","lib":"https://cdn.sstatic.net/clc/clc.min.js?v=1054aad5373d"});        </script>
+			
+
+            
+
+				<div class="module sidebar-related">
+					<h4 id="h-related">Related</h4>
+                    <div class="related js-gps-related-questions" data-tracker="rq=1">
+                        <div class="spacer"><a href="/q/3514392" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">5</div></a><a href="/questions/3514392/android-ime-showing-a-custom-pop-up-dialog-like-swype-keyboard-which-can-ente" class="question-hyperlink">Android IME: showing a custom pop-up dialog (like Swype keyboard) which can enter text into the TextView</a></div><div class="spacer"><a href="/q/3706837" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">4</div></a><a href="/questions/3706837/im-making-an-android-ime-how-do-i-add-a-settings-list-item-in-the-language" class="question-hyperlink">I&#39;m making an Android IME. How do I add a &ldquo;Settings&rdquo; list item in the &ldquo;Language &amp; Keyboard&rdquo; settings screen?</a></div><div class="spacer"><a href="/q/11204973" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/11204973/programatically-change-keyboard-from-custom-android-keyboard" class="question-hyperlink">Programatically change keyboard from custom android keyboard</a></div><div class="spacer"><a href="/q/17753037" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/17753037/can-i-reposition-and-or-split-android-keyboard" class="question-hyperlink">Can I reposition and/or split android keyboard?</a></div><div class="spacer"><a href="/q/31764018" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">8</div></a><a href="/questions/31764018/android-how-to-set-prefered-keyboard-view-mode-from-ime" class="question-hyperlink">Android: How to set prefered keyboard view mode from IME</a></div><div class="spacer"><a href="/q/32002684" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">1</div></a><a href="/questions/32002684/how-to-make-dynamic-keyboard-when-i-click-from-keyboard-all-key-text-will-chang" class="question-hyperlink">how to make dynamic keyboard. When i click from keyboard all key text will change</a></div><div class="spacer"><a href="/q/34196911" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/34196911/android-how-to-show-a-custom-keyboard" class="question-hyperlink">Android - How to show a custom keyboard</a></div><div class="spacer"><a href="/q/35646822" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/35646822/how-to-get-physical-keyboard-layout-in-android" class="question-hyperlink">How to get physical keyboard layout in android</a></div><div class="spacer"><a href="/q/40045009" title="Vote score (upvotes - downvotes)"><div class="answer-votes default">0</div></a><a href="/questions/40045009/how-to-add-action-button-in-android-keyboard-view" class="question-hyperlink">How to add action button in android keyboard view?</a></div><div class="spacer"><a href="/q/42178072" title="Vote score (upvotes - downvotes)"><div class="answer-votes answered-accepted default">0</div></a><a href="/questions/42178072/how-to-disable-spell-checking-on-custom-android-keyboard" class="question-hyperlink">How to disable spell checking on custom Android Keyboard?</a></div>
+                    </div>
+				</div>
+            
+<div id="hot-network-questions" class="module tex2jax_ignore">
+    <h4>
+        <a href="https://stackexchange.com/questions?tab=hot"
+           class="js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:1, location:11 })">
+            Hot Network Questions
+        </a>
+    </h4>
+    <ul>
+            <li >
+                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="http://movies.stackexchange.com/questions/70815/why-do-people-wear-sunglasses-in-the-matrix" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do people wear sunglasses in The Matrix?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/114060/output-the-missing-integer" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Output the missing integer
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-physics" title="Physics Stack Exchange"></div><a href="http://physics.stackexchange.com/questions/322598/what-is-special-about-maxwells-equations" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:151 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What is special about Maxwell&#39;s equations?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-gaming" title="Arqade"></div><a href="http://gaming.stackexchange.com/questions/304678/what-happens-if-you-cheat-at-poker" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:41 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What happens if you cheat at poker?
+                </a>
+
+            </li>
+            <li >
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/87129/i-realize-i-made-a-huge-mistake-in-my-thesis-and-am-not-sure-what-to-do-im-def" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    I realize I made a huge mistake in my thesis and am not sure what to do. I&#39;m defending very soon (days away). What should I do?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-academia" title="Academia Stack Exchange"></div><a href="http://academia.stackexchange.com/questions/87224/university-i-rejected-is-asking-which-other-one-i-chose-over-them-should-i-tell" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:415 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    University I rejected is asking which other one I chose over them; should I tell?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="https://superuser.com/questions/1194070/on-a-mac-what-is-the-hotkey-associated-with-the-image-of-an-arrow-pointing-right" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    On a Mac what is the hotkey associated with the image of an arrow pointing right ⇥?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/114270/how-much-time-is-remaining" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How much time is remaining?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-worldbuilding" title="Worldbuilding Stack Exchange"></div><a href="http://worldbuilding.stackexchange.com/questions/75416/create-a-world-where-necromancy-isnt-considered-as-an-evil-type-of-magic" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:579 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Create a world where Necromancy isn&#39;t considered as an &quot;evil&quot; type of magic
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-codegolf" title="Programming Puzzles &amp; Code Golf Stack Exchange"></div><a href="http://codegolf.stackexchange.com/questions/114408/extract-an-rgb-channel-of-an-image" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:200 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Extract an RGB channel of an image
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/265919/sum-of-independent-random-variables" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Sum of independent random variables
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-ell" title="English Language Learners Stack Exchange"></div><a href="http://ell.stackexchange.com/questions/123980/the-lions-in-the-zoo-are-very-aggressive" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:481 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    (The?) Lions in the zoo are very aggressive
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-superuser" title="Super User"></div><a href="https://superuser.com/questions/1193102/why-does-dir-give-me-all-files-and-folders" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:3 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why does `dir *.*` give me all files and folders?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-mathoverflow" title="MathOverflow"></div><a href="http://mathoverflow.net/questions/265941/elementary-subgroups-of-surface-groups" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:504 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Elementary subgroups of surface groups
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-travel" title="Travel Stack Exchange"></div><a href="http://travel.stackexchange.com/questions/90708/why-do-airlines-not-have-you-put-your-bag-underneath-your-own-seat" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:273 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why do airlines not have you put your bag underneath your own seat?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-apple" title="Ask Different"></div><a href="http://apple.stackexchange.com/questions/278117/how-to-use-applescript-in-a-bash-script-to-create-an-alias-for-an-app" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:118 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to use AppleScript in a bash script to create an alias for an app?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-blender" title="Blender Stack Exchange"></div><a href="http://blender.stackexchange.com/questions/76756/how-to-animate-winding-a-ribbon-onto-a-cylinder" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:502 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How to animate winding a ribbon onto a cylinder?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-scifi" title="Science Fiction &amp; Fantasy Stack Exchange"></div><a href="http://scifi.stackexchange.com/questions/155898/what-did-frodo-mean-by-he-told-me-the-true-story" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:186 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    What did Frodo mean by &quot;He told me the true story&quot;?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-tex" title="TeX - LaTeX Stack Exchange"></div><a href="http://tex.stackexchange.com/questions/361340/unmatching-symbols-with-the-alignat-environment" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:85 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Unmatching symbols with the alignat environment
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-bicycles" title="Bicycles Stack Exchange"></div><a href="http://bicycles.stackexchange.com/questions/45958/how-do-i-open-a-master-link-in-a-chain" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:126 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How do I open a Master Link in a chain?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-stackoverflow" title="Stack Overflow"></div><a href="http://stackoverflow.com/questions/43120045/how-does-this-float-square-root-approximation-work" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:1 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    How does this float square root approximation work?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-movies" title="Movies &amp; TV Stack Exchange"></div><a href="http://movies.stackexchange.com/questions/70897/why-didnt-mark-watney-start-digging-downward" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:367 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Why didn&#39;t Mark Watney start digging downward?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-math" title="Mathematics Stack Exchange"></div><a href="http://math.stackexchange.com/questions/2209592/can-an-idempotent-matrix-be-complex" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:69 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Can an idempotent matrix be complex?
+                </a>
+
+            </li>
+            <li class="dno js-hidden">
+                <div class="favicon favicon-rpg" title="Role-playing Games Stack Exchange"></div><a href="http://rpg.stackexchange.com/questions/97344/does-deflecting-missiles-work-against-multiple-missiles-at-once" class="js-gps-track" data-gps-track="site.switch({ item_type:11, target_site:122 }); posts_hot_network.click({ item_type:2, location:11 })">
+                    Does deflecting missiles work against multiple missiles at once?
+                </a>
+
+            </li>
+    </ul>
+
+        <a href="#" 
+           class="show-more js-show-more js-gps-track" 
+           data-gps-track="posts_hot_network.click({ item_type:3, location:11 })">
+            more hot questions
+        </a>
+</div>
+		</div>
+	
+<div id="feed-link">
+    <div id="feed-link-text">
+        <a href="/feeds/question/43118198" title="feed of this question and its answers">
+            <span class="feed-icon"></span>question feed
+        </a>
+    </div>
+</div>	<script>
+StackExchange.ready(function(){$.get('/posts/43118198/ivc/073e');});
+</script>
+<noscript>
+    <div><img src="/posts/43118198/ivc/073e" class="dno" alt="" width="0" height="0"></div>
+</noscript><div style="display:none" id="prettify-lang">default</div></div>
+
+
+        </div>
+    </div>
+    <div id="footer" class="categories" role="contentinfo">
+        <div class="footerwrap">            
+            <div id="footer-menu">
+                <div class="top-footer-links">
+                    <a href="http://stackoverflow.com/company/about">about us</a>
+                        <a href="/tour">tour</a>
+                    <a href="/help">help</a>
+                    <a href="https://stackoverflow.blog?blb=1">blog</a>
+                        <a href="http://chat.stackoverflow.com">chat</a>
+                    <a href="https://data.stackexchange.com">data</a>
+                    <a href="https://stackexchange.com/legal">legal</a>
+                    <a href="https://stackexchange.com/legal/privacy-policy">privacy policy</a>
+                    <a href="http://stackoverflow.com/company/work-here">work here</a>
+                    <a href="https://www.stackoverflowbusiness.com/advertise">advertising info</a>
+                        <a href="http://stackoverflow.com/jobs/directory/developer-jobs">developer jobs directory</a>
+
+                    <a onclick='StackExchange.switchMobile("on")'>mobile</a>
+                    <b><a href="/contact">contact us</a></b>
+                        <b><a href="https://meta.stackoverflow.com">feedback</a></b>
+                    
+                </div>
+                <div id="footer-sites">
+                    <table>
+    <tr>
+            <th colspan=3>
+                Technology
+            </th>
+            <th >
+                Life / Arts
+            </th>
+            <th >
+                Culture / Recreation
+            </th>
+            <th >
+                Science
+            </th>
+            <th >
+                Other
+            </th>
+    </tr>
+    <tr>
+            <td>
+                <ol>
+                        <li><a href="//stackoverflow.com" title="professional and enthusiast programmers">Stack Overflow</a></li>
+                        <li><a href="//serverfault.com" title="system and network administrators">Server Fault</a></li>
+                        <li><a href="//superuser.com" title="computer enthusiasts and power users">Super User</a></li>
+                        <li><a href="//webapps.stackexchange.com" title="power users of web applications">Web Applications</a></li>
+                        <li><a href="//askubuntu.com" title="Ubuntu users and developers">Ask Ubuntu</a></li>
+                        <li><a href="//webmasters.stackexchange.com" title="pro webmasters">Webmasters</a></li>
+                        <li><a href="//gamedev.stackexchange.com" title="professional and independent game developers">Game Development</a></li>
+                        <li><a href="//tex.stackexchange.com" title="users of TeX, LaTeX, ConTeXt, and related typesetting systems">TeX - LaTeX</a></li>
+                        <li><a href="//softwareengineering.stackexchange.com" title="professionals, academics, and students working within the systems development life cycle who care about creating, delivering, and maintaining software responsibly">Software Engineering</a></li>
+                        <li><a href="//unix.stackexchange.com" title="users of Linux, FreeBSD and other Un*x-like operating systems">Unix &amp; Linux</a></li>
+                        <li><a href="//apple.stackexchange.com" title="power users of Apple hardware and software">Ask Different (Apple)</a></li>
+                        <li><a href="//wordpress.stackexchange.com" title="WordPress developers and administrators">WordPress Development</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//gis.stackexchange.com" title="cartographers, geographers and GIS professionals">Geographic Information Systems</a></li>
+                        <li><a href="//electronics.stackexchange.com" title="electronics and electrical engineering professionals, students, and enthusiasts">Electrical Engineering</a></li>
+                        <li><a href="//android.stackexchange.com" title="enthusiasts and power users of the Android operating system">Android Enthusiasts</a></li>
+                        <li><a href="//security.stackexchange.com" title="information security professionals">Information Security</a></li>
+                        <li><a href="//dba.stackexchange.com" title="database professionals who wish to improve their database skills and learn from others in the community">Database Administrators</a></li>
+                        <li><a href="//drupal.stackexchange.com" title="Drupal developers and administrators">Drupal Answers</a></li>
+                        <li><a href="//sharepoint.stackexchange.com" title="SharePoint enthusiasts">SharePoint</a></li>
+                        <li><a href="//ux.stackexchange.com" title="user experience researchers and experts">User Experience</a></li>
+                        <li><a href="//mathematica.stackexchange.com" title="users of Wolfram Mathematica">Mathematica</a></li>
+                        <li><a href="//salesforce.stackexchange.com" title="Salesforce administrators, implementation experts, developers and anybody in-between">Salesforce</a></li>
+                        <li><a href="//expressionengine.stackexchange.com" title="administrators, end users, developers and designers for ExpressionEngine&#174; CMS">ExpressionEngine&#174; Answers</a></li>
+                        <li><a href="//crypto.stackexchange.com" title="software developers, mathematicians and others interested in cryptography">Cryptography</a></li>
+                            </ol></td><td><ol>
+                        <li><a href="//codereview.stackexchange.com" title="peer programmer code reviews">Code Review</a></li>
+                        <li><a href="//magento.stackexchange.com" title="users of the Magento e-Commerce platform">Magento</a></li>
+                        <li><a href="//dsp.stackexchange.com" title="practitioners of the art and science of signal, image and video processing">Signal Processing</a></li>
+                        <li><a href="//raspberrypi.stackexchange.com" title="users and developers of hardware and software for Raspberry Pi">Raspberry Pi</a></li>
+                        <li><a href="//codegolf.stackexchange.com" title="programming puzzle enthusiasts and code golfers">Programming Puzzles &amp; Code Golf</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#technology" class="more">
+                                more (7)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//photo.stackexchange.com" title="professional, enthusiast and amateur photographers">Photography</a></li>
+                        <li><a href="//scifi.stackexchange.com" title="science fiction and fantasy enthusiasts">Science Fiction &amp; Fantasy</a></li>
+                        <li><a href="//graphicdesign.stackexchange.com" title="Graphic Design professionals, students, and enthusiasts">Graphic Design</a></li>
+                        <li><a href="//movies.stackexchange.com" title="movie and tv enthusiasts">Movies &amp; TV</a></li>
+                        <li><a href="//music.stackexchange.com" title="musicians, students, and enthusiasts">Music: Practice &amp; Theory</a></li>
+                        <li><a href="//cooking.stackexchange.com" title="professional and amateur chefs">Seasoned Advice (cooking)</a></li>
+                        <li><a href="//diy.stackexchange.com" title="contractors and serious DIYers">Home Improvement</a></li>
+                        <li><a href="//money.stackexchange.com" title="people who want to be financially literate">Personal Finance &amp; Money</a></li>
+                        <li><a href="//academia.stackexchange.com" title="academics and those enrolled in higher education">Academia</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#lifearts" class="more">
+                                more (8)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//english.stackexchange.com" title="linguists, etymologists, and serious English language enthusiasts">English Language &amp; Usage</a></li>
+                        <li><a href="//skeptics.stackexchange.com" title="scientific skepticism">Skeptics</a></li>
+                        <li><a href="//judaism.stackexchange.com" title="those who base their lives on Jewish law and tradition and anyone interested in learning more">Mi Yodeya (Judaism)</a></li>
+                        <li><a href="//travel.stackexchange.com" title="road warriors and seasoned travelers">Travel</a></li>
+                        <li><a href="//christianity.stackexchange.com" title="committed Christians, experts in Christianity and those interested in learning more">Christianity</a></li>
+                        <li><a href="//ell.stackexchange.com" title="speakers of other languages learning English">English Language Learners</a></li>
+                        <li><a href="//japanese.stackexchange.com" title="students, teachers, and linguists wanting to discuss the finer points of the Japanese language">Japanese Language</a></li>
+                        <li><a href="//gaming.stackexchange.com" title="passionate videogamers on all platforms">Arqade (gaming)</a></li>
+                        <li><a href="//bicycles.stackexchange.com" title="people who build and repair bicycles, people who train cycling, or commute on bicycles">Bicycles</a></li>
+                        <li><a href="//rpg.stackexchange.com" title="gamemasters and players of tabletop, paper-and-pencil role-playing games">Role-playing Games</a></li>
+                        <li><a href="//anime.stackexchange.com" title="anime and manga fans">Anime &amp; Manga</a></li>
+                        <li><a href="//mechanics.stackexchange.com" title="mechanics and DIY enthusiast owners of cars, trucks, and motorcycles">Motor Vehicle Maintenance &amp; Repair</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#culturerecreation" class="more">
+                                more (17)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//mathoverflow.net" title="professional mathematicians">MathOverflow</a></li>
+                        <li><a href="//math.stackexchange.com" title="people studying math at any level and professionals in related fields">Mathematics</a></li>
+                        <li><a href="//stats.stackexchange.com" title="people interested in statistics, machine learning, data analysis, data mining, and data visualization">Cross Validated (stats)</a></li>
+                        <li><a href="//cstheory.stackexchange.com" title="theoretical computer scientists and researchers in related fields">Theoretical Computer Science</a></li>
+                        <li><a href="//physics.stackexchange.com" title="active researchers, academics and students of physics">Physics</a></li>
+                        <li><a href="//chemistry.stackexchange.com" title="scientists, academics, teachers and students">Chemistry</a></li>
+                        <li><a href="//biology.stackexchange.com" title="biology researchers, academics, and students">Biology</a></li>
+                        <li><a href="//cs.stackexchange.com" title="students, researchers and practitioners of computer science">Computer Science</a></li>
+                        <li><a href="//philosophy.stackexchange.com" title="those interested in the study of the fundamental nature of knowledge, reality, and existence">Philosophy</a></li>
+                    
+                        <li>
+                            <a href="http://stackexchange.com/sites#science" class="more">
+                                more (3)
+                            </a>
+                        </li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                        <li><a href="//meta.stackexchange.com" title="meta-discussion of the Stack Exchange family of Q&amp;A websites">Meta Stack Exchange</a></li>
+                        <li><a href="//stackapps.com" title="apps, scripts, and development with the Stack Exchange API">Stack Apps</a></li>
+                        <li><a href="//area51.stackexchange.com" title="proposing new sites in the Stack Exchange network">Area 51</a></li>
+                        <li><a href="https://www.stackoverflowbusiness.com/talent">Stack Overflow Talent</a></li>
+                    
+                </ol>
+            </td>
+    </tr>
+</table>
+                </div>
+            </div>
+            <div id="copyright">
+                site design / logo &#169; 2017 Stack Exchange Inc; user contributions licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" rel="license">cc by-sa 3.0</a> 
+                with <a href="http://blog.stackoverflow.com/2009/06/attribution-required/" rel="license">attribution required</a>
+            </div>
+            <div id="svnrev">
+                rev 2017.3.31.25580
+            </div>
+                </div>
+    </div>
+    <noscript>
+        <div id="noscript-warning">Stack Overflow works best with JavaScript enabled<img src="https://pixel.quantserve.com/pixel/p-c1rF4kxgLUzNc.gif" alt="" class="dno"></div>
+    </noscript>
+
+<script>var p = "http", d = "static"; if (document.location.protocol == "https:") { p += "s"; d = "engine"; } var z = document.createElement("script"); z.type = "text/javascript"; z.async = true; z.src = p + "://" + d + ".adzerk.net/ados.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(z, s);</script>
+<script>
+    var ados = ados || {};
+    ados.run = ados.run || [];
+    
+    
+        
+        ados.run.push(function () {
+                setTimeout(function () { $("#adzerk-user-match").remove(); }, window.AUMIframeDone ? 0 : 2000);
+                ados_setKeywords('android,keyboard,ime,android-input-method,android-settings');; ados_load();
+        });   
+        
+</script>
+
+    <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m);
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-5620270-1');
+                ga('create', 'UA-5620270-59', {name: 'pageData', sampleRate: 5 });
+                ga('set', 'dimension2', '|android|keyboard|ime|android-input-method|android-settings|');
+                ga('pageData.set', 'dimension2', '|android|keyboard|ime|android-input-method|android-settings|');
+                ga('send', 'pageview');
+                ga('pageData.send', 'pageview');
+        var _qevents = _qevents || [],
+            _comscore = _comscore || [];
+        (function () {
+            var ssl='https:'==document.location.protocol,
+                s=document.getElementsByTagName('script')[0],
+                qc=document.createElement('script');
+                qc.async = true;
+                qc.src = (ssl ? 'https://secure' : 'http://edge') + '.quantserve.com/quant.js';
+                s.parentNode.insertBefore(qc, s);
+                _qevents.push({ qacct: "p-c1rF4kxgLUzNc" });
+                            var sc=document.createElement('script');
+                sc.async=true;
+                sc.src=(ssl?'https://sb':'http://b') + '.scorecardresearch.com/beacon.js';
+                s.parentNode.insertBefore(sc, s);
+                _comscore.push({ c1: "2", c2: "17440561" });
+        })();
+
+    </script>
+        
+    
+            <script type="text/javascript">
+                
+                (function(appendChild) {
+                    Node.prototype.appendChild = function() {
+                        var parent = this;
+                        var newNode = arguments[0];
+                        if (parent.nodeName === 'HEAD'
+                            && newNode
+                            && newNode.nodeName === 'SCRIPT'
+                            && newNode.src) {
+                            
+                            window.setTimeout(function() {
+                                var result = newNode.src.match(/^https:\/\/maps\.googleapis\.com\/maps\/api\/place\/js\/(\w+)Service\./i) || [];
+                                var service = result[1];
+                                if (service) {
+                                    if (service === 'Autocompletion') service =  2;
+                                    else if (service === 'Place') service = 1;
+                                    else service = 0;
+                                    StackExchange.using('gps', function() {
+                                        StackExchange.gps.track('google_maps_places_api.call', { service: service });
+                                    });
+                                }
+                            }, 0);
+                        }
+                        return appendChild.apply(this, arguments);
+                    };
+                })(Node.prototype.appendChild);
+            </script>
     </body>
-<!-- Mirrored from tools.google.com/dlpage/drive/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 23 Sep 2014 08:58:47 GMT -->
 </html>

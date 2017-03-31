@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import urllib, bs4, re
 # from selenium import webdriver
 # import urllib2, httplib
-# import OpenSSL, ssl
+# import OpenSSL, sslbvnb
 # import requests
 
 from google import google
@@ -65,8 +65,8 @@ def double_slash_redirecting(url):
     else:
         return 1
 
-def prefix_suffix(url):
-    match=re.search('-',url)
+def prefix_suffix(domain):
+    match=re.search('-',domain)
     if match:
         return -1
     else:
@@ -394,15 +394,6 @@ def main(url):
 
     status=[]
 
-    status.append(having_ip_address(url))
-    status.append(url_length(url))
-    status.append(shortening_service(url))
-    status.append(having_at_symbol(url))
-    status.append(double_slash_redirecting(url))
-    status.append(prefix_suffix(url))
-    status.append(having_sub_domain(url))
-    # status.append(sslfinal_state(url))
-
     hostname = url
     h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
     z = int(len(h))
@@ -413,6 +404,15 @@ def main(url):
         z = int(len(h))
         if z != 0:
             hostname = hostname[:h[0][0]]
+
+    status.append(having_ip_address(url))
+    status.append(url_length(url))
+    status.append(shortening_service(url))
+    status.append(having_at_symbol(url))
+    status.append(double_slash_redirecting(url))
+    status.append(prefix_suffix(hostname))
+    status.append(having_sub_domain(url))
+    # status.append(sslfinal_state(url))
 
     dns=1
     try:
