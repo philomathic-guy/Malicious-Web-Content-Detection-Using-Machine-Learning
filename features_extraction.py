@@ -87,6 +87,7 @@ def having_sub_domain(url):
     else:
         return -1
 
+
 # def sslfinal_state(url):
 #     hostname = url
 #     h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://', hostname)]
@@ -295,7 +296,7 @@ def abnormal_url(domain,url):
         return -1
 
 ###### condition for more than 1 redirect is left. Looking for a url which redirects more than once ######
-# def redirect(url):
+    # def redirect(url):
 #     count=0
 #     httplib.HTTPConnection.debuglevel = 1
 #     while True:

@@ -1,6 +1,7 @@
 body{
    width:500px;
    height:100px;
+   display:inline-block;
    }
 
 @import url(http://fonts.googleapis.com/css?family=Nunito:300);
@@ -95,7 +96,8 @@ sup  { font-size: 36px; font-weight: 100; line-height: 55px; }
 
 #p1
 {
-	font-size:20px;
+	font-size:30px;
+	display:inline-block;
 }
 
 #div1

@@ -10,7 +10,7 @@ def main():
     pred=clf.predict(features_test)
     prob=clf.predict_proba(features_test)
     # print 'Features=', features_test, 'The predicted probability is - ', prob, 'The predicted label is - ', pred
-    # print "The probability of this site being a phishing website is ", features_test[0]*100, "%"
+#    print "The probability of this site being a phishing website is ", features_test[0]*100, "%"
 
 
     if int(pred[0])==1:
