@@ -12,7 +12,7 @@ function transfer(){
 	params="url="+tablink;
 	alert(params);
 	var markup = "url="+tablink+"&html="+document.documentElement.innerHTML;
-	xhr.open("POST","http://localhost/BE/abc.php",false);
+	xhr.open("POST","http://localhost/BE/clientServer.php",false);
 	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhr.send(markup);
 	alert(xhr.responseText);
