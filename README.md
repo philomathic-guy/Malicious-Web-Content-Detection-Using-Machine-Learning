@@ -6,9 +6,9 @@
 * Our aim is to create an extension for Chrome which will act as middleware between the users and the malicious websites, and mitigate the risk of users succumbing to such websites. 
 * Further, all harmful content cannot be exhaustively collected as even that is bound to continuous development. To counter this we are using machine learning - to train the tool and categorize the new content it sees every time into the particular categories so that corresponding action can be taken.
 
-#### Take a look at the [Demo](https://youtu.be/0-wky0h3hmM)
+### Take a look at the [Demo](https://youtu.be/0-wky0h3hmM)
 
-A few examples of our system being run on certain webpages -
+A few snapshots of our system being run on certain webpages -
 
 ![spit_safe](https://user-images.githubusercontent.com/18022447/35985360-7cd910f2-0cc4-11e8-9edf-d38bf83d19a1.png)
 _**Fig 1.** A safe website - www.spit.ac.in (College website)_
