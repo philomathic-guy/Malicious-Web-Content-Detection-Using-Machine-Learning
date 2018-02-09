@@ -21,6 +21,3 @@ _**Fig 3.** A phishing website which looks just like Dropbox_
 
 ![moodle_safe](https://user-images.githubusercontent.com/18022447/35985384-881ea85a-0cc4-11e8-9bea-cf71b3089364.png)
 _**Fig 4.** A safe website - www.google.com_
-
-#### Here is a demo of the system -
-[!Watch the video](https://youtu.be/0-wky0h3hmM)
