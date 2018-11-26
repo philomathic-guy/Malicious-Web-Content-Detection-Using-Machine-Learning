@@ -1,0 +1,8 @@
+joblib
+numpy
+scikit-learn
+# CHECK below!
+urllib
+bs4
+whois
+google
