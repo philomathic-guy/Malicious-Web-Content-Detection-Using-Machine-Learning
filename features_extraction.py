@@ -164,7 +164,7 @@ def request_url(wiki, soup, domain):
 
     if percentage < 22.0:
         return 1
-    elif 22 <= percentage < 61.0:
+    elif 22.0 <= percentage < 61.0:
         return 0
     else:
         return -1
@@ -217,7 +217,7 @@ def links_in_tags(wiki, soup, domain):
 
     if percentage < 17.0:
         return 1
-    elif 17 <= percentage < 81.0:
+    elif 17.0 <= percentage < 81.0:
         return 0
     else:
         return -1
@@ -303,7 +303,7 @@ def statistical_report(url, hostname):
     try:
         ip_address = socket.gethostbyname(hostname)
     except:
-        print 'Connection problem. Please check your internet connection!'
+        print('Connection problem. Please check your internet connection!')
     ip_match = re.search(
         '146\.112\.61\.108|213\.174\.157\.151|121\.50\.168\.88|192\.185\.217\.116|78\.46\.211\.158|181\.174\.165\.13|46\.242\.145\.103|121\.50\.168\.40|83\.125\.22\.219|46\.242\.145\.98|'
         '107\.151\.148\.44|107\.151\.148\.107|64\.70\.19\.203|199\.184\.144\.27|107\.151\.148\.108|107\.151\.148\.109|119\.28\.52\.61|54\.83\.43\.69|52\.69\.166\.231|216\.58\.192\.225|'
@@ -372,7 +372,6 @@ def main(url):
     else:
         status.append(abnormal_url(domain, url))
 
-    # status.append(redirect(url))
     status.append(i_frame(soup))
 
     if dns == -1:
@@ -386,12 +385,12 @@ def main(url):
     status.append(google_index(url))
     status.append(statistical_report(url, hostname))
 
-    print '\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \
-    '6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n8888. SSL Final State\n8. Domain Registration Length\n9. Favicon\n' \
-    '10. HTTP or HTTPS token in domain name\n11. Request URL\n12. URL of Anchor\n13. Links in tags\n' \
-    '14. SFH\n15. Submitting to email\n16. Abnormal URL\n(removed temporarily)11117. Redirect\n17. IFrame\n18. Age of Domain\n19. DNS Record\n20. Web Traffic\n' \
-    '21. Google Index\n22. Statistical Reports\n'
-    print status
+    print('\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n'
+          '5. Having double slash\n6. Having dash symbol(Prefix Suffix)\n7. Having multiple subdomains\n'
+          '8. SSL Final State\n8. Domain Registration Length\n9. Favicon\n10. HTTP or HTTPS token in domain name\n'
+          '11. Request URL\n12. URL of Anchor\n13. Links in tags\n14. SFH\n15. Submitting to email\n16. Abnormal URL\n'
+          '17. IFrame\n18. Age of Domain\n19. DNS Record\n20. Web Traffic\n21. Google Index\n22. Statistical Reports\n')
+    print(status)
     return status
 
 
