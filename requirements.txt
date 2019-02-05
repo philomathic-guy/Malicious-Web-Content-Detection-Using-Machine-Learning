@@ -1,8 +1,6 @@
-joblib
+joblib >= 0.13.1
 numpy
 scikit-learn
-# CHECK below!
-urllib
-bs4
+beautifulsoup4
 whois
 google
