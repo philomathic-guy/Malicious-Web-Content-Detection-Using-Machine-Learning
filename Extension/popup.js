@@ -17,11 +17,10 @@ function transfer(){
 	});
 }
 
-
 $(document).ready(function(){
     $("button").click(function(){	
-	var val = transfer();
-        });
+		var val = transfer();
+    });
 });
 
 chrome.tabs.getSelected(null,function(tab) {
