@@ -1,12 +1,15 @@
 import joblib
 import features_extraction
 import sys
+import numpy as np
 
 
 def main():
     url = sys.argv[1]
 
     features_test = features_extraction.main(url)
+    # Due to updates to scikit-learn, we now need a 2D array as a parameter to the predict function.
+    features_test = np.array(features_test).reshape((1, -1))
 
     clf = joblib.load('classifier/random_forest.pkl')
 
