@@ -4,6 +4,12 @@ $site=$_POST['url'];
 $html = file_get_contents($site);
 //echo $html;
 $bytes=file_put_contents('markup.txt', $html);
-$a=exec('/usr/bin/python /opt/lampp/htdocs/BE/test.py '.$site.' 2>&1 ');
+
+// Can use this if your default interpreter is Python 2.x.
+// Has some problem executing 'which python2'. So, absolute path is just simpler.
+//$python_path=exec("which python 2>&1 ");
+//$a=exec("$python_path test.py $site 2>&1 ");
+
+$a=exec("/Library/Frameworks/Python.framework/Versions/2.7/bin/python2 test.py $site 2>&1 ");
 echo $a;
 ?>
