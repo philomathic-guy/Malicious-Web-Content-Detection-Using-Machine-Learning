@@ -1,8 +1,15 @@
 # Malicious Web Content Detection using Machine Learning
 
-### Steps for reproducing - _To be added soon_
-* pip install -r requirements.txt
-* sudo chmod 777 data/data.txt for the markup file (Mac)
+### Steps for reproducing the project -
+* Install all the required packages using the following command - ```pip install -r requirements.txt```.
+Make sure your pip is consistent with the Python version you are using by typing ```pip -V```.
+* Move the project folder to the correct localhost location. For eg. ```/Library/WebServer/Documents``` in case of Macs.
+* (If you are using a Mac) Give permissions to write to the markup file ```sudo chmod 777 markup.txt```.
+* Modify the path of your Python 2.x installation in ```clientServer.php```.
+* (If you are using **anything other than** a Mac) Modify the localhost path in ```features_extraction.py``` to your localhost path (or host the application on a remote server and make the necessary changes).
+* Go to ```chrome://extensions```, activate developer mode, click on load unpacked and select the 'Extension' folder from our project.
+* Now, you can go to any web page and click on the extension in the top right panel of your Chrome window. Click on the 'Safe of not?' button and wait for a second for the result.
+* Done!
 
 ### Research paper - http://ieeexplore.ieee.org/document/8256834/
 
