@@ -3,20 +3,29 @@
 # -1 stands for phishing
 
 from bs4 import BeautifulSoup
-import urllib, bs4, re
+import urllib
+import bs4
+import re
 import socket
-
-from google import google
 import whois
 from datetime import datetime
 import time
+
+# https://breakingcode.wordpress.com/2010/06/29/google-search-python/
+# Previous package structure was modified. Import statements according to new structure added. Also code modified.
+from googlesearch import search
+
+# This import is needed only when you run this file in isolation.
+import sys
+
+LOCALHOST_PATH = "/Library/WebServer/Documents/"
 
 
 def having_ip_address(url):
     match = re.search(
         '(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.'
         '([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  # IPv4
-        '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)' # IPv4 in hexadecimal
+        '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)'  # IPv4 in hexadecimal
         '(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}', url)  # Ipv6
     if match:
         # print match.group()
@@ -100,8 +109,11 @@ def domain_registration_length(domain):
     expiration_date = domain.expiration_date
     today = time.strftime('%Y-%m-%d')
     today = datetime.strptime(today, '%Y-%m-%d')
-    registration_length = abs((expiration_date - today).days)
 
+    registration_length = 0
+    # Some domains do not have expiration dates. The application should not raise an error if this is the case.
+    if expiration_date:
+        registration_length = abs((expiration_date - today).days)
     if registration_length / 365 <= 1:
         return -1
     else:
@@ -178,7 +190,7 @@ def url_of_anchor(wiki, soup, domain):
         # might not be
         # there in the actual a['href']
         if "#" in a['href'] or "javascript" in a['href'].lower() or "mailto" in a['href'].lower() or not (
-                wiki in a['href'] or domain in a['href']):
+                        wiki in a['href'] or domain in a['href']):
             unsafe = unsafe + 1
         i = i + 1
         # print a['href']
@@ -255,6 +267,7 @@ def abnormal_url(domain, url):
     else:
         return -1
 
+
 # IFrame Redirection
 def i_frame(soup):
     for i_frame in soup.find_all('i_frame', width=True, height=True, frameBorder=True):
@@ -268,7 +281,9 @@ def i_frame(soup):
 def age_of_domain(domain):
     creation_date = domain.creation_date
     expiration_date = domain.expiration_date
-    ageofdomain = abs((expiration_date - creation_date).days)
+    ageofdomain = 0
+    if expiration_date:
+        ageofdomain = abs((expiration_date - creation_date).days)
     if ageofdomain / 30 < 6:
         return -1
     else:
@@ -278,8 +293,8 @@ def age_of_domain(domain):
 def web_traffic(url):
     try:
         rank = \
-        bs4.BeautifulSoup(urllib.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find(
-            "REACH")['RANK']
+            bs4.BeautifulSoup(urllib.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find(
+                "REACH")['RANK']
     except TypeError:
         return -1
     rank = int(rank)
@@ -290,7 +305,7 @@ def web_traffic(url):
 
 
 def google_index(url):
-    site = google.search(url, 5)
+    site = search(url, 5)
     if site:
         return 1
     else:
@@ -321,8 +336,7 @@ def statistical_report(url, hostname):
 
 
 def main(url):
-    # url = sys.argv[1]
-    with open('/opt/lampp/htdocs/BE/markup.txt', 'r') as file:
+    with open(LOCALHOST_PATH + 'Malicious-Web-Content-Detection-Using-Machine-Learning/markup.txt', 'r') as file:
         soup_string = file.read()
 
     soup = BeautifulSoup(soup_string, 'html.parser')
@@ -339,6 +353,8 @@ def main(url):
         z = int(len(h))
         if z != 0:
             hostname = hostname[:h[0][0]]
+
+    # print("Hostname is - " + hostname)
 
     status.append(having_ip_address(url))
     status.append(url_length(url))
@@ -393,6 +409,7 @@ def main(url):
     print(status)
     return status
 
-
-if __name__ == "__main__":
-    main()
+# Use the below two lines if features_extraction.py is being run as a standalone file. If you are running this file as
+# a part of the workflow pipeline starting with the chrome extension, comment out these two lines.
+# if __name__ == "__main__":
+#     main(sys.argv[1])
