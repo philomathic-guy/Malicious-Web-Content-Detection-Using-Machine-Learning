@@ -1,12 +1,14 @@
 # Malicious Web Content Detection using Machine Learning
 
 ### Steps for reproducing - _To be added soon_
+* pip install -r requirements.txt
+* sudo chmod 777 data/data.txt for the markup file (Mac)
 
 ### Research paper - http://ieeexplore.ieee.org/document/8256834/
 
 #### Abstract -
-* Naive users using a browser have no idea about the back-end of the page. The users might be tricked into giving away their credentials or downloading malicious data. 
-* Our aim is to create an extension for Chrome which will act as middleware between the users and the malicious websites, and mitigate the risk of users succumbing to such websites. 
+* Naive users using a browser have no idea about the back-end of the page. The users might be tricked into giving away their credentials or downloading malicious data.
+* Our aim is to create an extension for Chrome which will act as middleware between the users and the malicious websites, and mitigate the risk of users succumbing to such websites.
 * Further, all harmful content cannot be exhaustively collected as even that is bound to continuous development. To counter this we are using machine learning - to train the tool and categorize the new content it sees every time into the particular categories so that corresponding action can be taken.
 
 ### Take a look at the [demo](https://youtu.be/0-wky0h3hmM)
