@@ -17,6 +17,7 @@ function transfer(){
 	});
 }
 
+
 $(document).ready(function(){
     $("button").click(function(){	
 		var val = transfer();
