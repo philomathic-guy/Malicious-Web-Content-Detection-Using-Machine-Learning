@@ -1,6 +1,7 @@
 # Malicious Web Content Detection using Machine Learning
 
 #### NOTE - The project has been developed in Python 2.7. Please make sure to use Python 2.7 for reproducing it seamlessly without any errors. Thanks! :)
+#### Also, if anything is unclear or there is some inconsistency, please file an issue instead of sending an email. It is much easier to track things that way.
 
 ### Steps for reproducing the project -
 * Install all the required packages using the following command - ```pip install -r requirements.txt```.
