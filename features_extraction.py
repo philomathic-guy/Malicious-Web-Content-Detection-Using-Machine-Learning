@@ -409,6 +409,7 @@ def main(url):
     print(status)
     return status
 
+
 # Use the below two lines if features_extraction.py is being run as a standalone file. If you are running this file as
 # a part of the workflow pipeline starting with the chrome extension, comment out these two lines.
 # if __name__ == "__main__":
