@@ -1,7 +1,8 @@
 # Malicious Web Content Detection using Machine Learning
 
-#### NOTE - The project has been developed in Python 2.7. Please make sure to use Python 2.7 for reproducing it seamlessly without any errors. Thanks! :)
-#### Also, if anything is unclear or there is some inconsistency, please file an issue instead of sending an email. It is much easier to track things that way.
+#### NOTE - 
+#### 1. The project has been developed in Python 2.7. Please make sure to use Python 2.7 for reproducing it seamlessly without any errors. Thanks! :)
+#### 2. Also, if anything is unclear or there is some inconsistency, please file an issue instead of sending an email. It is much easier to track things that way.
 
 ### Steps for reproducing the project -
 * Install all the required packages using the following command - ```pip install -r requirements.txt```.
@@ -36,5 +37,3 @@ _**Fig 3.** A phishing website which looks just like Dropbox_
 
 ![moodle_safe](https://user-images.githubusercontent.com/18022447/35985384-881ea85a-0cc4-11e8-9bea-cf71b3089364.png)
 _**Fig 4.** A safe website - www.google.com_
-
-
