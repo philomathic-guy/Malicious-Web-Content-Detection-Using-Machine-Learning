@@ -27,12 +27,7 @@ def having_ip_address(url):
         '([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\/)|'  # IPv4
         '((0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\.(0x[0-9a-fA-F]{1,2})\\/)'  # IPv4 in hexadecimal
         '(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}', url)  # Ipv6
-    if match:
-        # print match.group()
-        return -1
-    else:
-        # print 'No matching pattern found'
-        return 1
+    return -1 if match else 1
 
 
 def url_length(url):
