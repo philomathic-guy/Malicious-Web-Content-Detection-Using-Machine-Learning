@@ -271,10 +271,9 @@ def abnormal_url(domain, url):
 # IFrame Redirection
 def i_frame(soup):
     for i_frame in soup.find_all('i_frame', width=True, height=True, frameBorder=True):
+        # Even if one iFrame satisfies the below conditions, it is safe to return -1 for this method.
         if i_frame['width'] == "0" and i_frame['height'] == "0" and i_frame['frameBorder'] == "0":
             return -1
-        else:
-            return 1
     return 1
 
 
