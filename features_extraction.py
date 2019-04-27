@@ -49,10 +49,7 @@ def shortening_service(url):
                       'x\.co|prettylinkpro\.com|scrnch\.me|filoops\.info|vzturl\.com|qr\.net|1url\.com|tweez\.me|v\.gd|'
                       'tr\.im|link\.zip\.net',
                       url)
-    if match:
-        return -1
-    else:
-        return 1
+    return -1 if match else 1
 
 
 def having_at_symbol(url):
