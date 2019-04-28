@@ -18,6 +18,7 @@ from googlesearch import search
 # This import is needed only when you run this file in isolation.
 import sys
 
+# Path of your local server. Different for different OSs.
 LOCALHOST_PATH = "/Library/WebServer/Documents/"
 
 
