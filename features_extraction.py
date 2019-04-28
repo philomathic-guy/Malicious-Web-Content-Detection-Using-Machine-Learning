@@ -54,10 +54,7 @@ def shortening_service(url):
 
 def having_at_symbol(url):
     match = re.search('@', url)
-    if match:
-        return -1
-    else:
-        return 1
+    return -1 if match else 1
 
 
 def double_slash_redirecting(url):
