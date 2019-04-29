@@ -61,10 +61,7 @@ def having_at_symbol(url):
 def double_slash_redirecting(url):
     # since the position starts from, we have given 6 and not 7 which is according to the document
     list = [x.start(0) for x in re.finditer('//', url)]
-    if list[len(list) - 1] > 6:
-        return -1
-    else:
-        return 1
+    return -1 if list[-1] > 6 else 1
 
 
 def prefix_suffix(domain):
