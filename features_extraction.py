@@ -66,10 +66,7 @@ def double_slash_redirecting(url):
 
 def prefix_suffix(domain):
     match = re.search('-', domain)
-    if match:
-        return -1
-    else:
-        return 1
+    return -1 if match else 1
 
 
 def having_sub_domain(url):
