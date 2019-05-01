@@ -95,13 +95,11 @@ def domain_registration_length(domain):
     today = datetime.strptime(today, '%Y-%m-%d')
 
     registration_length = 0
-    # Some domains do not have expiration dates. The application should not raise an error if this is the case.
+    # Some domains do not have expiration dates. This if condition makes sure that the expiration date is used only
+    # when it is present.
     if expiration_date:
         registration_length = abs((expiration_date - today).days)
-    if registration_length / 365 <= 1:
-        return -1
-    else:
-        return 1
+    return -1 if registration_length / 365 <= 1 else 1
 
 
 def favicon(wiki, soup, domain):
