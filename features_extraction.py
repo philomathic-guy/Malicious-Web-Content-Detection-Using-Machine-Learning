@@ -106,10 +106,7 @@ def favicon(wiki, soup, domain):
     for head in soup.find_all('head'):
         for head.link in soup.find_all('link', href=True):
             dots = [x.start(0) for x in re.finditer('\.', head.link['href'])]
-            if wiki in head.link['href'] or len(dots) == 1 or domain in head.link['href']:
-                return 1
-            else:
-                return -1
+            return 1 if wiki in head.link['href'] or len(dots) == 1 or domain in head.link['href'] else -1
     return 1
 
 
