@@ -115,10 +115,7 @@ def https_token(url):
     if match.start(0) == 0:
         url = url[match.end(0):]
     match = re.search('http|https', url)
-    if match:
-        return -1
-    else:
-        return 1
+    return -1 if match else 1
 
 
 def request_url(wiki, soup, domain):
