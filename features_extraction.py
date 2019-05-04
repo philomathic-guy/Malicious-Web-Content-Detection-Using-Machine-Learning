@@ -225,13 +225,11 @@ def sfh(wiki, soup, domain):
 
 
 # Mail Function
-# PHP mail() function is difficult to retrieve, hence the following function is based on mailto ######
+# PHP mail() function is difficult to retrieve, hence the following function is based on mailto
 def submitting_to_email(soup):
     for form in soup.find_all('form', action=True):
-        if "mailto:" in form['action']:
-            return -1
-        else:
-            return 1
+        return -1 if "mailto:" in form['action'] else 1
+    # In case there is no form in the soup, then it is safe to return 1.
     return 1
 
 
