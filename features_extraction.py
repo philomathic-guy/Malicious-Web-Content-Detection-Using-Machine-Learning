@@ -236,10 +236,7 @@ def submitting_to_email(soup):
 def abnormal_url(domain, url):
     hostname = domain.name
     match = re.search(hostname, url)
-    if match:
-        return 1
-    else:
-        return -1
+    return 1 if match else -1
 
 
 # IFrame Redirection
