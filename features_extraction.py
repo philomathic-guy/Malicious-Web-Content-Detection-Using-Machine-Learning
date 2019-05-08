@@ -254,10 +254,7 @@ def age_of_domain(domain):
     ageofdomain = 0
     if expiration_date:
         ageofdomain = abs((expiration_date - creation_date).days)
-    if ageofdomain / 30 < 6:
-        return -1
-    else:
-        return 1
+    return -1  if ageofdomain / 30 < 6 else 1
 
 
 def web_traffic(url):
