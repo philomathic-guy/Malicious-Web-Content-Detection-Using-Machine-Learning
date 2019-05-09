@@ -254,7 +254,7 @@ def age_of_domain(domain):
     ageofdomain = 0
     if expiration_date:
         ageofdomain = abs((expiration_date - creation_date).days)
-    return -1  if ageofdomain / 30 < 6 else 1
+    return -1 if ageofdomain / 30 < 6 else 1
 
 
 def web_traffic(url):
@@ -265,10 +265,7 @@ def web_traffic(url):
     except TypeError:
         return -1
     rank = int(rank)
-    if rank < 100000:
-        return 1
-    else:
-        return 0
+    return 1 if rank < 100000 else 0
 
 
 def google_index(url):
