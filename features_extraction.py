@@ -270,10 +270,7 @@ def web_traffic(url):
 
 def google_index(url):
     site = search(url, 5)
-    if site:
-        return 1
-    else:
-        return -1
+    return 1 if site else -1
 
 
 def statistical_report(url, hostname):
