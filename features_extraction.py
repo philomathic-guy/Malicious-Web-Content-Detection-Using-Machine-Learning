@@ -305,11 +305,13 @@ def main(url):
     status = []
 
     hostname = url
-    h = [(x.start(0), x.end(0)) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
-    z = int(len(h))
-    if not z:
-        y = h[0][1]
-        hostname = hostname[y:]
+    pattern = "https://|http://|www.|https://www.|http://www."
+    pattern_match = re.match(pattern, hostname)
+
+    # h = [(x.start(), x.end()) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
+    # z = int(len(h))
+    if pattern_match:
+        hostname = hostname[pattern_match.end():]
         h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
         z = int(len(h))
         if not z:
