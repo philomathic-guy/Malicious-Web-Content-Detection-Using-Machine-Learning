@@ -306,16 +306,28 @@ def main(url):
 
     hostname = url
     pattern = "https://|http://|www.|https://www.|http://www."
-    pattern_match = re.match(pattern, hostname)
+    pre_pattern_match = re.search(pattern, hostname)
+
+    if pre_pattern_match:
+        hostname = hostname[pre_pattern_match.end():]
+        print(hostname)
+        post_pattern_match = re.search("/", hostname)
+        if post_pattern_match:
+            print(post_pattern_match.start())
+            hostname = hostname[:post_pattern_match.start()]
+            print(hostname)
 
     # h = [(x.start(), x.end()) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
     # z = int(len(h))
-    if pattern_match:
-        hostname = hostname[pattern_match.end():]
-        h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
-        z = int(len(h))
-        if not z:
-            hostname = hostname[:h[0][0]]
+    # if z:
+    #     hostname = hostname[h[0][1]:]
+    #     h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
+    #     z = int(len(h))
+    #     print(hostname)
+    #     print(h)
+    #     if z:
+    #         print(h[0][0])
+    #         hostname = hostname[:h[0][0]]
 
     # print("Hostname is - " + hostname)
 
