@@ -112,7 +112,7 @@ def favicon(wiki, soup, domain):
 
 def https_token(url):
     match = re.search('https://|http://', url)
-    if match.start(0) == 0:
+    if match and match.start(0) == 0:
         url = url[match.end(0):]
     match = re.search('http|https', url)
     return -1 if match else 1
