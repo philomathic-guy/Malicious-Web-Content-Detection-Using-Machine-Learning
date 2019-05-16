@@ -64,13 +64,14 @@ def double_slash_redirecting(url):
     last_double_slash = url.rfind('//')
     return -1 if last_double_slash > 6 else 1
 
+
 def prefix_suffix(domain):
     match = re.search('-', domain)
     return -1 if match else 1
 
 
 def having_sub_domain(url):
-    # Here, instead of greater than 1 we will take greater than 3 since the greater than 1 conition is when www and
+    # Here, instead of greater than 1 we will take greater than 3 since the greater than 1 condition is when www and
     # country domain dots are skipped
     # Accordingly other dots will increase by 1
     if having_ip_address(url) == -1:
@@ -166,7 +167,7 @@ def url_of_anchor(wiki, soup, domain):
         # might not be
         # there in the actual a['href']
         if "#" in a['href'] or "javascript" in a['href'].lower() or "mailto" in a['href'].lower() or not (
-                        wiki in a['href'] or domain in a['href']):
+                wiki in a['href'] or domain in a['href']):
             unsafe = unsafe + 1
         i = i + 1
         # print a['href']
@@ -383,7 +384,6 @@ def main(url):
           '17. IFrame\n18. Age of Domain\n19. DNS Record\n20. Web Traffic\n21. Google Index\n22. Statistical Reports\n')
     print(status)
     return status
-
 
 # Use the below two lines if features_extraction.py is being run as a standalone file. If you are running this file as
 # a part of the workflow pipeline starting with the chrome extension, comment out these two lines.
