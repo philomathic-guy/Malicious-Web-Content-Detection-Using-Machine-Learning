@@ -59,10 +59,10 @@ def having_at_symbol(url):
 
 
 def double_slash_redirecting(url):
-    # since the position starts from, we have given 6 and not 7 which is according to the document
-    list = [x.start(0) for x in re.finditer('//', url)]
-    return -1 if list[-1] > 6 else 1
-
+    # since the position starts from 0, we have given 6 and not 7 which is according to the document.
+    # It is convenient and easier to just use string search here to search the last occurrence instead of re.
+    last_double_slash = url.rfind('//')
+    return -1 if last_double_slash > 6 else 1
 
 def prefix_suffix(domain):
     match = re.search('-', domain)
