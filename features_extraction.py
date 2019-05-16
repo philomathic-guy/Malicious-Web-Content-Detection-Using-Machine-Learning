@@ -81,10 +81,10 @@ def having_sub_domain(url):
             url)
         pos = match.end(0)
         url = url[pos:]
-    list = [x.start(0) for x in re.finditer('\.', url)]
-    if len(list) <= 3:
+    num_dots = [x.start(0) for x in re.finditer(r'\.', url)]
+    if len(num_dots) <= 3:
         return 1
-    elif len(list) == 4:
+    elif len(num_dots) == 4:
         return 0
     else:
         return -1
