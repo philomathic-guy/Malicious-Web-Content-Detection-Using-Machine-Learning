@@ -11,7 +11,7 @@ function transfer(){
 		xhr.open("POST","http://localhost/Malicious-Web-Content-Detection-Using-Machine-Learning/clientServer.php",false);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send(markup);
-		alert(xhr.responseText);
+		// alert(xhr.responseText);
 		$("#div1").text(xhr.responseText);
 		return xhr.responseText;
 	});
