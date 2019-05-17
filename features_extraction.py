@@ -34,10 +34,9 @@ def having_ip_address(url):
 def url_length(url):
     if len(url) < 54:
         return 1
-    elif len(url) >= 54 | len(url) <= 75:
+    if len(url) >= 54 or len(url) <= 75:
         return 0
-    else:
-        return -1
+    return -1
 
 
 def shortening_service(url):
