@@ -122,7 +122,7 @@ def request_url(wiki, soup, domain):
     i = 0
     success = 0
     for img in soup.find_all('img', src=True):
-        dots = [x.start(0) for x in re.finditer('\.', img['src'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', img['src'])]
         if wiki in img['src'] or domain in img['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
