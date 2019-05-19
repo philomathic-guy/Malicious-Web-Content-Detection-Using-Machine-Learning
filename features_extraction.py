@@ -128,19 +128,19 @@ def request_url(wiki, soup, domain):
         i = i + 1
 
     for audio in soup.find_all('audio', src=True):
-        dots = [x.start(0) for x in re.finditer('\.', audio['src'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', audio['src'])]
         if wiki in audio['src'] or domain in audio['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for embed in soup.find_all('embed', src=True):
-        dots = [x.start(0) for x in re.finditer('\.', embed['src'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', embed['src'])]
         if wiki in embed['src'] or domain in embed['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for i_frame in soup.find_all('i_frame', src=True):
-        dots = [x.start(0) for x in re.finditer('\.', i_frame['src'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', i_frame['src'])]
         if wiki in i_frame['src'] or domain in i_frame['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
