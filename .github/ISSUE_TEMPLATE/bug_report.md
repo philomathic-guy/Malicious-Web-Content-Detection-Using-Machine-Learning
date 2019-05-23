@@ -7,7 +7,7 @@ assignees: rohitnaik246
 
 ---
 
-**Have you read [Troubleshooting.md](https://github.com/rohitnaik246/Malicious-Web-Content-Detection-Using-Machine-Learning/blob/master/Troubleshooting.md)? If No, please do so before filing an issue.**
+**Have you read [Troubleshooting.md](https://github.com/rohitnaik246/Malicious-Web-Content-Detection-Using-Machine-Learning/blob/master/docs/Troubleshooting.md)? If No, please do so before filing an issue.**
 Yes/No
 
 **Have you tried Googling the problem?**
