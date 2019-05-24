@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestClassifier
 import joblib
 
 labels = []
-file = open('Training Dataset.arff').read()
-data_list = file.split('\r\n')
+data_file = open('dataset/Training Dataset.arff').read()
+data_list = data_file.split('\r\n')
 data = np.array(data_list)
 data1 = [i.split(',') for i in data]
 data1 = data1[0:-1]
