@@ -188,13 +188,13 @@ def links_in_tags(wiki, soup, domain):
     i = 0
     success = 0
     for link in soup.find_all('link', href=True):
-        dots = [x.start(0) for x in re.finditer('\.', link['href'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', link['href'])]
         if wiki in link['href'] or domain in link['href'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for script in soup.find_all('script', src=True):
-        dots = [x.start(0) for x in re.finditer('\.', script['src'])]
+        dots = [x.start(0) for x in re.finditer(r'\.', script['src'])]
         if wiki in script['src'] or domain in script['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
