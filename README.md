@@ -1,7 +1,7 @@
 # Malicious Web Content Detection using Machine Learning
 
 #### NOTE - 
-#### 1. If you face any issue, first refer to [Troubleshooting.md](https://github.com/rohitnaik246/Malicious-Web-Content-Detection-Using-Machine-Learning/blob/master/docs/Troubleshooting.md). If you are still not able to resolve it, please file an issue with the appropriate template (Bug report, question, custom issue or feature request).
+#### 1. If you face any issue, first refer to [Troubleshooting.md](docs/Troubleshooting.md). If you are still not able to resolve it, please file an issue with the appropriate template (Bug report, question, custom issue or feature request).
 #### 2. Please support the project by starring it :)
 
 ### Steps for reproducing the project -
