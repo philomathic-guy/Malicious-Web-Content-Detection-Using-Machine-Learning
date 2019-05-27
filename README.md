@@ -24,7 +24,7 @@ Make sure your pip is consistent with the Python version you are using by typing
 
 ### Take a look at the [demo](https://youtu.be/0-wky0h3hmM)
 
-A few snapshots of our system being run on certain webpages -
+A few snapshots of our system being run on different webpages -
 
 ![spit_safe](https://user-images.githubusercontent.com/18022447/35985360-7cd910f2-0cc4-11e8-9edf-d38bf83d19a1.png)
 _**Fig 1.** A safe website - www.spit.ac.in (College website)_
