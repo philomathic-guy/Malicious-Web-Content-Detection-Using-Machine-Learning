@@ -78,9 +78,9 @@ def having_sub_domain(url):
             '(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.'
             '([01]?\\d\\d?|2[0-4]\\d|25[0-5]))|(?:[a-fA-F0-9]{1,4}:){7}[a-fA-F0-9]{1,4}',
             url)
-        pos = match.end(0)
+        pos = match.end()
         url = url[pos:]
-    num_dots = [x.start(0) for x in re.finditer(r'\.', url)]
+    num_dots = [x.start() for x in re.finditer(r'\.', url)]
     if len(num_dots) <= 3:
         return 1
     elif len(num_dots) == 4:
@@ -105,15 +105,15 @@ def domain_registration_length(domain):
 def favicon(wiki, soup, domain):
     for head in soup.find_all('head'):
         for head.link in soup.find_all('link', href=True):
-            dots = [x.start(0) for x in re.finditer(r'\.', head.link['href'])]
+            dots = [x.start() for x in re.finditer(r'\.', head.link['href'])]
             return 1 if wiki in head.link['href'] or len(dots) == 1 or domain in head.link['href'] else -1
     return 1
 
 
 def https_token(url):
     match = re.search('https://|http://', url)
-    if match and match.start(0) == 0:
-        url = url[match.end(0):]
+    if match and match.start() == 0:
+        url = url[match.end():]
     match = re.search('http|https', url)
     return -1 if match else 1
 
@@ -122,25 +122,25 @@ def request_url(wiki, soup, domain):
     i = 0
     success = 0
     for img in soup.find_all('img', src=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', img['src'])]
+        dots = [x.start() for x in re.finditer(r'\.', img['src'])]
         if wiki in img['src'] or domain in img['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for audio in soup.find_all('audio', src=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', audio['src'])]
+        dots = [x.start() for x in re.finditer(r'\.', audio['src'])]
         if wiki in audio['src'] or domain in audio['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for embed in soup.find_all('embed', src=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', embed['src'])]
+        dots = [x.start() for x in re.finditer(r'\.', embed['src'])]
         if wiki in embed['src'] or domain in embed['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for i_frame in soup.find_all('i_frame', src=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', i_frame['src'])]
+        dots = [x.start() for x in re.finditer(r'\.', i_frame['src'])]
         if wiki in i_frame['src'] or domain in i_frame['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
@@ -188,13 +188,13 @@ def links_in_tags(wiki, soup, domain):
     i = 0
     success = 0
     for link in soup.find_all('link', href=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', link['href'])]
+        dots = [x.start() for x in re.finditer(r'\.', link['href'])]
         if wiki in link['href'] or domain in link['href'] or len(dots) == 1:
             success = success + 1
         i = i + 1
 
     for script in soup.find_all('script', src=True):
-        dots = [x.start(0) for x in re.finditer(r'\.', script['src'])]
+        dots = [x.start() for x in re.finditer(r'\.', script['src'])]
         if wiki in script['src'] or domain in script['src'] or len(dots) == 1:
             success = success + 1
         i = i + 1
@@ -310,18 +310,15 @@ def main(url):
 
     if pre_pattern_match:
         hostname = hostname[pre_pattern_match.end():]
-        print(hostname)
         post_pattern_match = re.search("/", hostname)
         if post_pattern_match:
-            print(post_pattern_match.start())
             hostname = hostname[:post_pattern_match.start()]
-            print(hostname)
 
     # h = [(x.start(), x.end()) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
     # z = int(len(h))
     # if z:
     #     hostname = hostname[h[0][1]:]
-    #     h = [(x.start(0), x.end(0)) for x in re.finditer('/', hostname)]
+    #     h = [(x.start(), x.end()) for x in re.finditer('/', hostname)]
     #     z = int(len(h))
     #     print(hostname)
     #     print(h)
