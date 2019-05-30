@@ -245,6 +245,9 @@ def i_frame(soup):
         # Even if one iFrame satisfies the below conditions, it is safe to return -1 for this method.
         if i_frame['width'] == "0" and i_frame['height'] == "0" and i_frame['frameBorder'] == "0":
             return -1
+        if i_frame['width'] == "0" or i_frame['height'] == "0" or i_frame['frameBorder'] == "0":
+            return 0
+    # If none of the iframes have a width or height of zero or a frameBorder of size 0, then it is safe to return 1.
     return 1
 
 
