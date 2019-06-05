@@ -336,10 +336,7 @@ def main(url):
     except:
         dns = -1
 
-    if dns == -1:
-        status.append(-1)
-    else:
-        status.append(domain_registration_length(domain))
+    status.append(-1 if dns == -1 else domain_registration_length(domain))
 
     status.append(favicon(url, soup, hostname))
     status.append(https_token(url))
@@ -349,17 +346,11 @@ def main(url):
     status.append(sfh(url, soup, hostname))
     status.append(submitting_to_email(soup))
 
-    if dns == -1:
-        status.append(-1)
-    else:
-        status.append(abnormal_url(domain, url))
+    status.append(-1 if dns == -1 else abnormal_url(domain, url))
 
     status.append(i_frame(soup))
 
-    if dns == -1:
-        status.append(-1)
-    else:
-        status.append(age_of_domain(domain))
+    status.append(-1 if dns == -1 else age_of_domain(domain))
 
     status.append(dns)
 
