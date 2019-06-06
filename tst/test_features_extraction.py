@@ -25,6 +25,17 @@ class TestFeaturesExtraction(unittest.TestCase):
         self.assertEqual(having_ip_address(url_1), 1, "Given input URL does not have an IP address.")
         self.assertEqual(having_ip_address(url_2), 1, "Given input URL does not have an IP address.")
 
+    def test_shortening_services(self):
+        url_1 = "bit.ly/akhd9a9"
+        url_2 = "http://goo.gl/shan78a"
+        url_3 = "https://github.com/rohitnaik246"
+
+        # Shortening services links
+        self.assertEqual(shortening_service(url_1), -1, "Given input URL is a shortening service URL.")
+        self.assertEqual(shortening_service(url_2), -1, "Given input URL is a shortening service URL.")
+
+        # Non-shortening services links
+        self.assertEqual(shortening_service(url_3), 1, "Given input URL is a non-shortening service URL.")
 
 if __name__ == "__main__":
     unittest.main()
