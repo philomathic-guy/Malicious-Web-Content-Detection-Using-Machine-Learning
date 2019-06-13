@@ -22,6 +22,7 @@ from patterns import *
 
 # Path of your local server. Different for different OSs.
 LOCALHOST_PATH = "/Library/WebServer/Documents/"
+DIRECTORY_NAME = "Malicious-Web-Content-Detection-Using-Machine-Learning"
 
 
 def having_ip_address(url):
@@ -291,7 +292,7 @@ def statistical_report(url, hostname):
 
 
 def main(url):
-    with open(LOCALHOST_PATH + 'Malicious-Web-Content-Detection-Using-Machine-Learning/markup.txt', 'r') as file:
+    with open(LOCALHOST_PATH + DIRECTORY_NAME + '/markup.txt', 'r') as file:
         soup_string = file.read()
 
     soup = BeautifulSoup(soup_string, 'html.parser')
