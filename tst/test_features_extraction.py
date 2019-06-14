@@ -42,9 +42,13 @@ class TestFeaturesExtraction(unittest.TestCase):
         url_1 = "https://docs.python.org/2/library/re.html"
         self.assertEqual(url_length(url_1), 1, "The URL length is not suspicious.")
 
-        # Long URL
-        url_2 = "https://myfunds.000webhostapp.com/new_now/8f66d5a47bf3ec8e6c1ag6s3dc770001a4bd/"
-        self.assertEqual(url_length(url_1), -1, "The URL length is suspicious.")
+        # Long URL.
+        url_2 = ""
+        self.assertEqual(url_length(url_2), 0, "The URL length is not suspicious.")
+
+        # Longer URL.
+        url_3 = "https://myfunds.000webhostapp.com/new_now/8f66d5a47bf3ec8e6c1ag6s3dc770001a4bd/"
+        self.assertEqual(url_length(url_3), -1, "The URL length is suspicious.")
 
 
 if __name__ == "__main__":
