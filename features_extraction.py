@@ -103,7 +103,7 @@ def favicon(wiki, soup, domain):
 
 
 def https_token(url):
-    match = re.search('https://|http://', url)
+    match = re.search(http_https, url)
     if match and match.start() == 0:
         url = url[match.end():]
     match = re.search('http|https', url)
