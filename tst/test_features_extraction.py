@@ -40,14 +40,13 @@ class TestFeaturesExtraction(unittest.TestCase):
     def test_url_length(self):
         # Short URL - Length 41.
         url_1 = "https://docs.python.org/2/library/re.html"
-        self.assertEqual(url_length(url_1), 1, "The URL length is not suspicious.")
-
         # Long URL - Length - 73.
         url_2 = "https://github.com/philomathic-guy/Friend-recommendation-using-movie-data"
-        self.assertEqual(url_length(url_2), 0, "The URL length is not suspicious.")
-
         # Longer URL - Length 79.
         url_3 = "https://myfunds.000webhostapp.com/new_now/8f66d5a47bf3ec8e6c1ag6s3dc770001a4bd/"
+
+        self.assertEqual(url_length(url_1), 1, "The URL length is not suspicious.")
+        self.assertEqual(url_length(url_2), 0, "The URL length is not suspicious.")
         self.assertEqual(url_length(url_3), -1, "The URL length is suspicious.")
 
 
