@@ -49,6 +49,13 @@ class TestFeaturesExtraction(unittest.TestCase):
         self.assertEqual(url_length(url_2), 0, "The URL length is not suspicious.")
         self.assertEqual(url_length(url_3), -1, "The URL length is suspicious.")
 
+    def test_having_at_symbol(self):
+        url_1 = "https://docs.python.org/2/library/re.html"
+        url_2 = "https://github.com/philomathic-guy/"
+
+        self.assertEqual(having_at_symbol(url_1), 1)
+        self.assertEqual(having_at_symbol(url_2), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
