@@ -14,7 +14,7 @@ def get_prediction_from_url(test_url):
     clf = joblib.load(LOCALHOST_PATH + DIRECTORY_NAME + '/classifier/random_forest.pkl')
 
     pred = clf.predict(features_test)
-    return pred
+    return int(pred[0])
 
 
 def main():
@@ -27,10 +27,10 @@ def main():
     # print 'Features=', features_test, 'The predicted probability is - ', prob, 'The predicted label is - ', pred
     #    print "The probability of this site being a phishing website is ", features_test[0]*100, "%"
 
-    if int(pred[0]) == 1:
+    if pred == 1:
         # print "The website is safe to browse"
         print("SAFE")
-    elif int(pred[0]) == -1:
+    elif pred == -1:
         # print "The website has phishing features. DO NOT VISIT!"
         print("PHISHING")
 
