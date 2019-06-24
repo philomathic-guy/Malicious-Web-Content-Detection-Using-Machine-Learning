@@ -291,15 +291,9 @@ def statistical_report(url, hostname):
         return 1
 
 
-def main(url):
-    with open(LOCALHOST_PATH + DIRECTORY_NAME + '/markup.txt', 'r') as file:
-        soup_string = file.read()
-
-    soup = BeautifulSoup(soup_string, 'html.parser')
-
-    status = []
-
+def get_hostname_from_url(url):
     hostname = url
+    # TODO: Put this pattern in patterns.py as something like - get_hostname_pattern.
     pattern = "https://|http://|www.|https://www.|http://www."
     pre_pattern_match = re.search(pattern, hostname)
 
@@ -309,19 +303,19 @@ def main(url):
         if post_pattern_match:
             hostname = hostname[:post_pattern_match.start()]
 
-    # h = [(x.start(), x.end()) for x in re.finditer('https://|http://|www.|https://www.|http://www.', hostname)]
-    # z = int(len(h))
-    # if z:
-    #     hostname = hostname[h[0][1]:]
-    #     h = [(x.start(), x.end()) for x in re.finditer('/', hostname)]
-    #     z = int(len(h))
-    #     print(hostname)
-    #     print(h)
-    #     if z:
-    #         print(h[0][0])
-    #         hostname = hostname[:h[0][0]]
+    return hostname
 
-    # print("Hostname is - " + hostname)
+# TODO: Put the DNS and domain code into a function.
+
+
+def main(url):
+    with open(LOCALHOST_PATH + DIRECTORY_NAME + '/markup.txt', 'r') as file:
+        soup_string = file.read()
+
+    soup = BeautifulSoup(soup_string, 'html.parser')
+
+    status = []
+    hostname = get_hostname_from_url(url)
 
     status.append(having_ip_address(url))
     status.append(url_length(url))
