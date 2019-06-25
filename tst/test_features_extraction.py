@@ -2,6 +2,7 @@
 
 import unittest
 from features_extraction import *
+from test import get_prediction_from_url
 
 
 class TestFeaturesExtraction(unittest.TestCase):
@@ -56,6 +57,10 @@ class TestFeaturesExtraction(unittest.TestCase):
         self.assertEqual(having_at_symbol(url_1), 1)
         self.assertEqual(having_at_symbol(url_2), 1)
 
+    def test_full_path(self):
+        url_1 = "https://github.com/philomathic-guy/"
+
+        self.assertEqual(get_prediction_from_url(url_1), 1)
 
 if __name__ == "__main__":
     unittest.main()
