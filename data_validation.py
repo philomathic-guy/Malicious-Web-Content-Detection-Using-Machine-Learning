@@ -1,6 +1,10 @@
-import numpy as np
+#  Purpose - To print the training data and check the parsing logic for it. Not a part of the codepath which
 
-file = open('Training Dataset.arff').read()
+import numpy as np
+from features_extraction import DIRECTORY_NAME, LOCALHOST_PATH
+
+with open(LOCALHOST_PATH + DIRECTORY_NAME + '/dataset/Training Dataset.arff') as f:
+    file = f.read()
 data_list = file.split('\n')
 
 print(data_list)
@@ -18,7 +22,7 @@ data1 = data1[0:-1]
 print ("Data1 after indexing - ", data1)
 print ("Length of data1 - ", len(data1))
 
-#for i in data1:
+# for i in data1:
 #    labels.append(i[30])
 data1 = np.array(data1)
 
