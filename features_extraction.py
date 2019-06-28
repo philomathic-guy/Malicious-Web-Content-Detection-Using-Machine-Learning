@@ -34,7 +34,7 @@ def having_ip_address(url):
 def url_length(url):
     if len(url) < 54:
         return 1
-    if len(url) >= 54 or len(url) <= 75:
+    if 54 <= len(url) <= 75:
         return 0
     return -1
 
