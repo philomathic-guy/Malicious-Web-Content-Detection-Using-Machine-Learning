@@ -1,4 +1,4 @@
-# This file will test all the functionality of features_extraction.py
+# Purpose - This file includes unit tests for all the functionality of features_extraction.py
 
 import unittest
 from features_extraction import *
@@ -61,6 +61,7 @@ class TestFeaturesExtraction(unittest.TestCase):
         url_1 = "https://github.com/philomathic-guy/"
 
         self.assertEqual(get_prediction_from_url(url_1), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
