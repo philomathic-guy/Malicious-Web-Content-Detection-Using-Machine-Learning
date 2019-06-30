@@ -62,6 +62,16 @@ class TestFeaturesExtraction(unittest.TestCase):
 
         self.assertEqual(get_prediction_from_url(url_1), 1)
 
+    def test_domain_registration_length(self):
+        url_1 = "https://github.com/philomathic-guy/"
+
+        hostname_1 = get_hostname_from_url(url_1)
+        try:
+            domain_1 = whois.query(hostname_1)
+            self.assertEqual(domain_registration_length(domain_1))
+        except:
+            pass
+
 
 if __name__ == "__main__":
     unittest.main()
