@@ -30,10 +30,12 @@ class TestFeaturesExtraction(unittest.TestCase):
         url_1 = "bit.ly/akhd9a9"
         url_2 = "http://goo.gl/shan78a"
         url_3 = "https://github.com/philomathic-guy"
+        url_4 = "tr.im/adsfaj8"
 
         # Shortening services links
         self.assertEqual(shortening_service(url_1), -1, "Given input URL is a shortening service URL.")
         self.assertEqual(shortening_service(url_2), -1, "Given input URL is a shortening service URL.")
+        self.assertEqual(shortening_service(url_4), -1, "Given input URL is a shortening service URL.")
 
         # Non-shortening services links
         self.assertEqual(shortening_service(url_3), 1, "Given input URL is a non-shortening service URL.")
