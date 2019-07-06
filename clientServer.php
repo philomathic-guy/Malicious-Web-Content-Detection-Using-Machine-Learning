@@ -1,3 +1,5 @@
+// Purpose - This file acts as a mediator between the client side popup.js and the server side test.py. It gets the HTML contents which acts as input to the suite of python files.
+
 <?php
 header("Access-Control-Allow-Origin: *");
 $site=$_POST['url'];
