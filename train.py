@@ -1,3 +1,5 @@
+# Purpose - This file is used to create a classifier and store it in a .pkl file. You can modify the contents of this file to create your own version of the classifier.
+
 import numpy as np
 
 from sklearn.ensemble import RandomForestClassifier
