@@ -1,4 +1,5 @@
-# Purpose - This file is used to create a classifier and store it in a .pkl file. You can modify the contents of this file to create your own version of the classifier.
+# Purpose - This file is used to create a classifier and store it in a .pkl file. You can modify the contents of this
+# file to create your own version of the classifier.
 
 import numpy as np
 
@@ -32,8 +33,7 @@ print("\n\n ""Random Forest Algorithm Results"" ")
 clf4 = RandomForestClassifier(min_samples_split=7, verbose=True)
 clf4.fit(features_train, labels_train)
 importances = clf4.feature_importances_
-std = np.std([tree.feature_importances_ for tree in clf4.estimators_],
-             axis=0)
+std = np.std([tree.feature_importances_ for tree in clf4.estimators_], axis=0)
 indices = np.argsort(importances)[::-1]
 # Print the feature ranking
 print("Feature ranking:")
