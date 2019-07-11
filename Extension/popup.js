@@ -1,4 +1,5 @@
-// Purpose - This file contains all the logic relevant to the extension such as getting the URL, calling the server side clientServer.php which then calls the core logic.
+// Purpose - This file contains all the logic relevant to the extension such as getting the URL, calling the server
+// side clientServer.php which then calls the core logic.
 
 function transfer(){	
 	var tablink;
@@ -8,7 +9,7 @@ function transfer(){
 
 		var xhr=new XMLHttpRequest();
 		params="url="+tablink;
-//		alert(params);
+        // alert(params);
 		var markup = "url="+tablink+"&html="+document.documentElement.innerHTML;
 		xhr.open("POST","http://localhost/Malicious-Web-Content-Detection-Using-Machine-Learning/clientServer.php",false);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
