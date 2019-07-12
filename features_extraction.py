@@ -1,3 +1,6 @@
+# Purpose -
+# Running this file (stand alone) - For extracting all the features from a web page for testing.
+# Notes -
 # 1 stands for legitimate
 # 0 stands for suspicious
 # -1 stands for phishing
