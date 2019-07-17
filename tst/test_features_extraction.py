@@ -74,6 +74,13 @@ class TestFeaturesExtraction(unittest.TestCase):
         except:
             pass
 
+    def test_having_sub_domain(self):
+        url_1 = "https://github.com/philomathic-guy/"
+        url_2 = "https://www.spit.ac.in"
+
+        self.assertEqual(having_sub_domain(url_1), 1)
+        self.assertEqual(having_sub_domain(url_2), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
