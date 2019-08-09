@@ -13,6 +13,9 @@ Yes/No
 **Have you tried Googling about it?**
 Yes/No
 
+**If yes, what were your findings?**
+<Post screenshots or links that you found and ahow how you have done some self-research and narrowed down the root cause>
+
 **Which python version are you using to run the project? In the terminal, type ```which <python-path-you-have-in-clientServer.php>``` and enter the output here**
 Python version -
 
